@@ -11,18 +11,18 @@
 |
 */
 
+use App\Http\Controllers\ProductsController;
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/catalog', function () {
-    return view('welcome');
+Route::get('products', 'ProductsController@show');
+Route::get('faqs', function () {
+    return view('faqs');
 });
-Route::get('/faq', function () {
-    return view('welcome');
+Route::get('affliliates', function () {
+    return view('affiliates');
 });
-Route::get('/assistance', function () {
-    return view('welcome');
-});
-Route::get('/login', function () {
-    return view('welcome');
+Route::get('login', function () {
+    return view('login');
 });

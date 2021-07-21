@@ -21,30 +21,18 @@
             </hgroup>
             <nav>
                 <ul>
-                    <li><a class="highlighted" href="/" >Home</a></li>
-                    <li><a href="catalog">Catalogo</a></li>
-                    <li><a href="#">Centri assistenza </a></li>
-                    <li><a href="#">F.A.Q.</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a class="{{Request::path() === '/' ? 'highlighted' : ''}}" href="/">Home</a></li>
+                    <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="/products">Prodotti</a></li>
+                    <li><a class="{{Request::path() === 'affiliates' ? 'highlighted' : ''}}" href="affiliates">Centri assistenza </a></li>
+                    <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="/faqs">F.A.Q.</a></li>
+                    <li><a class="{{Request::path() === 'login' ? 'highlighted' : ''}}" href="/login">Login</a></li>
                 </ul>
             </nav>
         </header>
     </div>
-    <aside id="introduction" class="bodywidth clear">
-        <div id="introleft">
-            <h2>Welcome to <span class="blue">our website</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis molestie sapien. Proin elit quam, commodo ut aliquet vel, elementum ut odio. Praesent semper tincidunt magna, sed sagittis elit congue sed. Mauris malesuada, elit ut luctus tristique, lectus libero rutrum mauris, ac tristique.</p>
-            <p><a href="#" class="findoutmore">Find out more?</a></p>
-        </div>
-        <blockquote id="introquote">
-            <p>This company is amazing. I can't come up with enough good things to say. Literally. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum magna tortor.</p>
-            <p class="quotename">John Smith, <span class="bold">Another Company</span></p>
-        </blockquote>
-    </aside>
 
-    <div id="maincontent" class="bodywidth clear">
-        @yield('maincontent')
-    </div>
+    @yield('content')
+
     <div id="footerwrap">
     <footer id="mainfooter" class="bodywidth clear">
         <nav class="clear">
