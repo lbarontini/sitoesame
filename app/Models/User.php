@@ -36,4 +36,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function assistanceCenter()
+    {
+        //probabilmente questo if è inutile
+        if ($this->hasRole('tec'))
+            return $this->belongsTo(Assistance_center::class);
+        else
+            return null;
+    }
+
+    public function hasRole($role) {
+        $role = (array)$role;
+        return in_array($this->role, $role);
+    }
 }
