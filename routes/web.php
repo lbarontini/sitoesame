@@ -16,12 +16,14 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('products', 'ProductsController@show');
+Route::get('/products', 'ProductsController@show');
+Route::get('/products/add', 'ProductsController@add');
+
 Route::get('faqs', function () {
-    return view('faqs');
+   return view('faqs');
 });
-Route::get('affliliates', function () {
-    return view('affiliates');
+Route::get('assistance_centers', function () {
+    return view('assistance_centers');
 });
 Route::get('login', function () {
     return view('login');

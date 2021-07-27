@@ -22,9 +22,9 @@
             <nav>
                 <ul>
                     <li><a class="{{Request::path() === '/' ? 'highlighted' : ''}}" href="/">Home</a></li>
-                    <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="/products">Prodotti</a></li>
-                    <li><a class="{{Request::path() === 'affiliates' ? 'highlighted' : ''}}" href="affiliates">Centri assistenza </a></li>
-                    <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="/faqs">F.A.Q.</a></li>
+                    <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="products">Prodotti</a></li>
+                    <li><a class="{{Request::path() === 'assistance_centers' ? 'highlighted' : ''}}" href="assistance_centers">Centri assistenza </a></li>
+                    <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="faqs">F.A.Q.</a></li>
                     <li><a class="{{Request::path() === 'login' ? 'highlighted' : ''}}" href="/login">Login</a></li>
                 </ul>
             </nav>
