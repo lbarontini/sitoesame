@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable =['model','description'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

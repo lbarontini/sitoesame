@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->text('model');
             $table->text('description');
-            $table->text('installation_notes');
-            $table->text('use_notes');
+            $table->text('installation_notes')->nullable();
+            $table->text('use_notes')->nullable();
             $table->text('photo_path')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

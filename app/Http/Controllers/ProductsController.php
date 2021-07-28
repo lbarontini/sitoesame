@@ -35,7 +35,12 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->validate([
+            'model'=>'required',
+            'description'=> 'required'
+        ]));
+
+        return redirect('/products');
     }
 
     /**
@@ -46,8 +51,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        die($product);
-       // return view('products.show',['products'=>Product::find($product)->get()]);
+        return view('products.show',['product'=>$product]);
     }
 
     /**
