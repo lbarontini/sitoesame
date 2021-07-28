@@ -3,7 +3,7 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        <a href="/products/add">aggiungi</a>
+        <a href="/products/create">aggiungi</a>
     <section id="aboutleft">
         @foreach ($products as $product)
             <article>

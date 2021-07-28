@@ -16,8 +16,9 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/products', 'ProductsController@show');
-Route::get('/products/add', 'ProductsController@add');
+Route::get('/products', 'ProductsController@index');
+Route::get('/products/create', 'ProductsController@create');
+Route::get('/products/{products}', 'ProductsController@show');
 
 Route::get('faqs', function () {
    return view('faqs');

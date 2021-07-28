@@ -4,7 +4,7 @@
     <title>HTML5 Goodness</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link href="css/styles.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
@@ -22,9 +22,9 @@
             <nav>
                 <ul>
                     <li><a class="{{Request::path() === '/' ? 'highlighted' : ''}}" href="/">Home</a></li>
-                    <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="products">Prodotti</a></li>
-                    <li><a class="{{Request::path() === 'assistance_centers' ? 'highlighted' : ''}}" href="assistance_centers">Centri assistenza </a></li>
-                    <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="faqs">F.A.Q.</a></li>
+                    <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="/products">Prodotti</a></li>
+                    <li><a class="{{Request::path() === 'assistance_centers' ? 'highlighted' : ''}}" href="/assistance_centers">Centri assistenza </a></li>
+                    <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="/faqs">F.A.Q.</a></li>
                     <li><a class="{{Request::path() === 'login' ? 'highlighted' : ''}}" href="/login">Login</a></li>
                 </ul>
             </nav>
