@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProductsController extends Controller
 {
@@ -37,7 +38,11 @@ class ProductsController extends Controller
     {
         Product::create($request->validate([
             'model'=>'required',
-            'description'=> 'required'
+            'description'=> 'required|max:50',
+            'installation_notes'=> 'required',
+            'use_notes'=> 'required',
+            'poto_path'=> 'nullable',
+            'user_id'=> 'nullable'
         ]));
 
         return redirect('/products');
@@ -62,7 +67,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit',['product'=>$product]);
     }
 
     /**
@@ -74,7 +79,16 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->validate([
+            'model'=>'required',
+            'description'=> 'required|max:50',
+            'installation_notes'=> 'required',
+            'use_notes'=> 'required',
+            'poto_path'=> 'nullable',
+            'user_id'=> 'nullable'
+        ]));
+
+        return view('products.show',['product'=>$product]);
     }
 
     /**
@@ -85,6 +99,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('/products');
     }
 }

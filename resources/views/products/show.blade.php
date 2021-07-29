@@ -3,7 +3,8 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        <a href="/products/create">aggiungi</a>
+        <a href="{{$product->id}}/edit">Modifica</a>
+        {{-- <a href="delete">Elimina</a> --}}
     <section id="aboutleft">
         <article>
             <div>
@@ -11,7 +12,8 @@
                 {{-- <figure> <img src={{$product->photo_path}} alt=""> </figure> --}}
                 <h3>{{$product->model}}</h3>
                 <h4>{{$product->description}}</h4>
-                <p>{{$product->installation_notes}}</p>
+                <h5>{{$product->installation_notes}}</h5>
+                <h5>{{$product->use_notes}}</h5>
             </div>
         </article>
     </section>

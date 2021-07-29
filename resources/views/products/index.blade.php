@@ -10,9 +10,10 @@
                 <div>
                     <figure> <img src="/images/articleimage.jpg" alt=""> </figure>
                     {{-- <figure> <img src={{$product->photo_path}} alt=""> </figure> --}}
-                    <h3>{{$product->model}}</h3>
+                    <header><a href="/products/{{$product->id}}"><h3>{{$product->model}}</h3></a></header>
                     <h4>{{$product->description}}</h4>
-                    <p>{{$product->installation_notes}}</p>
+                    <h5>{{$product->installation_notes}}</h5>
+                    <h5>{{$product->use_notes}}</h5>
                 </div>
             </article>
         @endforeach
