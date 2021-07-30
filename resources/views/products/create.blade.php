@@ -1,8 +1,67 @@
 @extends('layout')
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        var actionUrl = "{{ route('products.store') }}";
+        var formId = 'addproduct';
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id');
+            console.log(formElementId);
+            doElemValidation(formElementId, actionUrl, formId);
+        });
+    });
+
+    function doElemValidation(id, actionUrl, formId) {
+
+        var formElems;
+
+        function addFormToken() {
+            var tokenVal = $("#" + formId + " input[name=_token]").val();
+            formElems.append('_token', tokenVal);
+        }
+
+        function sendAjaxReq() {
+            $.ajax({
+                type: 'POST',
+                url: actionUrl,
+                data: formElems,
+                dataType: "json",
+                error: function (data) {
+                    if (data.status === 422) {
+                        var errMsgs = JSON.parse(data.responseText);
+                        $("#" + id).parent().find('.errors').html(' ');
+                        $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    }
+                },
+                contentType: false,
+                processData: false
+            });
+        }
+
+        var elem = $("#" + formId + " :input[name=" + id + "]");
+        if (elem.attr('type') === 'file') {
+        // elemento di input type=file valorizzato
+            if (elem.val() !== '') {
+                inputVal = elem.get(0).files[0];
+            } else {
+                inputVal = new File([""], "");
+            }
+        } else {
+            // elemento di input type != file
+            inputVal = elem.val();
+        }
+        formElems = new FormData();
+        formElems.append(id, inputVal);
+        addFormToken();
+        sendAjaxReq();
+    }
+</script>
+@endsection
 @section('content')
     <div class="container-contact">
             <h1>Nuovo Prodotto</h1>
-            {!! Form::open(['url' => '/products']) !!}
+            {!! Form::open(array('route' => 'products.store', 'id' => 'addproduct', 'files' => true, 'class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('model', 'Modello', ['class' => 'label-input']) }}

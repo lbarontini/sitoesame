@@ -7,10 +7,8 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-    <script src="js/html5.js"></script>
-    <script src="js/IE9.js"></script>
-    <![endif]-->
+
+    @yield('script')
 </head>
 <body>
     <div id="headerwrap">
