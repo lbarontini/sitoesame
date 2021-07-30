@@ -86,6 +86,101 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #mainfooter a, #mainfooter a:visited{color:#fff;}
 .copyright{float:right; color:#b8b8b8;}
 
+/* input form */
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    margin-bottom: 12px;
+  }
+
+  .rs1-wrap-input {
+    width: 100%;
+  }
+
+  .label-input {font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+
+  .input {
+    display: block;
+    width: 90%;
+    background: #f2f2f2;
+    border-radius: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #686868;
+    line-height: 1.2;
+    padding: 5px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    margin-top: 5px;
+  }
+
+  .container-contact {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .wrap-contact {
+    background: transparent;
+    border-radius: 2px;
+    padding: 30px 120px;
+    position: relative;
+  }
+
+  .wrap-contact1 {
+    max-width: 300px;
+    background: #dbecf6;
+    border-radius: 2px;
+    padding: 30px 30px;
+    position: relative;
+  }
+
+  .contact-form {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .container-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .form-btn1 {
+    justify-content: center;
+    padding: 0 20px;
+    height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #555555;
+  }
+
 /* MEDIA QUERIES */
 
 /* Under 960px */
