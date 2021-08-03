@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="headerwrap">
-        <header id="mainheader" class="bodywidth clear"> <img src="images/logo.png" alt="" class="logo">
+        <header id="mainheader" class="bodywidth clear"> <img src= "{{asset('images/logo.png')}}" alt="" class="logo">
             <hgroup id="websitetitle">
                 <h1><span class="bold">HTML5</span>Goodness</h1>
                 <h2>about as modern as it gets...</h2>

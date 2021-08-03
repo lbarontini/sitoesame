@@ -1,9 +1,33 @@
 @extends('layout')
+@section('script')
+<script src="{{ asset('js/functions.js') }}" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        var actionType = 'PUT';
+        var actionUrl = "{{ route('products.update',['product'=>$product]) }}";
+        var formId = 'editproduct';
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id');
+            doElemValidation(formElementId, actionUrl, formId, actionType);
+        });
+        $("#editproduct").on('submit', function (event) {
+            event.preventDefault();
+            doFormValidation(actionUrl, formId, actionType);
+        });
+    });
+</script>
+@endsection
 
 @section('content')
     <div class="container-contact">
-        <h1>Nuovo Prodotto</h1>
-        {!! Form::model($product, ['route' => ['products.update', $product->id],'method'=>'put']) !!}
+        <h1>Modifica Prodotto</h1>
+        {!! Form::model($product, array('route' =>array('products.update', $product->id),
+                                         'id' => 'editproduct',
+                                         'files' => true,
+                                         'class' => 'contact-form',
+                                         'method'=>'PUT'));
+        !!}
             <div class="wrap-input">
                 <div  class="rs1-wrap-input">
                     {{ Form::label('model', 'Modello', ['class' => 'label-input']) }}
@@ -26,8 +50,8 @@
                 </div>
 
                 <div  class="rs1-wrap-input">
-                    {{ Form::label('photo_path', 'Foto', ['class' => 'label-input']) }}
-                    {{Form::file('photo_path', ['class' => 'input', 'id' => 'photo_path'])}}
+                    {{ Form::label('image', 'Foto', ['class' => 'label-input']) }}
+                    {{Form::file('image', ['class' => 'input', 'id' => 'image'])}}
                 </div>
 
                 <div  class="rs1-wrap-input">
@@ -36,7 +60,7 @@
                 </div>
 
                 <div class="container-form-btn">
-                    {{ Form::submit('Aggiungi Prodotto', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
+                    {{ Form::submit('Modifica Prodotto', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                 </div>
             </div>
         {!! Form::close() !!}

@@ -61,10 +61,12 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #tools{margin:0 0 20px 0; overflow:hidden;}
 #tools a{float: right;font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
 #product article{clear:both; margin:0 0 20px 0; overflow:hidden;}
-#product figure{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
-#product article h3{ display:inline; font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#product article h4{ display:inline; font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
-#product article p{ display:inline; line-height:135%; margin:0 0 15px 0;}
+#product img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
+#product article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#product article div.info {display:inline;}
+#product article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#product article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#product article p{line-height:135%; margin:0 0 15px 0;}
 #product article #blue{color:#4086c6;}
 a.readmore, a.readmore:visited{padding:4px; font:0.9em "Ubuntu",arial; font-weight:bold; color:#fff; text-shadow:0 0 1px #1e5298; background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.12,rgb(109,171,229)),color-stop(0.56,rgb(59,126,189))); background-image:-moz-linear-gradient(center bottom,rgb(109,171,229) 12%,rgb(59,126,189) 56%); background-color:#468ac9; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; margin:10px 0 0 0; float:left;}
 a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 0 1px #000; text-decoration:none;}

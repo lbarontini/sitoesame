@@ -9,12 +9,15 @@
     <section id="product">
         <article>
             <div>
-                <figure> <img src="/images/articleimage.jpg" alt=""> </figure>
-                {{-- <figure> <img src={{$product->photo_path}} alt=""> </figure> --}}
-                <h3 class="blue">{{$product->model}}</h3>
-                <h4>{{$product->description}}</h4>
-                <h5>{{$product->installation_notes}}</h5>
-                <h5>{{$product->use_notes}}</h5>
+                @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
+                <div class="info">
+                    <a href="/products/{{$product->id}}">
+                        <h3 class = "blue">{{$product->model}}</h3>
+                    </a>
+                    <h4 >{{$product->description}}</h4>
+                    <h5>{{$product->installation_notes}}</h5>
+                    <h5>{{$product->use_notes}}</h5>
+                </div>
             </div>
         </article>
     </section>

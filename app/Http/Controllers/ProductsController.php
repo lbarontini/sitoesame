@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Http\Requests\NewProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Validator;
 
 class ProductsController extends Controller
@@ -34,18 +36,26 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewProductRequest $request)
     {
-        Product::create($request->validate([
-            'model'=>'required',
-            'description'=> 'required|max:50',
-            'installation_notes'=> 'required',
-            'use_notes'=> 'required',
-            'poto_path'=> 'nullable',
-            'user_id'=> 'nullable'
-        ]));
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = Str::random(10).$image->getClientOriginalName();
+        } else {
+            $imageName = NULL;
+        }
 
-        return redirect('/products');
+        $product = new Product;
+        $product->fill($request->validated());
+        $product->image = $imageName;
+        $product->save();
+
+        if (!is_null($imageName)) {
+            $destinationPath = public_path() . '/images/products';
+            $image->move($destinationPath, $imageName);
+        };
+
+        return response()->json(['redirect' => route('products.index')]);
     }
 
     /**
@@ -77,18 +87,26 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(NewProductRequest $request, Product $product)
     {
-        $product->update($request->validate([
-            'model'=>'required',
-            'description'=> 'required|max:50',
-            'installation_notes'=> 'required',
-            'use_notes'=> 'required',
-            'poto_path'=> 'nullable',
-            'user_id'=> 'nullable'
-        ]));
 
-        return view('products.show',['product'=>$product]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = Str::random(10).$image->getClientOriginalName();
+        } else {
+            $imageName = $product->image;
+        }
+
+        $newproduct= Product::find($product->id);
+        $newproduct->update($request->validated());
+        $newproduct->image = $imageName;
+        $newproduct->save();
+
+        if (!is_null($imageName)) {
+            $destinationPath = public_path() . '/images/products';
+            $image->move($destinationPath, $imageName);
+        };
+        return response()->json(['redirect' => route('products.show',['product' => $product])]);
     }
 
     /**

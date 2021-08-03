@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('installation_notes')->nullable();
             $table->text('use_notes')->nullable();
-            $table->text('photo_path')->nullable();
+            $table->text('image')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 

@@ -1,63 +1,24 @@
 @extends('layout')
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{{ asset('js/functions.js') }}" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(function () {
+        var actionType = 'POST';
         var actionUrl = "{{ route('products.store') }}";
         var formId = 'addproduct';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
-            console.log(formElementId);
-            doElemValidation(formElementId, actionUrl, formId);
+            doElemValidation(formElementId, actionUrl, formId, actionType);
+        });
+        $("#addproduct").on('submit', function (event) {
+            event.preventDefault();
+            doFormValidation(actionUrl, formId, actionType);
         });
     });
-
-    function doElemValidation(id, actionUrl, formId) {
-
-        var formElems;
-
-        function addFormToken() {
-            var tokenVal = $("#" + formId + " input[name=_token]").val();
-            formElems.append('_token', tokenVal);
-        }
-
-        function sendAjaxReq() {
-            $.ajax({
-                type: 'POST',
-                url: actionUrl,
-                data: formElems,
-                dataType: "json",
-                error: function (data) {
-                    if (data.status === 422) {
-                        var errMsgs = JSON.parse(data.responseText);
-                        $("#" + id).parent().find('.errors').html(' ');
-                        $("#" + id).after(getErrorHtml(errMsgs[id]));
-                    }
-                },
-                contentType: false,
-                processData: false
-            });
-        }
-
-        var elem = $("#" + formId + " :input[name=" + id + "]");
-        if (elem.attr('type') === 'file') {
-        // elemento di input type=file valorizzato
-            if (elem.val() !== '') {
-                inputVal = elem.get(0).files[0];
-            } else {
-                inputVal = new File([""], "");
-            }
-        } else {
-            // elemento di input type != file
-            inputVal = elem.val();
-        }
-        formElems = new FormData();
-        formElems.append(id, inputVal);
-        addFormToken();
-        sendAjaxReq();
-    }
 </script>
 @endsection
+
 @section('content')
     <div class="container-contact">
             <h1>Nuovo Prodotto</h1>
@@ -84,8 +45,8 @@
                     </div>
 
                     <div  class="rs1-wrap-input">
-                        {{ Form::label('photo_path', 'Foto', ['class' => 'label-input']) }}
-                        {{Form::file('photo_path', ['class' => 'input', 'id' => 'photo_path'])}}
+                        {{ Form::label('image', 'Foto', ['class' => 'label-input']) }}
+                        {{Form::file('image', ['class' => 'input', 'id' => 'image'])}}
                     </div>
 
                     <div  class="rs1-wrap-input">
