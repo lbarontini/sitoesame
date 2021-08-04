@@ -102,7 +102,7 @@ class ProductsController extends Controller
         $newproduct->image = $imageName;
         $newproduct->save();
 
-        if (!is_null($imageName)) {
+        if ($imageName!= $product->image) {
             $destinationPath = public_path() . '/images/products';
             $image->move($destinationPath, $imageName);
         };
@@ -118,6 +118,6 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect('/products');
+        return response()->json(['redirect' => route('products.index')]);
     }
 }

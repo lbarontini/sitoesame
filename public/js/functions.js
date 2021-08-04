@@ -19,6 +19,11 @@ function doElemValidation(id, actionUrl, formId, actionType) {
     }
 
     function sendAjaxReq() {
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
         $.ajax({
             type: 'POST',
             url: actionUrl,
@@ -51,7 +56,7 @@ function doElemValidation(id, actionUrl, formId, actionType) {
     formElems = new FormData();
     formElems.append(id, inputVal);
     formElems.append('_method', actionType);
-    addFormToken();
+    //addFormToken();
     sendAjaxReq();
 
 }
@@ -60,11 +65,16 @@ function doFormValidation(actionUrl, formId, actionType) {
 
     var form = new FormData(document.getElementById(formId));
     form.append('_method', actionType);
+    $.ajaxSetup({
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     $.ajax({
         type: 'POST',
         url: actionUrl,
         data: form,
-        //dataType: "json",
+        dataType: "json",
         error: function (data) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);

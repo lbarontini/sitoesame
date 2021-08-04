@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>HTML5 Goodness</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+
     <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold" rel="stylesheet" type="text/css">
@@ -13,6 +15,7 @@
 <body>
     <div id="headerwrap">
         <header id="mainheader" class="bodywidth clear"> <img src= "{{asset('images/logo.png')}}" alt="" class="logo">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             <hgroup id="websitetitle">
                 <h1><span class="bold">HTML5</span>Goodness</h1>
                 <h2>about as modern as it gets...</h2>
