@@ -50,6 +50,18 @@
                     </div>
 
                     <div  class="rs1-wrap-input">
+                        {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
+                        {{ Form::select('malfunctions',
+                                         $malfunctions->pluck('name','id'),
+                                         null,
+                                         [  'multiple'=>true,
+                                            'class' => 'input',
+                                            'id' => 'malfunctions'
+                                         ])
+                        }}
+                    </div>
+
+                    <div  class="rs1-wrap-input">
                         {{ Form::label('user_id', 'Gestore', ['class' => 'label-input']) }}
                         {{ Form::text('user_id', '', ['class' => 'input', 'id' => 'user_id']) }}
                     </div>

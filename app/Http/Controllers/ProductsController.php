@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Product;
+use  App\Models\Malfunction;
 use App\Http\Requests\NewProductRequest;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use SebastianBergmann\Environment\Console;
 use Validator;
 
 class ProductsController extends Controller
@@ -27,7 +31,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create',['malfunctions'=>Malfunction::All()]);
     }
 
     /**
@@ -44,11 +48,16 @@ class ProductsController extends Controller
         } else {
             $imageName = NULL;
         }
-
+        $validated = $request->validated();
+        unset($validated['malfunctions']);
         $product = new Product;
-        $product->fill($request->validated());
+        $product->fill($validated);
         $product->image = $imageName;
         $product->save();
+
+        //the malfunctions array in json are not handled correctly so i had to do this
+        $malfunctions= explode(',', $request->validated()['malfunctions']);
+        $product->malfunctions()->attach($malfunctions);
 
         if (!is_null($imageName)) {
             $destinationPath = public_path() . '/images/products';

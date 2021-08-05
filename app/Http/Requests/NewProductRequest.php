@@ -35,7 +35,8 @@ class NewProductRequest extends FormRequest {
             'installation_notes'=> 'required',
             'use_notes'=> 'required',
             'image'=> 'nullable|file|mimes:jpeg,png|max:1024',
-            'user_id'=> 'nullable'
+            'user_id'=> 'nullable',
+            'malfunctions'=>'nullable'
         ];
     }
 

@@ -65,11 +65,19 @@ function doFormValidation(actionUrl, formId, actionType) {
 
     var form = new FormData(document.getElementById(formId));
     form.append('_method', actionType);
+
+    //handling malfunction passing multiple data
+    if (form.has('malfunctions')){
+            var realvalues = form.getAll('malfunctions');
+        form.delete('malfunctions');
+        form.append('malfunctions',realvalues);
+        }
+
     $.ajaxSetup({
         headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
+    });
     $.ajax({
         type: 'POST',
         url: actionUrl,
@@ -82,10 +90,6 @@ function doFormValidation(actionUrl, formId, actionType) {
                     $("#" + id).parent().find('.errors').html(' ');
                     $("#" + id).after(getErrorHtml(errMsgs[id]));
                 });
-            }
-            else {
-                //showing error in case of error different from 422
-                $(".wrap-input").after(data.status);
             }
         },
         success: function (data) {
