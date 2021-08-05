@@ -5,6 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(function () {
+        //todo put this in functions.js
         var actionType = 'DELETE';
         var actionUrl = "{{ route('products.destroy',['product'=>$product]) }}";
         var linkId = 'destroy';
@@ -35,19 +36,33 @@
     <section id="tools">
         <a href="{{$product->id}}/edit">Modifica</a>
         <a href="" id="destroy">Elimina</a>
-       {{-- <a href="" id="destroy" token="{{ csrf_token() }}">Elimina</a> --}}
     </section>
-    <section id="product">
+    <section id="show">
         <article>
             <div>
                 @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
                 <div class="info">
-                    <a href="/products/{{$product->id}}">
-                        <h3 class = "blue">{{$product->model}}</h3>
-                    </a>
-                    <h4 >{{$product->description}}</h4>
-                    <h5>{{$product->installation_notes}}</h5>
-                    <h5>{{$product->use_notes}}</h5>
+                    <h3 class = "blue">Modello: {{$product->model}}</h3>
+
+                    <h4 >Descrizione: {{$product->description}}</h4>
+                    <h5>Note Installazione: {{$product->installation_notes}}</h5>
+                    <h5>Note Utlizzo: {{$product->use_notes}}</h5>
+                    <h5>MalFunzionementi: </h5>
+                    <ul>
+                        @foreach ($product->malfunctions as $malfunction)
+                            <li><h5>{{$malfunction->name}}</h5>
+                                <h5>{{$malfunction->description}}</h5>
+                                <h5>Soluzioni: </h5>
+                                <ul>
+                                    @foreach ($malfunction->solutions as $solution)
+                                        <li><h5>{{$solution->name}}</h5>
+                                            <h5>{{$solution->description}}</h5>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </article>

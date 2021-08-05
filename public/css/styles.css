@@ -60,14 +60,23 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #maincontent{border-top:1px #dbdbdb solid; padding:25px 0 0 0; overflow:hidden;}
 #tools{margin:0 0 20px 0; overflow:hidden;}
 #tools a{float: right;font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#product article{clear:both; margin:0 0 20px 0; overflow:hidden;}
-#product img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
-#product article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#product article div.info {display:inline;}
-#product article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#product article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
-#product article p{line-height:135%; margin:0 0 15px 0;}
-#product article #blue{color:#4086c6;}
+#index article{clear:both; margin:0 0 20px 0; overflow:hidden;}
+#index img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
+#index article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index article div.info {display:inline;}
+#index article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#index article p{line-height:135%; margin:0 0 15px 0;}
+#index article #blue{color:#4086c6;}
+#show article{clear:both; margin:0 0 20px 0; overflow:hidden;}
+#show article .info ul{margin-left: 20px;}
+#show img{padding:5px; border:1px #dbdbdb solid;display:inline; width:119px; height:119px; margin:0 15px 0 0;}
+#show article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#show article div.info {display:inline;}
+#show article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#show article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#show article p{line-height:135%; margin:0 0 15px 0;}
+#show article #blue{color:#4086c6;}
 a.readmore, a.readmore:visited{padding:4px; font:0.9em "Ubuntu",arial; font-weight:bold; color:#fff; text-shadow:0 0 1px #1e5298; background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.12,rgb(109,171,229)),color-stop(0.56,rgb(59,126,189))); background-image:-moz-linear-gradient(center bottom,rgb(109,171,229) 12%,rgb(59,126,189) 56%); background-color:#468ac9; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; margin:10px 0 0 0; float:left;}
 a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 0 1px #000; text-decoration:none;}
 
@@ -187,7 +196,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:470px;}
 #introquote{width:270px;}
 #introduction h2{font-size:2.85em;}
-#product{width:450px;}
+#index{width:450px;}
+#show{width:450px;}
 #articlesright{width:324px;}
 #articlesright article{font-size:0.95em;}
 #mainfooter{font-size:0.9em;}
@@ -206,7 +216,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #websitetitle h2{font-size:1.2em;}
 #introleft{width:600px;}
 #introquote{display:none;}
-#product{width:400px;}
+#index{width:400px;}
+#show{width:400px;}
 #articlesright{width:170px;}
 #articlesright figure{display:none;}
 #mainfooter{font-size:0.9em;}
@@ -228,7 +239,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:480px;}
 #introduction h2{font-size:2.7em;}
 #introquote{display:none;}
-#product{width:310px; font-size:0.9em;}
+#index{width:310px; font-size:0.9em;}
+#show{width:310px; font-size:0.9em;}
 #articlesright{width:150px;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}
@@ -251,7 +263,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:320px; font-size:0.8em;}
 #introduction h2{font-size:2.3em;}
 #introquote{display:none;}
-#product{width:320px; font-size:0.9em;}
+#index{width:320px; font-size:0.9em;}
+#show{width:320px; font-size:0.9em;}
 #articlesright{width:320px; float:left; border-top:1px #dbdbdb solid; padding:20px 0 0 0; margin:10px 0 0 0;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}
@@ -274,7 +287,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:300px; font-size:0.8em;}
 #introduction h2{font-size:2.3em;}
 #introquote{display:none;}
-#product{width:300px; font-size:0.9em;}
+#index{width:300px; font-size:0.9em;}
+#show{width:300px; font-size:0.9em;}
 #articlesright{width:300px; float:left; border-top:1px #dbdbdb solid; padding:20px 0 0 0; margin:10px 0 0 0;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}

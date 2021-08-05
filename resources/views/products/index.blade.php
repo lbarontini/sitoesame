@@ -5,7 +5,7 @@
     <section id="tools">
         <a href="/products/create">aggiungi</a>
     </section>
-    <section id="product">
+    <section id="index">
         @foreach ($products as $product)
             <article>
                 @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
