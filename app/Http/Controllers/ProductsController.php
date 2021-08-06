@@ -48,6 +48,7 @@ class ProductsController extends Controller
         } else {
             $imageName = NULL;
         }
+
         $validated = $request->validated();
         unset($validated['malfunctions']);
         $product = new Product;
@@ -55,7 +56,7 @@ class ProductsController extends Controller
         $product->image = $imageName;
         $product->save();
 
-        //the malfunctions array in json are not handled correctly so i had to do this
+        //the malfunctions_id array in json are not handled correctly so i had to do this
         $malfunctions= explode(',', $request->validated()['malfunctions']);
         $product->malfunctions()->attach($malfunctions);
 
@@ -86,7 +87,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit',['product'=>$product]);
+        return view('products.edit',['product'=>$product,'malfunctions'=>Malfunction::All()]);
     }
 
     /**
@@ -106,10 +107,17 @@ class ProductsController extends Controller
             $imageName = $product->image;
         }
 
+        $validated = $request->validated();
+        unset($validated['malfunctions']);
         $newproduct= Product::find($product->id);
-        $newproduct->update($request->validated());
+        $newproduct->update($validated);
         $newproduct->image = $imageName;
         $newproduct->save();
+
+        //the malfunctions_id array in json are not handled correctly so i had to do this
+        $malfunctions= explode(',', $request->validated()['malfunctions']);
+        $product->malfunctions()->detach();
+        $product->malfunctions()->attach($malfunctions);
 
         if ($imageName!= $product->image) {
             $destinationPath = public_path() . '/images/products';
