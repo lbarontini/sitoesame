@@ -13,11 +13,6 @@ function doElemValidation(id, actionUrl, formId, actionType) {
 
     var formElems;
 
-    function addFormToken() {
-        var tokenVal = $("#" + formId + " input[name=_token]").val();
-        formElems.append('_token', tokenVal);
-    }
-
     function sendAjaxReq() {
         $.ajaxSetup({
             headers: {
@@ -56,7 +51,6 @@ function doElemValidation(id, actionUrl, formId, actionType) {
     formElems = new FormData();
     formElems.append(id, inputVal);
     formElems.append('_method', actionType);
-    //addFormToken();
     sendAjaxReq();
 
 }
@@ -66,7 +60,7 @@ function doFormValidation(actionUrl, formId, actionType) {
     var form = new FormData(document.getElementById(formId));
     form.append('_method', actionType);
 
-    //handling malfunction passing multiple data
+    //handling malfunction passing multiple data as array
     if (form.has('malfunctions')){
             var realvalues = form.getAll('malfunctions');
         form.delete('malfunctions');

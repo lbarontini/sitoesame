@@ -60,6 +60,10 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #maincontent{border-top:1px #dbdbdb solid; padding:25px 0 0 0; overflow:hidden;}
 #tools{margin:0 0 20px 0; overflow:hidden;}
 #tools a{float: right;font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index ul{margin-left: 20px; list-style-type:square;}
+#index ul li div.info{display:none;}
+#index ul li div.info a{float:right;}
+
 #index article{clear:both; margin:0 0 20px 0; overflow:hidden;}
 #index img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
 #index article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}

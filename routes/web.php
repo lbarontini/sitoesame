@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::post('/products', 'ProductsController@store')->name('products.store');
 Route::get('/products/create', 'ProductsController@create')->name('products.create');
@@ -23,6 +24,22 @@ Route::get('/products/{product}', 'ProductsController@show')->name('products.sho
 Route::put('/products/{product}', 'ProductsController@update')->name('products.update');
 Route::delete('/products/{product}', 'ProductsController@destroy')->name('products.destroy');
 Route::get('/products/{product}/edit', 'ProductsController@edit')->name('products.edit');
+
+Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
+Route::post('/malfunctions', 'MalfunctionsController@store')->name('malfunctions.store');
+Route::get('/malfunctions/create', 'MalfunctionsController@create')->name('malfunctions.create');
+Route::get('/malfunctions/{malfunction}', 'MalfunctionsController@show')->name('malfunctions.show');
+Route::put('/malfunctions/{malfunction}', 'MalfunctionsController@update')->name('malfunctions.update');
+Route::delete('/malfunctions/{malfunction}', 'MalfunctionsController@destroy')->name('malfunctions.destroy');
+Route::get('/malfunctions/{malfunction}/edit', 'MalfunctionsController@edit')->name('malfunctions.edit');
+
+Route::get('/solutions', 'SolutionsController@index')->name('solutions.index');
+Route::post('/solutions', 'SolutionsController@store')->name('solutions.store');
+Route::get('/solutions/create', 'SolutionsController@create')->name('solutions.create');
+Route::get('/solutions/{solution}', 'SolutionsController@show')->name('solutions.show');
+Route::put('/solutions/{solution}', 'SolutionsController@update')->name('solutions.update');
+Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('solutions.destroy');
+Route::get('/solutions/{solution}/edit', 'SolutionsController@edit')->name('solutions.edit');
 
 
 Route::get('faqs', function () {
