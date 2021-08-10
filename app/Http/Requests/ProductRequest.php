@@ -8,9 +8,10 @@ use Illuminate\Validation\Rule;
 // Aggiunti per response JSON
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use PhpParser\Node\Expr\Cast\Array_;
 use Symfony\Component\HttpFoundation\Response;
 
-class NewProductRequest extends FormRequest {
+class ProductRequest extends FormRequest {
 
     /**
      * Determine if the user is authorized to make this request.

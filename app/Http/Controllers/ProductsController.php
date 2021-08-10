@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use PHPUnit\Util\Json as Json;
 use DB;
 use App\Models\Product;
 use  App\Models\Malfunction;
-use App\Http\Requests\NewProductRequest;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,7 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products.index',['products'=>Product::latest()->get()]);
+        return view('products.index',['products'=>Product::All()]);
     }
 
     /**
@@ -40,7 +41,7 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewProductRequest $request)
+    public function store(ProductRequest $request)
     {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -56,9 +57,10 @@ class ProductsController extends Controller
         $product->image = $imageName;
         $product->save();
 
-        //the malfunctions_id array in json are not handled correctly so i had to do this
-        $malfunctions= explode(',', $request->validated()['malfunctions']);
-        $product->malfunctions()->attach($malfunctions);
+        if($request->has('malfunctions')){
+            $malfunctions= $request->validated()['malfunctions'];
+            $product->malfunctions()->attach($malfunctions);
+        }
 
         if (!is_null($imageName)) {
             $destinationPath = public_path() . '/images/products';
@@ -97,7 +99,7 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(NewProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
 
         if ($request->hasFile('image')) {
@@ -114,10 +116,11 @@ class ProductsController extends Controller
         $newproduct->image = $imageName;
         $newproduct->save();
 
-        //the malfunctions_id array in json are not handled correctly so i had to do this
-        $malfunctions= explode(',', $request->validated()['malfunctions']);
-        $product->malfunctions()->detach();
-        $product->malfunctions()->attach($malfunctions);
+        if($request->has('malfunctions')){
+            $malfunctions= $request->validated()['malfunctions'];
+            $product->malfunctions()->detach();
+            $product->malfunctions()->attach($malfunctions);
+        }
 
         if ($imageName!= $product->image) {
             $destinationPath = public_path() . '/images/products';

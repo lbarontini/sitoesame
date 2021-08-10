@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Malfunction;
+use App\Models\Solution;
 use Illuminate\Http\Request;
+use App\Http\Requests\MalfunctionRequest;
 
 class MalfunctionsController extends Controller
 {
@@ -14,7 +16,7 @@ class MalfunctionsController extends Controller
      */
     public function index()
     {
-        return view('malfunctions.index',['malfunctions'=>Malfunction::latest()->get()]);
+        return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
     }
 
     /**
@@ -24,18 +26,29 @@ class MalfunctionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('malfunctions.create',['solutions'=>Solution::All()]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\MalfunctionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MalfunctionRequest $request)
     {
-        //
+        $validated = $request->validated();
+        unset($validated['solutions']);
+        $malfunction = new Malfunction;
+        $malfunction->fill($validated);
+        $malfunction->save();
+
+        if($request->has('solutions')){
+            $solutions= $request->validated()['solutions'];
+            $malfunction->solutions()->attach($solutions);
+        }
+
+        return response()->json(['redirect' => route('malfunctions.index')]);
     }
 
     /**
@@ -44,10 +57,10 @@ class MalfunctionsController extends Controller
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function show(Malfunction $malfunction)
-    {
-        return view('malfunctions.show',['malfunction'=>$malfunction]);
-    }
+    // public function show(Malfunction $malfunction)
+    // {
+    //     return view('malfunctions.show',['malfunction'=>$malfunction]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -57,19 +70,31 @@ class MalfunctionsController extends Controller
      */
     public function edit(Malfunction $malfunction)
     {
-        //
+        return view('malfunctions.edit',['malfunction'=>$malfunction,'solutions'=>Solution::All()]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  @param  App\Http\Requests\MalfunctionRequest  $request
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Malfunction $malfunction)
+    public function update(MalfunctionRequest $request, Malfunction $malfunction)
     {
-        //
+        $validated = $request->validated();
+        unset($validated['solutions']);
+        $newmalfunction= Malfunction::find($malfunction->id);
+        $newmalfunction->fill($validated);
+        $newmalfunction->save();
+
+        if($request->has('solutions')){
+            $solutions= $request->validated()['solutions'];
+            $malfunction->solutions()->detach();
+            $malfunction->solutions()->attach($solutions);
+        }
+
+        return response()->json(['redirect' => route('malfunctions.index')]);
     }
 
     /**
@@ -80,6 +105,7 @@ class MalfunctionsController extends Controller
      */
     public function destroy(Malfunction $malfunction)
     {
-        //
+        $malfunction->delete();
+        return response()->json(['redirect' => route('malfunctions.index')]);
     }
 }

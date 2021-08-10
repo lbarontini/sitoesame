@@ -60,13 +60,6 @@ function doFormValidation(actionUrl, formId, actionType) {
     var form = new FormData(document.getElementById(formId));
     form.append('_method', actionType);
 
-    //handling malfunction passing multiple data as array
-    if (form.has('malfunctions')){
-            var realvalues = form.getAll('malfunctions');
-        form.delete('malfunctions');
-        form.append('malfunctions',realvalues);
-        }
-
     $.ajaxSetup({
         headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

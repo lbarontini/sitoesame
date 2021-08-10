@@ -56,7 +56,7 @@
 
                 <div  class="rs1-wrap-input">
                     {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
-                    {{ Form::select('malfunctions',
+                    {{ Form::select('malfunctions[]',
                                      $malfunctions->pluck('name','id'),
                                      $product->malfunctions()->pluck('malfunction_id'),
                                     ['multiple'=>true,
