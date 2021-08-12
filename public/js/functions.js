@@ -87,6 +87,24 @@ function doFormValidation(actionUrl, formId, actionType) {
     });
 }
 
+function deleteElement(actionUrl) {
+    $.ajaxSetup({
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    $.ajax({
+    type: 'DELETE',
+    url: actionUrl,
+    dataType: "json",
+    success: function (data) {
+        window.location.replace(data.redirect);
+    },
+    contentType: false,
+    processData: false
+    });
+}
+
 
 
 

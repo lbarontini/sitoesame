@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Malfunction;
 use App\Models\Solution;
-use Illuminate\Http\Request;
 use App\Http\Requests\MalfunctionRequest;
 
 class MalfunctionsController extends Controller
@@ -76,7 +75,7 @@ class MalfunctionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  @param  App\Http\Requests\MalfunctionRequest  $request
+     *  @param  App\Http\Requests\MalfunctionRequest  $request
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */

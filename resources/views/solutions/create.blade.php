@@ -5,22 +5,16 @@
 <script>
     $(function () {
         var actionType = 'POST';
-        var actionUrl = "{{ route('malfunctions.store') }}";
-        var formId = 'addmalfunction';
+        var actionUrl = "{{ route('solutions.store') }}";
+        var formId = 'addsolution';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#addmalfunction").on('submit', function (event) {
+        $("#addsolution").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
-        // $("#newsol-btn").on('click', function (event) {
-        //     event.preventDefault();
-        //     var out = '<div  class="rs1-wrap-input"> {{ Form::label('sol_name', 'Nome Soluzione', ['class' => 'label-input']) }} {{ Form::text('sol_name', '', ['class' => 'input', 'id' => 'sol_name']) }} </div> <div  class="rs1-wrap-input"> {{ Form::label('sol_description', 'Descrizione soluzione', ['class' => 'label-input']) }} {{ Form::text('sol_description', '', ['class' => 'input','id' => 'sol_description']) }} </div>'
-        //     $(this).before(out);
-        //     $(this).hide();
-        // });
     });
 </script>
 @endsection
@@ -28,7 +22,7 @@
 @section('content')
     <div class="container-contact">
             <h1>Nuovo Prodotto</h1>
-            {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'addmalfunction','class' => 'contact-form')) !!}
+            {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
@@ -41,20 +35,17 @@
                     </div>
 
                     <div  class="rs1-wrap-input">
-                        {{ Form::label('solutions', 'Soluzioni', ['class' => 'label-input']) }}
-                        {{ Form::select('solutions[]',
-                                         $solutions->pluck('name','id'),
+                        {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
+                        {{ Form::select('malfunctions[]',
+                                         $malfunctions->pluck('name','id'),
                                          null,
                                          [  'multiple'=>true,
                                             'class' => 'input',
-                                            'id' => 'solutions'
+                                            'id' => 'malfunctions'
                                          ])
                         }}
                     </div>
 
-                    {{-- <div class="container-form-btn">
-                        {{ Form::submit('crea nuova soluzione', ['class' => 'form-btn1', 'id' => 'newsol-btn']) }}
-                    </div> --}}
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>

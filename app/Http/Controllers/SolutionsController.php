@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Malfunction;
 use App\Models\Solution;
-use Illuminate\Http\Request;
+use App\Http\Requests\SolutionRequest;
 
 class SolutionsController extends Controller
 {
@@ -14,7 +15,7 @@ class SolutionsController extends Controller
      */
     public function index()
     {
-        return view('solutions.index',['solutions'=>Solution::latest()->get()]);
+        return view('solutions.index',['solutions'=>Solution::All()]);
     }
 
     /**
@@ -24,18 +25,29 @@ class SolutionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('solutions.create',['malfunctions'=>Malfunction::All()]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\SolutionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SolutionRequest $request)
     {
-        //
+        $validated = $request->validated();
+        unset($validated['malfunctions']);
+        $solution = new Solution;
+        $solution->fill($validated);
+        $solution->save();
+
+        if($request->has('malfunctions')){
+            $malfunctions= $request->validated()['malfunctions'];
+            $solution->malfunctions()->attach($malfunctions);
+        }
+
+        return response()->json(['redirect' => route('solutions.index')]);
     }
 
     /**
@@ -57,19 +69,31 @@ class SolutionsController extends Controller
      */
     public function edit(Solution $solution)
     {
-        //
+        return view('solutions.edit',['solution'=>$solution,'malfunctions'=>Malfunction::All()]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\SolutionRequest  $request
      * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solution $solution)
+    public function update(SolutionRequest $request, Solution $solution)
     {
-        //
+        $validated = $request->validated();
+        unset($validated['malfunctions']);
+        $newsolution= Malfunction::find($solution->id);
+        $newsolution->fill($validated);
+        $newsolution->save();
+
+        if($request->has('malfunctions')){
+            $malfunctions= $request->validated()['malfunctions'];
+            $solution->malfunctions()->detach();
+            $solution->malfunctions()->attach($malfunctions);
+        }
+
+        return response()->json(['redirect' => route('solutions.index')]);
     }
 
     /**
@@ -80,6 +104,7 @@ class SolutionsController extends Controller
      */
     public function destroy(Solution $solution)
     {
-        //
+        $solution->delete();
+        return response()->json(['redirect' => route('solutions.index')]);
     }
 }

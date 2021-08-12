@@ -3,23 +3,20 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-
 // Aggiunti per response JSON
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProductRequest extends FormRequest {
-
+class SolutionRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
-        // Nella form non mettiamo restrizioni d'uso su base utente
-        // Gestiamo l'autorizzazione ad un altro livello
+    public function authorize()
+    {
         return true;
     }
 
@@ -28,14 +25,11 @@ class ProductRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            'model'=>'required',
+            'name'=>'required',
             'description'=> 'required|max:50',
-            'installation_notes'=> 'required',
-            'use_notes'=> 'required',
-            'image'=> 'nullable|file|mimes:jpeg,png|max:1024',
-            'user_id'=> 'nullable',
             'malfunctions'=>'nullable'
         ];
     }
@@ -47,5 +41,4 @@ class ProductRequest extends FormRequest {
     {
         throw new HttpResponseException(response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY));
     }
-
 }
