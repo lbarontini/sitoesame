@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('script')
 <script src="{{ asset('js/functions.js') }}" ></script>

@@ -48,6 +48,10 @@ Route::get('faqs', function () {
 Route::get('assistance_centers', function () {
     return view('assistance_centers');
 });
-Route::get('login', function () {
-    return view('login');
-});
+// Route::get('login', function () {
+//     return view('login');
+// });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
