@@ -41,6 +41,10 @@ Route::put('/solutions/{solution}', 'SolutionsController@update')->name('solutio
 Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('solutions.destroy');
 Route::get('/solutions/{solution}/edit', 'SolutionsController@edit')->name('solutions.edit');
 
+Route::get('/users', 'UsersController@index')->name('users.index');
+
+Route::get('/administration', 'HomeController@administration')->name('administration');
+
 
 Route::get('faqs', function () {
    return view('faqs');

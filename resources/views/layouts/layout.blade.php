@@ -24,11 +24,12 @@
                 <ul>
                     <li><a class="{{Request::path() === '/' ? 'highlighted' : ''}}" href="/">Home</a></li>
                     <li><a class="{{Request::path() === 'products' ? 'highlighted' : ''}}" href="{{route('products.index')}}">Prodotti</a></li>
-                    <li><a class="{{Request::path() === 'malfunctions' ? 'highlighted' : ''}}" href="{{route('malfunctions.index')}}">Malfunzionamenti</a></li>
-                    <li><a class="{{Request::path() === 'solutions' ? 'highlighted' : ''}}" href="{{route('solutions.index')}}">Soluzioni</a></li>
                     <li><a class="{{Request::path() === 'assistance_centers' ? 'highlighted' : ''}}" href="/assistance_centers">Centri assistenza </a></li>
                     <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="/faqs">F.A.Q.</a></li>
                     <li><a class="{{Request::path() === 'login' ? 'highlighted' : ''}}" href="/login">Login</a></li>
+                    @can('is_staff')
+                        <li><a class="{{Request::path() === 'administration' ? 'highlighted' : ''}}" href="{{route('administration')}}">Gestione</a></li>
+                    @endcan
                 </ul>
             </nav>
         </header>

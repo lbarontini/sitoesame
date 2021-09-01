@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username',
     ];
 
     /**
@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function assistanceCenter()
     {
         //probabilmente questo if è inutile
-        if ($this->hasRole('tec'))
+        if ($this->hasRole('tecn'))
             return $this->belongsTo(Assistance_center::class);
         else
             return null;
@@ -49,5 +49,14 @@ class User extends Authenticatable
     public function hasRole($role) {
         $role = (array)$role;
         return in_array($this->role, $role);
+    }
+
+    public function isStaff() {
+        if($this->role=='staff') {return true;}
+        else {return false;}
+    }
+    public function isAdmin() {
+        if($this->role=='admin') {return true;}
+        else {return false;}
     }
 }
