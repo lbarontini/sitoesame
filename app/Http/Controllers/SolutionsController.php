@@ -15,6 +15,7 @@ class SolutionsController extends Controller
      */
     public function index()
     {
+        $this->authorize('tecn_work');
         return view('solutions.index',['solutions'=>Solution::All()]);
     }
 
@@ -25,6 +26,7 @@ class SolutionsController extends Controller
      */
     public function create()
     {
+        $this->authorize('staff_work');
         return view('solutions.create',['malfunctions'=>Malfunction::All()]);
     }
 
@@ -36,6 +38,7 @@ class SolutionsController extends Controller
      */
     public function store(SolutionRequest $request)
     {
+        $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['malfunctions']);
         $solution = new Solution;
@@ -58,6 +61,7 @@ class SolutionsController extends Controller
      */
     public function show(Solution $solution)
     {
+        $this->authorize('tecn_work');
         return view('solutions.show',['solution'=>$solution]);
     }
 
@@ -69,6 +73,7 @@ class SolutionsController extends Controller
      */
     public function edit(Solution $solution)
     {
+        $this->authorize('staff_work');
         return view('solutions.edit',['solution'=>$solution,'malfunctions'=>Malfunction::All()]);
     }
 
@@ -81,6 +86,7 @@ class SolutionsController extends Controller
      */
     public function update(SolutionRequest $request, Solution $solution)
     {
+        $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['malfunctions']);
         $newsolution= Malfunction::find($solution->id);
@@ -104,6 +110,7 @@ class SolutionsController extends Controller
      */
     public function destroy(Solution $solution)
     {
+        $this->authorize('staff_work');
         $solution->delete();
         return response()->json(['redirect' => route('solutions.index')]);
     }

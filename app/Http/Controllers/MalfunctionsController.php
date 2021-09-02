@@ -15,6 +15,7 @@ class MalfunctionsController extends Controller
      */
     public function index()
     {
+        $this->authorize('tecn_work');
         return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
     }
 
@@ -25,6 +26,7 @@ class MalfunctionsController extends Controller
      */
     public function create()
     {
+        $this->authorize('staff_work');
         return view('malfunctions.create',['solutions'=>Solution::All()]);
     }
 
@@ -36,6 +38,7 @@ class MalfunctionsController extends Controller
      */
     public function store(MalfunctionRequest $request)
     {
+        $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['solutions']);
         $malfunction = new Malfunction;
@@ -69,6 +72,7 @@ class MalfunctionsController extends Controller
      */
     public function edit(Malfunction $malfunction)
     {
+        $this->authorize('staff_work');
         return view('malfunctions.edit',['malfunction'=>$malfunction,'solutions'=>Solution::All()]);
     }
 
@@ -81,6 +85,7 @@ class MalfunctionsController extends Controller
      */
     public function update(MalfunctionRequest $request, Malfunction $malfunction)
     {
+        $this->authorize('straff_work');
         $validated = $request->validated();
         unset($validated['solutions']);
         $newmalfunction= Malfunction::find($malfunction->id);
@@ -104,6 +109,7 @@ class MalfunctionsController extends Controller
      */
     public function destroy(Malfunction $malfunction)
     {
+        $this->authorize('staff_work');
         $malfunction->delete();
         return response()->json(['redirect' => route('malfunctions.index')]);
     }

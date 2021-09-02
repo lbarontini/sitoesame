@@ -32,6 +32,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin_work');
         return view('products.create',['malfunctions'=>Malfunction::All()]);
     }
 
@@ -43,6 +44,7 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $this->authorize('admin_work');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = Str::random(10).$image->getClientOriginalName();
@@ -89,6 +91,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('staff_work');
         return view('products.edit',['product'=>$product,'malfunctions'=>Malfunction::All()]);
     }
 
@@ -101,7 +104,7 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-
+        $this->authorize('staff_work');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = Str::random(10).$image->getClientOriginalName();
@@ -137,6 +140,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('admin_work');
         $product->delete();
         return response()->json(['redirect' => route('products.index')]);
     }

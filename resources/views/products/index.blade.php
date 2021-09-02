@@ -3,6 +3,7 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
+        @endcan
         <a href="{{route('products.create')}}">aggiungi</a>
     </section>
     <section id="index">

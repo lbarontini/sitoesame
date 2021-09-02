@@ -39,16 +39,10 @@ class User extends Authenticatable
 
     public function assistanceCenter()
     {
-        //probabilmente questo if è inutile
-        if ($this->hasRole('tecn'))
+        if ($this->isTecn())
             return $this->belongsTo(Assistance_center::class);
         else
             return null;
-    }
-
-    public function hasRole($role) {
-        $role = (array)$role;
-        return in_array($this->role, $role);
     }
 
     public function isStaff() {
@@ -57,6 +51,10 @@ class User extends Authenticatable
     }
     public function isAdmin() {
         if($this->role=='admin') {return true;}
+        else {return false;}
+    }
+    public function isTecn() {
+        if($this->role=='tecn') {return true;}
         else {return false;}
     }
 }

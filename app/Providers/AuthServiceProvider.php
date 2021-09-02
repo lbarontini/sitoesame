@@ -27,13 +27,28 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::before(function(User $user){
+            //admin is always autorized
             if($user->isAdmin()){
                 return true;
             }
         });
 
-        Gate::define('is_staff', function(User $user){
+        Gate::define('admin_work', function(User $user){
+            return $user->isAdmin();
+        });
+
+        Gate::define('staff_work', function(User $user){
             return $user->isStaff();
         });
+
+        Gate::define('tecn_work', function(User $user){
+            if ($user->isStaff()||$user->isTecn()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
     }
 }

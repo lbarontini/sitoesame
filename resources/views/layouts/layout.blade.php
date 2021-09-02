@@ -27,7 +27,7 @@
                     <li><a class="{{Request::path() === 'assistance_centers' ? 'highlighted' : ''}}" href="/assistance_centers">Centri assistenza </a></li>
                     <li><a class="{{Request::path() === 'faqs' ? 'highlighted' : ''}}" href="/faqs">F.A.Q.</a></li>
                     <li><a class="{{Request::path() === 'login' ? 'highlighted' : ''}}" href="/login">Login</a></li>
-                    @can('is_staff')
+                    @can('staff_work')
                         <li><a class="{{Request::path() === 'administration' ? 'highlighted' : ''}}" href="{{route('administration')}}">Gestione</a></li>
                     @endcan
                 </ul>

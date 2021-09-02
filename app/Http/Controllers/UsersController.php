@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $this->authorize('is_admin');
+        $this->authorize('admin_work');
         return view('users.index',['users'=>User::All()]);
     }
 
@@ -25,6 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin_work');
         //
     }
 
@@ -36,6 +37,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('admin_work');
         //
     }
 
@@ -47,6 +49,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('admin_work');
         //
     }
 
@@ -58,6 +61,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('admin_work');
         //
     }
 
@@ -70,6 +74,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('admin_work');
         //
     }
 
@@ -81,6 +86,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('admin_work');
         //
     }
 }

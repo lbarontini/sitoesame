@@ -16,8 +16,12 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        <a href="{{route('products.edit',['product'=>$product])}}">Modifica</a>
-        <a href="" id="destroy">Elimina</a>
+        @can('staff_work')
+            <a href="{{route('products.edit',['product'=>$product])}}">Modifica</a>
+        @endcan
+        @can('admin_work')
+            <a href="" id="destroy">Elimina</a>
+        @endcan
     </section>
     <section id="show">
         <article>
@@ -29,22 +33,24 @@
                     <h4>Descrizione: {{$product->description}}</h4>
                     <h5>Note Installazione: {{$product->installation_notes}}</h5>
                     <h5>Note Utlizzo: {{$product->use_notes}}</h5>
-                    <h5>MalFunzionementi: </h5>
-                    <ul>
-                        @foreach ($product->malfunctions as $malfunction)
-                            <li><h5>{{$malfunction->name}}</h5>
-                                <h5>{{$malfunction->description}}</h5>
-                                <h5>Soluzioni: </h5>
-                                <ul>
-                                    @foreach ($malfunction->solutions as $solution)
-                                        <li><h5>{{$solution->name}}</h5>
-                                            <h5>{{$solution->description}}</h5>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @can('tecn_work')
+                        <h5>MalFunzionementi: </h5>
+                        <ul>
+                            @foreach ($product->malfunctions as $malfunction)
+                                <li><h5>{{$malfunction->name}}</h5>
+                                    <h5>{{$malfunction->description}}</h5>
+                                    <h5>Soluzioni: </h5>
+                                    <ul>
+                                        @foreach ($malfunction->solutions as $solution)
+                                            <li><h5>{{$solution->name}}</h5>
+                                                <h5>{{$solution->description}}</h5>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endcan
                 </div>
             </div>
         </article>
