@@ -3,8 +3,9 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
+        @can('admin_work')
+            <a href="{{route('products.create')}}">aggiungi</a>
         @endcan
-        <a href="{{route('products.create')}}">aggiungi</a>
     </section>
     <section id="index">
         @foreach ($products as $product)

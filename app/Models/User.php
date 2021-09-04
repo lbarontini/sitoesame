@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username',
+        'name', 'email', 'password', 'username','role_id','assistance_center_id'
     ];
 
     /**
@@ -45,16 +45,30 @@ class User extends Authenticatable
             return null;
     }
 
-    public function isStaff() {
-        if($this->role=='staff') {return true;}
-        else {return false;}
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
+
     public function isAdmin() {
-        if($this->role=='admin') {return true;}
-        else {return false;}
+        if ($this->role!=null)
+        {
+            if($this->role->name=='admin') {return true;}
+            else {return false;}
+        }
+    }
+    public function isStaff() {
+        if ($this->role!=null)
+        {
+            if($this->role->name=='staff') {return true;}
+            else {return false;}
+        }
     }
     public function isTecn() {
-        if($this->role=='tecn') {return true;}
-        else {return false;}
+        if ($this->role!=null)
+        {
+            if($this->role->name=='tecn') {return true;}
+            else {return false;}
+        }
     }
 }

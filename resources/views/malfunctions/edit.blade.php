@@ -6,12 +6,12 @@
     $(function () {
         var actionType = 'PUT';
         var actionUrl = "{{ route('malfunctions.update',['malfunction'=>$malfunction]) }}";
-        var formId = 'addmalfunction';
+        var formId = 'editmalfunction';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#addmalfunction").on('submit', function (event) {
+        $("#editmalfunction").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
@@ -21,8 +21,8 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuovo Prodotto</h1>
-            {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'addmalfunction','class' => 'contact-form')) !!}
+            <h1>Modifica malfunzionamento</h1>
+            {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'editmalfunction','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}

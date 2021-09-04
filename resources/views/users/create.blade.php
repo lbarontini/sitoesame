@@ -4,14 +4,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(function () {
-        var actionType = 'POST';
-        var actionUrl = "{{ route('solutions.store') }}";
-        var formId = 'addsolution';
+        var actionType = 'PUT';
+        var actionUrl = "{{ route('users.store') }}";
+        var formId = 'adduser';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#addsolution").on('submit', function (event) {
+        $("#adduser").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
@@ -21,8 +21,8 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuovo Prodotto</h1>
-            {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution','class' => 'contact-form')) !!}
+            <h1>Modifica Utente</h1>
+            {!! Form::open(array('route' => 'users.store', 'id' => 'adduser','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
@@ -30,21 +30,39 @@
                     </div>
 
                     <div  class="rs1-wrap-input">
-                        {{ Form::label('description', 'Descrizione', ['class' => 'label-input']) }}
-                        {{ Form::text('description', '', ['class' => 'input','id' => 'description']) }}
+                        {{ Form::label('username', 'Username', ['class' => 'label-input']) }}
+                        {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
                     </div>
 
                     <div  class="rs1-wrap-input">
-                        {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
-                        {{ Form::select('malfunctions[]',
-                                         $malfunctions->pluck('name','id'),
-                                         null,
-                                         [  'multiple'=>true,
+                        {{ Form::label('email', 'Email', ['class' => 'label-input']) }}
+                        {{ Form::email('email', '', ['class' => 'input','id' => 'email']) }}
+                    </div>
+
+                    <div  class="rs1-wrap-input">
+                        {{ Form::label('role_id', 'Ruolo', ['class' => 'label-input']) }}
+                        {{ Form::select('role_id',
+                                         $roles->pluck('label','id'),
+                                         '',
+                                         [  'placeholder' => 'Scegli un ruolo',
+                                             'multiple'=>false,
                                             'class' => 'input',
-                                            'id' => 'malfunctions'
+                                            'id' => 'role_id'
                                          ])
                         }}
                     </div>
+
+                    {{-- <div  class="rs1-wrap-input">
+                        {{ Form::label('assistance_center_id', 'Centro assistenza', ['class' => 'label-input']) }}
+                        {{ Form::select('assistance_center_id',
+                                         $assistance_centers->pluck('name','id'),
+                                         $user->assistance_center->pluck('assistance_center_id'),
+                                         [  'multiple'=>false,
+                                            'class' => 'input',
+                                            'id' => 'assistance_center_id'
+                                         ])
+                        }}
+                    </div> --}}
 
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}

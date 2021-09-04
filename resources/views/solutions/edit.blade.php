@@ -6,12 +6,12 @@
     $(function () {
         var actionType = 'PUT';
         var actionUrl = "{{ route('solutions.update',['solution'=>$solution]) }}";
-        var formId = 'addsolution';
+        var formId = 'editsolution';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#addsolution").on('submit', function (event) {
+        $("#editmalfunction").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
@@ -21,8 +21,8 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuovo Prodotto</h1>
-            {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution','class' => 'contact-form')) !!}
+            <h1>Modifica Soluzione</h1>
+            {!! Form::open(array('route' => 'solutions.store', 'id' => 'editsolution','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}

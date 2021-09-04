@@ -42,6 +42,11 @@ Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('sol
 Route::get('/solutions/{solution}/edit', 'SolutionsController@edit')->name('solutions.edit');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
+Route::post('/users', 'UsersController@store')->name('users.store');
+Route::get('/users/create', 'UsersController@create')->name('users.create');
+Route::put('/users/{user}', 'UsersController@update')->name('users.update');
+Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
+Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 
 Route::get('/administration', 'HomeController@administration')->name('administration');
 
