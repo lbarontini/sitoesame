@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Modifica Utente</h1>
+            <h1>Aggiungi Utente</h1>
             {!! Form::open(array('route' => 'users.store', 'id' => 'adduser','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
