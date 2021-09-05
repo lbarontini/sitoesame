@@ -8,7 +8,7 @@
         $("#destroy").on('click', function (event) {
             event.preventDefault();
             deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
-        }
+        });
     });
 </script>
 @endsection

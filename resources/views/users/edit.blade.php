@@ -22,7 +22,10 @@
 @section('content')
     <div class="container-contact">
             <h1>Modifica Utente</h1>
-            {!! Form::open(array('route' => 'users.store', 'id' => 'edituser','class' => 'contact-form')) !!}
+            {!! Form::model($user, array('route' =>array('users.update', $user->id),
+                                                        'id' => 'edituser',
+                                                        'class' => 'contact-form',
+                                                        'method'=>'PUT')); !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
@@ -50,18 +53,18 @@
                                          ])
                         }}
                     </div>
-
-                    {{-- <div  class="rs1-wrap-input">
-                        {{ Form::label('assistance_center_id', 'Centro assistenza', ['class' => 'label-input']) }}
-                        {{ Form::select('assistance_center_id',
-                                         $assistance_centers->pluck('name','id'),
-                                         $user->assistance_center->pluck('assistance_center_id'),
-                                         [  'multiple'=>false,
-                                            'class' => 'input',
-                                            'id' => 'assistance_center_id'
-                                         ])
-                        }}
-                    </div> --}}
+                    @if ($user->isTecn())
+                        <div  class="rs1-wrap-input">
+                            {{ Form::label('assistance_center_id', 'Centro assistenza', ['class' => 'label-input']) }}
+                            {{ Form::select('assistance_center_id',
+                                            $assistance_centers->pluck('name','id'),
+                                            $user->assistanceCenter ? $user->assistanceCenter->name : '',
+                                            [  'multiple'=>false,
+                                                'class' => 'input',
+                                                'id' => 'assistance_center_id'
+                                            ])
+                            }}
+                    @endif
 
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}

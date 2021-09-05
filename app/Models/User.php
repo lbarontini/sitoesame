@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function assistanceCenter()
     {
         if ($this->isTecn())
-            return $this->belongsTo(Assistance_center::class);
+            return $this->belongsTo(AssistanceCenter::class);
         else
             return null;
     }

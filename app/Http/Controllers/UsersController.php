@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Assistance_center;
+use App\Models\AssistanceCenter;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -75,8 +75,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $this->authorize('admin_work');
-        return view('users.edit',['user'=>$user,'roles'=>Role::All()]);
-        //return view('users.edit',['user'=>$user,'roles'=>Role::All(),'assistance_centers'=>Assistance_center::All()]);
+        return view('users.edit',['user'=>$user,'roles'=>Role::All(),'assistance_centers'=>AssistanceCenter::All()]);
     }
 
     /**
@@ -92,7 +91,6 @@ class UsersController extends Controller
         $user->update($request->validated());
         if($request->has('role_id')){
             $role_id= $request->validated()['role_id'];
-            error_log('users controller@update');
             $user->role_id = $role_id;
             $user->save();
         }

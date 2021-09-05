@@ -21,9 +21,6 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
-    <section id="tools">
-        <a href="{{route('users.create')}}">aggiungi</a>
-    </section>
     <section id="index">
         <ul>
             @foreach ($users as $user)

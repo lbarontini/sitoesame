@@ -28,7 +28,6 @@ Route::get('/products/{product}/edit', 'ProductsController@edit')->name('product
 Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
 Route::post('/malfunctions', 'MalfunctionsController@store')->name('malfunctions.store');
 Route::get('/malfunctions/create', 'MalfunctionsController@create')->name('malfunctions.create');
-Route::get('/malfunctions/{malfunction}', 'MalfunctionsController@show')->name('malfunctions.show');
 Route::put('/malfunctions/{malfunction}', 'MalfunctionsController@update')->name('malfunctions.update');
 Route::delete('/malfunctions/{malfunction}', 'MalfunctionsController@destroy')->name('malfunctions.destroy');
 Route::get('/malfunctions/{malfunction}/edit', 'MalfunctionsController@edit')->name('malfunctions.edit');
@@ -36,17 +35,22 @@ Route::get('/malfunctions/{malfunction}/edit', 'MalfunctionsController@edit')->n
 Route::get('/solutions', 'SolutionsController@index')->name('solutions.index');
 Route::post('/solutions', 'SolutionsController@store')->name('solutions.store');
 Route::get('/solutions/create', 'SolutionsController@create')->name('solutions.create');
-Route::get('/solutions/{solution}', 'SolutionsController@show')->name('solutions.show');
 Route::put('/solutions/{solution}', 'SolutionsController@update')->name('solutions.update');
 Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('solutions.destroy');
 Route::get('/solutions/{solution}/edit', 'SolutionsController@edit')->name('solutions.edit');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
-Route::post('/users', 'UsersController@store')->name('users.store');
-Route::get('/users/create', 'UsersController@create')->name('users.create');
 Route::put('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+
+Route::get('/assistance_centers', 'AssistanceCentersController@index')->name('assistance_centers.index');
+Route::post('/assistance_centers', 'AssistanceCentersController@store')->name('assistance_centers.store');
+Route::get('/assistance_centers/create', 'AssistanceCentersController@create')->name('assistance_centers.create');
+Route::get('/assistance_centers/{assistance_center}', 'AssistanceCentersController@show')->name('assistance_centers.show');
+Route::put('/assistance_centers/{assistance_center}', 'AssistanceCentersController@update')->name('assistance_centers.update');
+Route::delete('/assistance_centers/{assistance_center}', 'AssistanceCentersController@destroy')->name('assistance_centers.destroy');
+Route::get('/assistance_centers/{assistance_center}/edit', 'AssistanceCentersController@edit')->name('assistance_centers.edit');
 
 Route::get('/administration', 'HomeController@administration')->name('administration');
 
@@ -54,13 +58,7 @@ Route::get('/administration', 'HomeController@administration')->name('administra
 Route::get('faqs', function () {
    return view('faqs');
 });
-Route::get('assistance_centers', function () {
-    return view('assistance_centers');
-});
-// Route::get('login', function () {
-//     return view('login');
-// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login_home', 'HomeController@index')->name('login_home');

@@ -3,24 +3,23 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 // Aggiunti per response JSON
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserRequest extends FormRequest
+class AssistanceCenterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
-        // Nella form non mettiamo restrizioni d'uso su base utente
-        // Gestiamo l'autorizzazione ad un altro livello
+    public function authorize()
+    {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,9 +29,10 @@ class UserRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'username'=> 'required|max:50',
-            'email'=>'email',
-            'role_id'=>'required|digits_between:1,2'
+            'description'=> 'required|max:50',
+            'address'=> 'required',
+            'user_id'=> 'nullable',
+            'technicians'=>'nullable'
         ];
     }
 
