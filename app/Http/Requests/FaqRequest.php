@@ -3,15 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 // Aggiunti per response JSON
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class MalfunctionRequest extends FormRequest {
-
+class FaqRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,20 +27,20 @@ class MalfunctionRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            'name'=>'required',
-            'description'=> 'required|max:50',
-            'faqs_category_id'=>'required'
+            'question'=>'required|max:50',
+            'answer'=> 'required|max:50',
+            'faqs_category'=>'required'
         ];
     }
 
     /**
-     * Override: response in formato JSON
+    * Override: response in formato JSON
     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY));
     }
-
 }

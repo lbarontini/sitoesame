@@ -52,12 +52,19 @@ Route::put('/assistance_centers/{assistance_center}', 'AssistanceCentersControll
 Route::delete('/assistance_centers/{assistance_center}', 'AssistanceCentersController@destroy')->name('assistance_centers.destroy');
 Route::get('/assistance_centers/{assistance_center}/edit', 'AssistanceCentersController@edit')->name('assistance_centers.edit');
 
+Route::get('/faqs', 'FaqsController@index')->name('faqs.index');
+Route::post('/faqs', 'FaqsController@store')->name('faqs.store');
+Route::get('/faqs/create', 'FaqsController@create')->name('faqs.create');
+Route::put('/faqs/{faq}', 'FaqsController@update')->name('faqs.update');
+Route::delete('/faqs/{faq}', 'FaqsController@destroy')->name('faqs.destroy');
+Route::get('/faqs/{faq}/edit', 'FaqsController@edit')->name('faqs.edit');
+Route::post('/faqs_categories', 'FaqsController@storeCategory')->name('faqs_categories.store');
+Route::get('/faqs_categories/create', 'FaqsController@createCategory')->name('faqs_categories.create');
+Route::put('/faqs_categories/{faqs_category}', 'FaqsController@updateCategory')->name('faqs_categories.update');
+Route::delete('/faqs_categories/{faqs_category}', 'FaqsController@destroyCategory')->name('faqs_categories.destroy');
+Route::get('/faqs_categories/{faqs_category}/edit', 'FaqsController@editCategory')->name('faqs_categories.edit');
+
 Route::get('/administration', 'HomeController@administration')->name('administration');
-
-
-Route::get('faqs', function () {
-   return view('faqs');
-});
 
 Auth::routes();
 
