@@ -28,14 +28,14 @@ Route::get('/products/{product}/edit', 'ProductsController@edit')->name('product
 
 Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
 Route::post('/malfunctions', 'MalfunctionsController@store')->name('malfunctions.store');
-Route::get('/malfunctions/create', 'MalfunctionsController@create')->name('malfunctions.create');
+Route::get('/malfunctions/create/{product?}', 'MalfunctionsController@create')->name('malfunctions.create');
 Route::put('/malfunctions/{malfunction}', 'MalfunctionsController@update')->name('malfunctions.update');
 Route::delete('/malfunctions/{malfunction}', 'MalfunctionsController@destroy')->name('malfunctions.destroy');
 Route::get('/malfunctions/{malfunction}/edit', 'MalfunctionsController@edit')->name('malfunctions.edit');
 
 Route::get('/solutions', 'SolutionsController@index')->name('solutions.index');
 Route::post('/solutions', 'SolutionsController@store')->name('solutions.store');
-Route::get('/solutions/create', 'SolutionsController@create')->name('solutions.create');
+Route::get('/solutions/create/{malfunction?}', 'SolutionsController@create')->name('solutions.create');
 Route::put('/solutions/{solution}', 'SolutionsController@update')->name('solutions.update');
 Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('solutions.destroy');
 Route::get('/solutions/{solution}/edit', 'SolutionsController@edit')->name('solutions.edit');

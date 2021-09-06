@@ -24,10 +24,14 @@ class MalfunctionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($product=null)
     {
         $this->authorize('staff_work');
-        return view('malfunctions.create',['solutions'=>Solution::All()]);
+        if (isset($product)){
+            return view('malfunctions.create',['solutions'=>Solution::All(),'product'=>$product]);
+        }else{
+            return view('malfunctions.create',['solutions'=>Solution::All()]);
+        }
     }
 
     /**

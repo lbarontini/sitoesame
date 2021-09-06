@@ -51,10 +51,9 @@
                                          ])
                         }}
                     </div>
-                    {{-- @if (isset($product))
+                    @if (isset($product))
                         <input type = "hidden" name = "product" value = {{$product}} />
-                    @endif --}}
-                    <input type = "hidden" name = "product" value = {{$product}} />
+                    @endif
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>

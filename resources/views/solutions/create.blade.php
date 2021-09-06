@@ -38,7 +38,7 @@
                         {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
                         {{ Form::select('malfunctions[]',
                                          $malfunctions->pluck('name','id'),
-                                         null,
+                                         (isset($malfunction))? $malfunction : null,
                                          [  'multiple'=>true,
                                             'class' => 'input',
                                             'id' => 'malfunctions'

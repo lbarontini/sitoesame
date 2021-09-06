@@ -25,10 +25,16 @@ class SolutionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($malfunction=null)
     {
         $this->authorize('staff_work');
-        return view('solutions.create',['malfunctions'=>Malfunction::All()]);
+        if(isset($malfunction)){
+            return view('solutions.create',['malfunctions'=>Malfunction::All(),'malfunction'=>$malfunction]);
+        }
+        else{
+            return view('solutions.create',['malfunctions'=>Malfunction::All()]);
+        }
+
     }
 
     /**
