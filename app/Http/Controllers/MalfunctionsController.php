@@ -15,7 +15,7 @@ class MalfunctionsController extends Controller
      */
     public function index()
     {
-        $this->authorize('tecn_work');
+        $this->authorize('staff_work');
         return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
     }
 
@@ -41,6 +41,7 @@ class MalfunctionsController extends Controller
         $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['solutions']);
+        unset($validated['product']);
         $malfunction = new Malfunction;
         $malfunction->fill($validated);
         $malfunction->save();
@@ -50,7 +51,13 @@ class MalfunctionsController extends Controller
             $malfunction->solutions()->attach($solutions);
         }
 
+        if($request->has('product')){
+            $product= $request->validated()['product'];
+            $malfunction->products()->attach($product);
+        }
+
         return response()->json(['redirect' => route('malfunctions.index')]);
+
     }
 
     /**
@@ -85,16 +92,16 @@ class MalfunctionsController extends Controller
      */
     public function update(MalfunctionRequest $request, Malfunction $malfunction)
     {
-        $this->authorize('straff_work');
+        $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['solutions']);
-        $newmalfunction= Malfunction::find($malfunction->id);
-        $newmalfunction->fill($validated);
-        $newmalfunction->save();
+        unset($validated['product']);
+        $malfunction->fill($validated);
+        $malfunction->solutions()->detach();
+        $malfunction->save();
 
         if($request->has('solutions')){
             $solutions= $request->validated()['solutions'];
-            $malfunction->solutions()->detach();
             $malfunction->solutions()->attach($solutions);
         }
 

@@ -27,7 +27,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuovo Prodotto</h1>
+            <h1>Nuovo Malfunzionamento</h1>
             {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'addmalfunction','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
@@ -51,10 +51,10 @@
                                          ])
                         }}
                     </div>
-
-                    {{-- <div class="container-form-btn">
-                        {{ Form::submit('crea nuova soluzione', ['class' => 'form-btn1', 'id' => 'newsol-btn']) }}
-                    </div> --}}
+                    {{-- @if (isset($product))
+                        <input type = "hidden" name = "product" value = {{$product}} />
+                    @endif --}}
+                    <input type = "hidden" name = "product" value = {{$product}} />
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>

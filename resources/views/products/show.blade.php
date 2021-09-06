@@ -35,13 +35,31 @@
                     <h5>Note Utlizzo: {{$product->use_notes}}</h5>
                     @can('tecn_work')
                         <h5>MalFunzionementi: </h5>
+                        <a class="add" href="{{ route('malfunctions.create',['product'=>$product]) }}">
+                            <h3 class = "blue">Aggiungi</h3>
+                        </a>
                         <ul>
                             @foreach ($product->malfunctions as $malfunction)
+                                <a class="edit" href="{{route('malfunctions.edit',['malfunction'=>$malfunction])}}">
+                                    <h3 class = "blue">Modifica</h3>
+                                </a>
+                                <a class="delete" href = "{{ route('malfunctions.destroy',['malfunction'=>$malfunction]) }}">
+                                    <h3 class = "blue">Elimina</h3>
+                                </a>
                                 <li><h5>{{$malfunction->name}}</h5>
                                     <h5>{{$malfunction->description}}</h5>
                                     <h5>Soluzioni: </h5>
+                                    <a class="add" href="{{ route('solutions.create',['malfunction'=>$malfunction]) }}">
+                                        <h3 class = "blue">Aggiungi</h3>
+                                    </a>
                                     <ul>
                                         @foreach ($malfunction->solutions as $solution)
+                                            <a class="edit" href="{{route('solutions.edit',['solution'=>$solution,'malfunction'=>$malfunction])}}">
+                                                <h3 class = "blue">Modifica</h3>
+                                            </a>
+                                            <a class="delete" href="{{ route('solutions.destroy',['solution'=>$solution]) }}">
+                                                <h3 class = "blue">Elimina</h3>
+                                            </a>
                                             <li><h5>{{$solution->name}}</h5>
                                                 <h5>{{$solution->description}}</h5>
                                             </li>

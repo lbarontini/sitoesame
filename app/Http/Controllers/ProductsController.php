@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use PHPUnit\Util\Json as Json;
-use DB;
 use App\Models\Product;
 use  App\Models\Malfunction;
 use App\Http\Requests\ProductRequest;
@@ -23,6 +22,24 @@ class ProductsController extends Controller
     public function index()
     {
         return view('products.index',['products'=>Product::All()]);
+    }
+
+    /**
+     * return an ajax response for displayng the searched resources.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $value = str_replace("*", "%", $request->get('search'));
+
+        if ($value==''){
+            $data = Product::All();
+        }else {
+            $data = Product::where('description','like', $value)->get();
+        }
+        $returnHTML = view('products.list')->with('products', $data)->render();
+        return response()->json(['html'=>$returnHTML]);
     }
 
     /**
@@ -116,12 +133,12 @@ class ProductsController extends Controller
         unset($validated['malfunctions']);
         $newproduct= Product::find($product->id);
         $newproduct->update($validated);
+        $product->malfunctions()->detach();
         $newproduct->image = $imageName;
         $newproduct->save();
 
         if($request->has('malfunctions')){
             $malfunctions= $request->validated()['malfunctions'];
-            $product->malfunctions()->detach();
             $product->malfunctions()->attach($malfunctions);
         }
 

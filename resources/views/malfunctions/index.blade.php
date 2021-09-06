@@ -22,7 +22,7 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        <a href="{{route('malfunctions.create')}}">aggiungi</a>
+        <a href="{{route('malfunctions.create')}}">Aggiungi malfunzionamento</a>
     </section>
     <section id="index">
         <ul>

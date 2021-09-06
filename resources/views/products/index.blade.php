@@ -1,4 +1,25 @@
 @extends('layouts.layout')
+@section('script')
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script >
+        $(function () {
+            $('#search').keyup(function (){
+                $value=$(this).val();
+                console.log($value);
+                $.ajax({
+                    type : 'get',
+                    url : '{{ route('products.search') }}',
+                    data: {'search':$value},
+                    success:function(data){
+                            console.log(data);
+                            $('#index').html(data.html);
+                        }
+                    });
+            })
+    });
+    </script>
+@endsection
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
@@ -6,19 +27,11 @@
         @can('admin_work')
             <a href="{{route('products.create')}}">aggiungi</a>
         @endcan
+        <input type="text" class="form-controller" id="search" name="search">
     </section>
+
     <section id="index">
-        @foreach ($products as $product)
-            <article>
-                @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
-                <div class="info">
-                    <a href="{{route('products.show',['product'=>$product])}}">
-                        <h3 class = "blue">{{$product->model}}</h3>
-                    </a>
-                    <h4 >{{$product->description}}</h4>
-                </div>
-            </article>
-        @endforeach
+        @include('products.list')
     </section>
 </div>
 @endsection

@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuovo Prodotto</h1>
+            <h1>Nuova Soluzione</h1>
             {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">

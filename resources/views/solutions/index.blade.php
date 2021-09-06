@@ -20,7 +20,7 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        <a href="{{route('solutions.create')}}">aggiungi</a>
+        <a href="{{route('solutions.create')}}">Aggiungi soluzione</a>
     </section>
     <section id="index">
         <ul>

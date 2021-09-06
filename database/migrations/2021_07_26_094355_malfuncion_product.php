@@ -15,14 +15,14 @@ class MalfuncionProduct extends Migration
     {
         Schema::create('malfunction_product', function (Blueprint $table) {
 
-            //$table->bigIncrements('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('malfunction_id');
             $table->unsignedBigInteger('product_id');
-            //$table->timestamps();
+            $table->timestamps();
 
-            $table->unique(['malfunction_id','product_id']);
-            $table->foreign('malfunction_id')->references('id')->on('malfunctions')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            //$table->unique(['malfunction_id','product_id']);
+            $table->foreign('malfunction_id')->references('id')->on('malfunctions')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -20,9 +20,9 @@ class MalfuncionSolution extends Migration
             $table->unsignedBigInteger('solution_id');
             $table->timestamps();
 
-            $table->unique(['malfunction_id','solution_id']);
-            $table->foreign('malfunction_id')->references('id')->on('malfunctions')->onDelete('cascade');
-            $table->foreign('solution_id')->references('id')->on('solutions')->onDelete('cascade');
+            //$table->unique(['malfunction_id','solution_id']);
+            $table->foreign('malfunction_id')->references('id')->on('malfunctions')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('solution_id')->references('id')->on('solutions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

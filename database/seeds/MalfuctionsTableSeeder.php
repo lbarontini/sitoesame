@@ -11,6 +11,25 @@ class MalfuctionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('malfunctions')->insert([
+            ['name' => 'Spento','description'=>'Il dispositivo non dà segni di vita','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Perde acqua','description'=>'Il dispositivo perde acqua','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Danneggiamento generico','description'=>'Il dispositivo peesenta evidenti danneggiamenti','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Cardini danneggiati','description'=>'I cardini dello sportello del dispositivo sono danneggiati','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")]
+        ]);
+        DB::table('solutions')->insert([
+            ['name' => 'Alimentazione','description'=>'Controllare il circuito di alimentazione','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Fusibili','description'=>'Controllare la presenza di fusibili fusi','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Serraggio giunzioni','description'=>'Controllare il serraggio delle giunzioni','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Sostituzione','description'=>'Non Riparare','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Sostituzione sportello','description'=>'Sostituire lo sportello','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")]
+        ]);
+        DB::table('malfunction_solution')->insert([
+            ['malfunction_id' =>'1', 'solution_id'=>'1','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['malfunction_id' =>'1', 'solution_id'=>'2','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['malfunction_id' =>'2', 'solution_id'=>'3','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['malfunction_id' =>'3', 'solution_id'=>'4','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['malfunction_id' =>'4', 'solution_id'=>'5','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")]
+        ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Malfunction;
 use App\Models\Solution;
 use App\Http\Requests\SolutionRequest;
+use App\Models\Product;
 
 class SolutionsController extends Controller
 {
@@ -15,7 +16,7 @@ class SolutionsController extends Controller
      */
     public function index()
     {
-        $this->authorize('tecn_work');
+        $this->authorize('staff_work');
         return view('solutions.index',['solutions'=>Solution::All()]);
     }
 
@@ -59,11 +60,11 @@ class SolutionsController extends Controller
      * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function show(Solution $solution)
-    {
-        $this->authorize('tecn_work');
-        return view('solutions.show',['solution'=>$solution]);
-    }
+    // public function show(Solution $solution)
+    // {
+    //     $this->authorize('tecn_work');
+    //     return view('solutions.show',['solution'=>$solution]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -89,13 +90,12 @@ class SolutionsController extends Controller
         $this->authorize('staff_work');
         $validated = $request->validated();
         unset($validated['malfunctions']);
-        $newsolution= Malfunction::find($solution->id);
-        $newsolution->fill($validated);
-        $newsolution->save();
+        $solution->fill($validated);
+        $solution->malfunctions()->detach();
+        $solution->save();
 
         if($request->has('malfunctions')){
             $malfunctions= $request->validated()['malfunctions'];
-            $solution->malfunctions()->detach();
             $solution->malfunctions()->attach($malfunctions);
         }
 

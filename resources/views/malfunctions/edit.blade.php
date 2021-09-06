@@ -22,7 +22,7 @@
 @section('content')
     <div class="container-contact">
             <h1>Modifica malfunzionamento</h1>
-            {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'editmalfunction','class' => 'contact-form')) !!}
+            {!! Form::model($malfunction, array('route' => 'malfunctions.store', 'id' => 'editmalfunction','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="container-form-btn">
-                        {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
+                        {{ Form::submit('Conferma', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>
                 </div>
             {!! Form::close() !!}

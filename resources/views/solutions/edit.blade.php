@@ -11,7 +11,7 @@
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#editmalfunction").on('submit', function (event) {
+        $("#editsolution").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
@@ -22,7 +22,7 @@
 @section('content')
     <div class="container-contact">
             <h1>Modifica Soluzione</h1>
-            {!! Form::open(array('route' => 'solutions.store', 'id' => 'editsolution','class' => 'contact-form')) !!}
+            {!! Form::model($solution,array('route' => 'solutions.store', 'id' => 'editsolution','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">
                         {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
@@ -38,7 +38,7 @@
                         {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
                         {{ Form::select('malfunctions[]',
                                          $malfunctions->pluck('name','id'),
-                                         $solution->malfunctions()->pluck('solution_id'),
+                                         $solution->malfunctions()->pluck('malfunction_id'),
                                          [  'multiple'=>true,
                                             'class' => 'input',
                                             'id' => 'malfunctions'
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="container-form-btn">
-                        {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
+                        {{ Form::submit('Conferma', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>
                 </div>
             {!! Form::close() !!}
