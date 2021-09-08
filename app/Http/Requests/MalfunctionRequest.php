@@ -32,8 +32,7 @@ class MalfunctionRequest extends FormRequest {
         return [
             'name'=>'required',
             'description'=> 'required|max:50',
-            'solutions'=>'nullable',
-            'product'=>'nullable'
+            'product_id'=>'required'
         ];
     }
 

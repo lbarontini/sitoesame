@@ -14,6 +14,6 @@ class Product extends Model
     }
     public function malfunctions()
     {
-        return $this->belongsToMany(Malfunction::class);
+        return $this->hasMany(Malfunction::class);
     }
 }

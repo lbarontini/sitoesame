@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Malfunction;
 use App\Models\Solution;
+use App\Models\Product;
 use App\Http\Requests\MalfunctionRequest;
+use SebastianBergmann\Environment\Console;
 
 class MalfunctionsController extends Controller
 {
@@ -24,14 +26,11 @@ class MalfunctionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($product=null)
+    public function create(Product $product)
     {
         $this->authorize('staff_work');
-        if (isset($product)){
-            return view('malfunctions.create',['solutions'=>Solution::All(),'product'=>$product]);
-        }else{
-            return view('malfunctions.create',['solutions'=>Solution::All()]);
-        }
+
+        return view('malfunctions.create',['product'=>$product]);
     }
 
     /**
@@ -43,25 +42,11 @@ class MalfunctionsController extends Controller
     public function store(MalfunctionRequest $request)
     {
         $this->authorize('staff_work');
-        $validated = $request->validated();
-        unset($validated['solutions']);
-        unset($validated['product']);
         $malfunction = new Malfunction;
-        $malfunction->fill($validated);
+        $malfunction->fill($request->validated());
         $malfunction->save();
 
-        if($request->has('solutions')){
-            $solutions= $request->validated()['solutions'];
-            $malfunction->solutions()->attach($solutions);
-        }
-
-        if($request->has('product')){
-            $product= $request->validated()['product'];
-            $malfunction->products()->attach($product);
-        }
-
-        return response()->json(['redirect' => route('malfunctions.index')]);
-
+        return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
     }
 
     /**
@@ -81,10 +66,11 @@ class MalfunctionsController extends Controller
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Malfunction $malfunction)
+    public function edit($malfunction_id)
     {
         $this->authorize('staff_work');
-        return view('malfunctions.edit',['malfunction'=>$malfunction,'solutions'=>Solution::All()]);
+        $returnHTML = view('malfunctions.edit')->with('malfunction_id', $malfunction_id)->render();
+        return response()->json(['html'=>$returnHTML]);
     }
 
     /**
@@ -97,19 +83,10 @@ class MalfunctionsController extends Controller
     public function update(MalfunctionRequest $request, Malfunction $malfunction)
     {
         $this->authorize('staff_work');
-        $validated = $request->validated();
-        unset($validated['solutions']);
-        unset($validated['product']);
-        $malfunction->fill($validated);
-        $malfunction->solutions()->detach();
+
+        $malfunction->fill($request->validated());
         $malfunction->save();
-
-        if($request->has('solutions')){
-            $solutions= $request->validated()['solutions'];
-            $malfunction->solutions()->attach($solutions);
-        }
-
-        return response()->json(['redirect' => route('malfunctions.index')]);
+        return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
     }
 
     /**
@@ -118,10 +95,27 @@ class MalfunctionsController extends Controller
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Malfunction $malfunction)
+    public function destroy($malfunction)
     {
+        error_log($malfunction);
         $this->authorize('staff_work');
-        $malfunction->delete();
+        $malfunctiontodel = Malfunction::where('id', $malfunction)->first();
+        //$malfunctiontodel->delete();
+        return response()->json(['redirect' => route('malfunctions.index')]);
+    }
+
+        /**
+     * Remove the specified resource found by the resource id from storage
+     *
+     * @param  \App\Models\Malfunction  $malfunction
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyById($malfunction_id)
+    {
+        error_log($malfunction_id);
+        $this->authorize('staff_work');
+        $malfunctiontodel = Malfunction::where('id', $malfunction_id)->first();
+        $malfunctiontodel->delete();
         return response()->json(['redirect' => route('malfunctions.index')]);
     }
 }

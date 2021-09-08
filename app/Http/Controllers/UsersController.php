@@ -45,7 +45,6 @@ class UsersController extends Controller
         $user->fill($request->validated());
         if($request->has('role_id')){
             $role_id= $request->validated()['role_id'];
-            error_log('users controller@update');
             $user->role_id = $role_id;
             $user->password = 'temp';
             $user->save();

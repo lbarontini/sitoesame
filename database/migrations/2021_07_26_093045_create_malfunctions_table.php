@@ -18,7 +18,10 @@ class CreateMalfunctionsTable extends Migration
             $table->bigIncrements('id');
             $table->text('name');
             $table->text('description');
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

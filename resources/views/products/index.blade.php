@@ -6,7 +6,6 @@
         $(function () {
             $('#search').keyup(function (){
                 $value=$(this).val();
-                console.log($value);
                 $.ajax({
                     type : 'get',
                     url : '{{ route('products.search') }}',

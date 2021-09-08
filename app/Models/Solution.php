@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
 {
-    protected $fillable =['name','description'];
-    public function malfunctions()
+    protected $fillable =['name','description','malfunction_id'];
+    public function malfunction()
     {
-        return $this->belongsToMany(Malfunction::class);
+        return $this->belongsTo(Malfunction::class);
     }
 }

@@ -46,6 +46,8 @@
                         }}
                     </div>
 
+                    <input type = "hidden" name = "product_id" value = {{$product->id}} />
+
                     <div class="container-form-btn">
                         {{ Form::submit('Conferma', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>

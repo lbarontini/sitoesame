@@ -9,6 +9,19 @@
             event.preventDefault();
             deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
         });
+        $("#deleteMalfunction").on('click', function (event) {
+            //var malfunction_id=$(this).attr("malfunction_id");
+            //var malfunction={"id": parseInt($(this).attr("malfunction_id")), 'name':'','description':''};
+            var malfunction={"id": parseInt($(this).attr("malfunction_id"))};
+            $("#deleteMalfunction").after("<h3>"+JSON.stringify(malfunction)+"</h3>");
+            event.preventDefault();
+            deleteElement("{{ route('malfunctions.destroy',['malfunction'=>2]) }}");
+        });
+        $("#deleteSolution").on('click', function (event) {
+            var solution={'id': $(this).attr("solution_id")};
+            event.preventDefault();
+            deleteElement("{{ route('solutions.destroy',['solution'=>"+solution+"]) }}");
+        });
     });
 </script>
 @endsection
@@ -30,43 +43,16 @@
                 <div class="info">
                     <h3 class = "blue">Modello: {{$product->model}}</h3>
 
-                    <h4>Descrizione: {{$product->description}}</h4>
-                    <h5>Note Installazione: {{$product->installation_notes}}</h5>
-                    <h5>Note Utlizzo: {{$product->use_notes}}</h5>
+                    <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
+                    <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
+                    <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
                     @can('tecn_work')
-                        <h5>MalFunzionementi: </h5>
-                        <a class="add" href="{{ route('malfunctions.create',['product'=>$product]) }}">
+                        <h4 class = "blue">MalFunzionementi: </h5>
+                        <a class="addMalfunction" href="{{ route('malfunctions.create',['product'=>$product]) }}">
                             <h3 class = "blue">Aggiungi</h3>
                         </a>
-                        <ul>
-                            @foreach ($product->malfunctions as $malfunction)
-                                <a class="edit" href="{{route('malfunctions.edit',['malfunction'=>$malfunction])}}">
-                                    <h3 class = "blue">Modifica</h3>
-                                </a>
-                                <a class="delete" href = "{{ route('malfunctions.destroy',['malfunction'=>$malfunction]) }}">
-                                    <h3 class = "blue">Elimina</h3>
-                                </a>
-                                <li><h5>{{$malfunction->name}}</h5>
-                                    <h5>{{$malfunction->description}}</h5>
-                                    <h5>Soluzioni: </h5>
-                                    <a class="add" href="{{ route('solutions.create',['malfunction'=>$malfunction]) }}">
-                                        <h3 class = "blue">Aggiungi</h3>
-                                    </a>
-                                    <ul>
-                                        @foreach ($malfunction->solutions as $solution)
-                                            <a class="edit" href="{{route('solutions.edit',['solution'=>$solution,'malfunction'=>$malfunction])}}">
-                                                <h3 class = "blue">Modifica</h3>
-                                            </a>
-                                            <a class="delete" href="{{ route('solutions.destroy',['solution'=>$solution]) }}">
-                                                <h3 class = "blue">Elimina</h3>
-                                            </a>
-                                            <li><h5>{{$solution->name}}</h5>
-                                                <h5>{{$solution->description}}</h5>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endforeach
+                        <ul class="malfunctions">
+                            @include('malfunctions.show')
                         </ul>
                     @endcan
                 </div>

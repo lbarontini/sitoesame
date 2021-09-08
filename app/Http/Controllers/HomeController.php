@@ -25,9 +25,4 @@ class HomeController extends Controller
     {
         return view('login_home');
     }
-
-    public function administration(){
-        $this->authorize('staff_work');
-        return view('administration');
-    }
 }

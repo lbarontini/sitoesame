@@ -26,29 +26,7 @@
     </section>
     <section id="index">
         <ul>
-            @foreach ($malfunctions as $malfunction)
-                <li>
-                    <a class="name" malfunctionId={{$malfunction->id}} href="">
-                        <h3 class = "blue">{{$malfunction->name}}</h3>
-                    </a>
-                    <div class="info" malfunctionId={{$malfunction->id}}>
-                        <a class="edit" href="{{route('malfunctions.edit',['malfunction'=>$malfunction])}}">
-                            <h3 class = "blue">Modifica</h3>
-                        </a>
-                        <a class="delete" href = "{{ route('malfunctions.destroy',['malfunction'=>$malfunction]) }}">
-                            <h3 class = "blue">Elimina</h3>
-                        </a>
-                        <h4 id="description">{{$malfunction->description}}</h4>
-                        <ul>
-                            @foreach ($malfunction->solutions as $solution)
-                                <li><h5>{{$solution->name}}</h5>
-                                    <h5>{{$solution->description}}</h5>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
-            @endforeach
+
         </ul>
     </section>
 </div>

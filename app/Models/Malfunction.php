@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Malfunction extends Model
 {
-    protected $fillable =['name','description'];
-    public function products()
+    protected $fillable =['name','description','product_id'];
+    public function product()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
     public function solutions()
     {
-        return $this->belongsToMany(Solution::class);
+        return $this->hasMany(Solution::class);
     }
 }

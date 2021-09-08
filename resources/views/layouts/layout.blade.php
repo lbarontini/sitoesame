@@ -31,14 +31,14 @@
                         : (Request::path() === 'register' ? 'highlighted' : ''))}}"
                         href="/login_home">{{isset(Auth::user()->name)? Auth::user()->name:'Login'}}
                     </a></li>
-                    @can('staff_work')
+                    {{-- @can('staff_work')
                         <li><a class="{{strpos(Request::route()->getName(),  'administration') !== false ? 'highlighted'
                             :(strpos(Request::route()->getName(),  'malfunctions') !== false ? 'highlighted'
                             :(strpos(Request::route()->getName(),  'solutions') !== false ? 'highlighted'
                             :(strpos(Request::route()->getName(),  'users') !== false ? 'highlighted' : '')))}}"
                             href="{{route('administration')}}">Gestione
                         </a></li>
-                    @endcan
+                    @endcan --}}
                 </ul>
             </nav>
         </header>

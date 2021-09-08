@@ -15,12 +15,6 @@
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
-        // $("#newsol-btn").on('click', function (event) {
-        //     event.preventDefault();
-        //     var out = '<div  class="rs1-wrap-input"> {{ Form::label('sol_name', 'Nome Soluzione', ['class' => 'label-input']) }} {{ Form::text('sol_name', '', ['class' => 'input', 'id' => 'sol_name']) }} </div> <div  class="rs1-wrap-input"> {{ Form::label('sol_description', 'Descrizione soluzione', ['class' => 'label-input']) }} {{ Form::text('sol_description', '', ['class' => 'input','id' => 'sol_description']) }} </div>'
-        //     $(this).before(out);
-        //     $(this).hide();
-        // });
     });
 </script>
 @endsection
@@ -40,20 +34,8 @@
                         {{ Form::text('description', '', ['class' => 'input','id' => 'description']) }}
                     </div>
 
-                    <div  class="rs1-wrap-input">
-                        {{ Form::label('solutions', 'Soluzioni', ['class' => 'label-input']) }}
-                        {{ Form::select('solutions[]',
-                                         $solutions->pluck('name','id'),
-                                         null,
-                                         [  'multiple'=>true,
-                                            'class' => 'input',
-                                            'id' => 'solutions'
-                                         ])
-                        }}
-                    </div>
-                    @if (isset($product))
-                        <input type = "hidden" name = "product" value = {{$product}} />
-                    @endif
+                    <input type = "hidden" name = "product_id" value = {{$product->id}} />
+
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>

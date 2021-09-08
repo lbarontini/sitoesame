@@ -29,17 +29,5 @@ class ProductsTableSeeder extends Seeder
             'installation_notes' =>$faker->paragraph(3), 'use_notes' =>$faker->paragraph(2),
             'image' => 'lavatrice.jpg', 'user_id'=>null],
         ]);
-
-        DB::table('malfunction_product')->insert([
-            ['malfunction_id' =>'1', 'product_id'=>'1','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'1', 'product_id'=>'2','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'2', 'product_id'=>'3','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'2', 'product_id'=>'4','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'3', 'product_id'=>'1','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'3', 'product_id'=>'5','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'4', 'product_id'=>'1','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'4', 'product_id'=>'2','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
-            ['malfunction_id' =>'4', 'product_id'=>'5','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")]
-        ]);
     }
 }

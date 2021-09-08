@@ -14,10 +14,13 @@ class CreateSolutionsTable extends Migration
     public function up()
     {
         Schema::create('solutions', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->text('name');
             $table->text('description');
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('malfunction_id');
             $table->timestamps();
+
+            $table->foreign('malfunction_id')->references('id')->on('malfunctions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
