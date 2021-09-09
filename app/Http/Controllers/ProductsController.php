@@ -34,11 +34,11 @@ class ProductsController extends Controller
         $value = str_replace("*", "%", $request->get('search'));
 
         if ($value==''){
-            $data = Product::All();
+            $products = Product::All();
         }else {
-            $data = Product::where('description','like', $value)->get();
+            $products = Product::where('description','like', $value)->get();
         }
-        $returnHTML = view('products.list')->with('products', $data)->render();
+        $returnHTML = view('products.list')->with('products', $products)->render();
         return response()->json(['html'=>$returnHTML]);
     }
 

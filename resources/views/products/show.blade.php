@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
 @section('script')
-<script src="{{ asset('js/functions.js') }}" ></script>
+ <script src="{{ asset('js/functions.js') }}" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+{{--<script>
     $(function () {
         $("#destroy").on('click', function (event) {
             event.preventDefault();
@@ -23,7 +23,7 @@
             deleteElement("{{ route('solutions.destroy',['solution'=>"+solution+"]) }}");
         });
     });
-</script>
+</script> --}}
 @endsection
 
 @section('content')

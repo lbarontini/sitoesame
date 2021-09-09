@@ -1,21 +1,18 @@
 <script>
     $(function () {
-        $("a.editmalfunction").on('click', function (event) {
+        $("a.edit_malfunction").on('click', function (event) {
             event.preventDefault();
-            var malfunction_id=$(this).attr("malfunction_id");
-            $.ajax({
-                    type : 'get',
-                    url : '{{ route('products.search',['malfunction'=>'malfunction_id']) }}',
-                    data: {'search':$value},
+            var malfunction_id= $(this).attr("malfunctionId");
+            var actionUrl="{{ route('malfunctions.edit', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+
+            $.ajax({type : 'get',
+                    url : actionUrl,
                     success:function(data){
                             console.log(data);
-                            $("div.infomalfunction[malfunction_id='"+malfunction_id+"']").html(data.html);
+                            $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
                         }
                     });
-            $()
-            .html(htmlString);
-        });
-            deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
         });
 
         $("#destroy").on('click', function (event) {
@@ -46,7 +43,7 @@
             <a class="edit_malfunction" malfunctionId={{$malfunction->id}} href="">
                 <h3 class = "blue">Modifica</h3>
             </a>
-            <a class="delete_malfunction" malfunctionId={{$malfunction->id}} href = "{{ route('malfunctions.destroy',['malfunction'=>$malfunction]) }}">
+            <a class="delete_malfunction" malfunctionId={{$malfunction->id}} href = "">
                 <h3 class = "blue">Elimina</h3>
             </a>
             <h4 class="description_malfunction">{{$malfunction->description}}</h4>

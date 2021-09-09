@@ -27,8 +27,16 @@ function doElemValidation(id, actionUrl, formId, actionType) {
             error: function (data) {
                 if (data.status === 422) {
                     var errMsgs = JSON.parse(data.responseText);
-                    $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    console.log(data.responseText);
+                    $("#" + id).parent().find(".errors").remove();
+                    if(id.includes("name")){
+                        console.log("error name");
+                        $("#" + id).after(getErrorHtml(errMsgs["name"]));
+                    }else if(id.includes("description")){
+                        $("#" + id).after(getErrorHtml(errMsgs["description"]));
+                    }else{
+                        $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    }
                 }
             },
             contentType: false,
@@ -36,7 +44,8 @@ function doElemValidation(id, actionUrl, formId, actionType) {
         });
     }
 
-    var elem = $("#" + formId + " :input[name=" + id + "]");
+    var elem = $("#"+id);
+    var name = elem.attr('name');
     if (elem.attr('type') === 'file') {
     // elemento di input type=file valorizzato
         if (elem.val() !== '') {
@@ -49,7 +58,7 @@ function doElemValidation(id, actionUrl, formId, actionType) {
         inputVal = elem.val();
     }
     formElems = new FormData();
-    formElems.append(id, inputVal);
+    formElems.append(name, inputVal);
     formElems.append('_method', actionType);
     sendAjaxReq();
 
