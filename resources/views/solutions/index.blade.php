@@ -1,6 +1,4 @@
-@extends('layouts.layout')
 
-@section('script')
 <script src="{{ asset('js/functions.js') }}" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -17,14 +15,18 @@
     });
 </script>
 
-@section('content')
-<div id="maincontent" class="bodywidth clear">
-    <section id="tools">
-        <a href="{{route('solutions.create')}}">Aggiungi soluzione</a>
-    </section>
-    <section id="index">
-        <ul>
-        </ul>
-    </section>
-</div>
-@endsection
+@foreach ($malfunction->solutions as $solution)
+<li>
+    <h3 class = "blue">{{$solution->name}}</h3>
+
+    <div class="info_solution" solutionId={{$solution->id}}>
+        <a class="edit_solution" solutionId={{$solution->id}} href="">
+            <h3 class = "blue">Modifica</h3>
+        </a>
+        <a class="delete_solution" solutionId={{$solution->id}}href="{{ route('solutions.destroy',['solution'=>$solution]) }}">
+            <h3 class = "blue">Elimina</h3>
+        </a>
+        <h4 class="description">{{$solution->description}}</h4>
+    </div>
+</li>
+@endforeach

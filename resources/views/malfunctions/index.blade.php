@@ -1,26 +1,25 @@
 <script>
     $(function () {
-        $("a.edit_malfunction").on('click', function (event) {
-            event.preventDefault();
-            var malfunction_id= $(this).attr("malfunctionId");
-            var actionUrl="{{ route('malfunctions.edit', 'malfunction_id') }}";
-            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+        // $("a.edit_malfunction").on('click', function (event) {
+        //     event.preventDefault();
+        //     var malfunction_id= $(this).attr("malfunctionId");
+        //     var actionUrl="{{ route('malfunctions.edit', 'malfunction_id') }}";
+        //     actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
 
-            $.ajax({type : 'get',
-                    url : actionUrl,
-                    success:function(data){
-                            $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
-                        }
-                    });
-        });
+        //     $.ajax({
+        //         type : 'get',
+        //         url : actionUrl,
+        //         success:function(data){
+        //                 $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
+        //             }
+        //         });
+        // });
 
-        $("#destroy").on('click', function (event) {
-            event.preventDefault();
-            deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
-        });
+        // $("#destroy").on('click', function (event) {
+        //     event.preventDefault();
+        //     deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
+        // });
         $("#deleteMalfunction").on('click', function (event) {
-            //var malfunction_id=$(this).attr("malfunction_id");
-            //var malfunction={"id": parseInt($(this).attr("malfunction_id")), 'name':'','description':''};
             var malfunction={"id": parseInt($(this).attr("malfunction_id"))};
             $("#deleteMalfunction").after("<h3>"+JSON.stringify(malfunction)+"</h3>");
             event.preventDefault();
@@ -35,5 +34,7 @@
 </script>
 
 @foreach ($product->malfunctions as $malfunction)
+<li>
     @include('malfunctions.show')
+</li>
 @endforeach

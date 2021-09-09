@@ -89,7 +89,6 @@ class MalfunctionsController extends Controller
         $malfunction->save();
         $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
-        //return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
     }
 
     /**

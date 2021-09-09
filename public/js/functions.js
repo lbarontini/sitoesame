@@ -78,7 +78,6 @@ function doFormValidation(actionUrl, formId, actionType) {
         type: 'POST',
         url: actionUrl,
         data: form,
-        dataType: "json",
         error: function (data) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);
