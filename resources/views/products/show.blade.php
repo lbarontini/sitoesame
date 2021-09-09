@@ -52,7 +52,7 @@
                             <h3 class = "blue">Aggiungi</h3>
                         </a>
                         <ul class="malfunctions">
-                            @include('malfunctions.show')
+                            @include('malfunctions.index')
                         </ul>
                     @endcan
                 </div>

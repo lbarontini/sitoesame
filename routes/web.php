@@ -26,7 +26,7 @@ Route::put('/products/{product}', 'ProductsController@update')->name('products.u
 Route::delete('/products/{product}', 'ProductsController@destroy')->name('products.destroy');
 Route::get('/products/{product}/edit', 'ProductsController@edit')->name('products.edit');
 
-//Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
+Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
 Route::post('/malfunctions', 'MalfunctionsController@store')->name('malfunctions.store');
 Route::get('/malfunctions/create/{product}', 'MalfunctionsController@create')->name('malfunctions.create');
 Route::put('/malfunctions/{malfunction}', 'MalfunctionsController@update')->name('malfunctions.update');

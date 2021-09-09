@@ -83,13 +83,30 @@ function doFormValidation(actionUrl, formId, actionType) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);
                 $.each(errMsgs, function (id) {
-                    $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    $("#" + id).parent().find('.errors').remove();
+                    if(id.includes("name")){
+                        console.log("error name");
+                        $("#" + id).after(getErrorHtml(errMsgs["name"]));
+                    }else if(id.includes("description")){
+                        $("#" + id).after(getErrorHtml(errMsgs["description"]));
+                    }else{
+                        $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    }
                 });
             }
         },
         success: function (data) {
-            window.location.replace(data.redirect);
+            if (data.hasOwnProperty('html')){
+                if(data.hasOwnProperty('malfunction_id')){
+                    $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().html(data.html);
+                }
+                //todo same thing for solutions
+                // if(isset(data.malfunction_id)){
+                //     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
+                // }
+            }else{
+                window.location.replace(data.redirect);
+            }
         },
         contentType: false,
         processData: false
@@ -107,7 +124,8 @@ function deleteElement(actionUrl) {
     url: actionUrl,
     dataType: "json",
     success: function (data) {
-        window.location.replace(data.redirect);
+            window.location.replace(data.redirect);
+
     },
     contentType: false,
     processData: false

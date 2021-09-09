@@ -1,33 +1,39 @@
-@extends('layouts.layout')
-
-@section('script')
-<script src="{{ asset('js/functions.js') }}" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(function(){
-        $("a.name").click(function(event){
+    $(function () {
+        $("a.edit_malfunction").on('click', function (event) {
             event.preventDefault();
-            var id=$(this).attr("malfunctionId");
-            $(".info[malfunctionId ="+id+"]").toggle();
+            var malfunction_id= $(this).attr("malfunctionId");
+            var actionUrl="{{ route('malfunctions.edit', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+
+            $.ajax({type : 'get',
+                    url : actionUrl,
+                    success:function(data){
+                            $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
+                        }
+                    });
         });
-        $("a.delete").on('click', function (event) {
-            var actionUrl=$(this).attr("href");
-            deleteElement(actionUrl);
+
+        $("#destroy").on('click', function (event) {
+            event.preventDefault();
+            deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
+        });
+        $("#deleteMalfunction").on('click', function (event) {
+            //var malfunction_id=$(this).attr("malfunction_id");
+            //var malfunction={"id": parseInt($(this).attr("malfunction_id")), 'name':'','description':''};
+            var malfunction={"id": parseInt($(this).attr("malfunction_id"))};
+            $("#deleteMalfunction").after("<h3>"+JSON.stringify(malfunction)+"</h3>");
+            event.preventDefault();
+            deleteElement("{{ route('malfunctions.destroy',['malfunction'=>2]) }}");
+        });
+        $("#deleteSolution").on('click', function (event) {
+            var solution={'id': $(this).attr("solution_id")};
+            event.preventDefault();
+            deleteElement("{{ route('solutions.destroy',['solution'=>"+solution+"]) }}");
         });
     });
 </script>
 
-@endsection
-
-@section('content')
-<div id="maincontent" class="bodywidth clear">
-    <section id="tools">
-        <a href="{{route('malfunctions.create')}}">Aggiungi malfunzionamento</a>
-    </section>
-    <section id="index">
-        <ul>
-
-        </ul>
-    </section>
-</div>
-@endsection
+@foreach ($product->malfunctions as $malfunction)
+    @include('malfunctions.show')
+@endforeach
