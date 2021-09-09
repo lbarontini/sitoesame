@@ -69,8 +69,9 @@ class MalfunctionsController extends Controller
     public function edit($malfunction_id)
     {
         $this->authorize('staff_work');
-        $returnHTML = view('malfunctions.edit')->with('malfunction_id', $malfunction_id)->render();
-        return response()->json(['html'=>$returnHTML]);
+        $malfunction =Malfunction::find($malfunction_id);
+        $returnHTML = view('malfunctions.edit')->with('malfunction', $malfunction)->render();
+        return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
     }
 
     /**
@@ -86,7 +87,9 @@ class MalfunctionsController extends Controller
 
         $malfunction->fill($request->validated());
         $malfunction->save();
-        return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
+        $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
+        return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
+        //return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
     }
 
     /**
