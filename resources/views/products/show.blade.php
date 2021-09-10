@@ -3,19 +3,53 @@
 @section('script')
  <script src="{{ asset('js/functions.js') }}" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{{--<script>
+<script>
     $(function () {
+        $("li.malfunction").on('click','a.edit_malfunction', function (event) {
+            event.preventDefault();
+            var malfunction_id= $(this).attr("malfunctionId");
+            var actionUrl="{{ route('malfunctions.edit', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+
+            $.ajax({
+                type : 'GET',
+                url : actionUrl,
+                success:function(data){
+                        $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
+                    }
+                });
+        });
+
+        var actionType = 'PUT';
+        $("li.malfunction").on('blur',':input', function (event) {
+            var malfunction_id= $(this).parent().attr("malfunctionId");
+            var actionUrl="{{ route('malfunctions.update', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+            var formElementId = $(this).attr('id');
+            var formId = $(this).parent().attr('id');
+            doElemValidation(formElementId, actionUrl, formId, actionType);
+        });
+        $("li.malfunction").on('submit','.contact-form', function (event) {
+            event.preventDefault();
+            var formId = $(this).attr('id');
+            var malfunction_id= $(this).attr("malfunctionId");
+            var actionUrl="{{ route('malfunctions.update', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+            doFormValidation(actionUrl, formId, actionType);
+        });
+
         $("#destroy").on('click', function (event) {
             event.preventDefault();
             deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
         });
-        $("#deleteMalfunction").on('click', function (event) {
-            //var malfunction_id=$(this).attr("malfunction_id");
-            //var malfunction={"id": parseInt($(this).attr("malfunction_id")), 'name':'','description':''};
-            var malfunction={"id": parseInt($(this).attr("malfunction_id"))};
-            $("#deleteMalfunction").after("<h3>"+JSON.stringify(malfunction)+"</h3>");
+
+        //todo same as above for dynamic rendered html
+        $("li.malfunction").on('click','a.delete_malfunction', function (event) {
             event.preventDefault();
-            deleteElement("{{ route('malfunctions.destroy',['malfunction'=>2]) }}");
+            var actionUrl="{{ route('malfunctions.destroy', 'malfunction_id') }}";
+            var malfunction_id=parseInt($(this).attr("malfunctionId"));
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id);
+            deleteElement(actionUrl);
         });
         $("#deleteSolution").on('click', function (event) {
             var solution={'id': $(this).attr("solution_id")};
@@ -23,7 +57,7 @@
             deleteElement("{{ route('solutions.destroy',['solution'=>"+solution+"]) }}");
         });
     });
-</script> --}}
+</script>
 @endsection
 
 @section('content')
@@ -47,13 +81,7 @@
                     <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
                     <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
                     @can('tecn_work')
-                        <h4 class = "blue">MalFunzionementi: </h5>
-                        <a class="addMalfunction" href="{{ route('malfunctions.create',['product'=>$product]) }}">
-                            <h3 class = "blue">Aggiungi</h3>
-                        </a>
-                        <ul class="malfunctions">
-                            @include('malfunctions.index')
-                        </ul>
+                        @include('malfunctions.index')
                     @endcan
                 </div>
             </div>

@@ -81,10 +81,10 @@ class MalfunctionsController extends Controller
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function update(MalfunctionRequest $request, Malfunction $malfunction)
+    public function update(MalfunctionRequest $request, $malfunction_id)
     {
         $this->authorize('staff_work');
-
+        $malfunction= Malfunction::find($malfunction_id);
         $malfunction->fill($request->validated());
         $malfunction->save();
         $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
@@ -97,27 +97,11 @@ class MalfunctionsController extends Controller
      * @param  \App\Models\Malfunction  $malfunction
      * @return \Illuminate\Http\Response
      */
-    public function destroy($malfunction)
+    public function destroy($malfunction_id)
     {
-        error_log($malfunction);
         $this->authorize('staff_work');
-        $malfunctiontodel = Malfunction::where('id', $malfunction)->first();
-        //$malfunctiontodel->delete();
-        return response()->json(['redirect' => route('malfunctions.index')]);
-    }
-
-        /**
-     * Remove the specified resource found by the resource id from storage
-     *
-     * @param  \App\Models\Malfunction  $malfunction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroyById($malfunction_id)
-    {
-        error_log($malfunction_id);
-        $this->authorize('staff_work');
-        $malfunctiontodel = Malfunction::where('id', $malfunction_id)->first();
-        $malfunctiontodel->delete();
-        return response()->json(['redirect' => route('malfunctions.index')]);
+        $malfunction = Malfunction::find($malfunction_id);
+        $malfunction->delete();
+        return response()->json(['malfunction_id' => $malfunction->id]);
     }
 }

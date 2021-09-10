@@ -29,7 +29,7 @@ Route::get('/products/edit/{product}', 'ProductsController@edit')->name('product
 //Route::get('/malfunctions', 'MalfunctionsController@index')->name('malfunctions.index');
 Route::post('/malfunctions', 'MalfunctionsController@store')->name('malfunctions.store');
 Route::get('/malfunctions/create/{product}', 'MalfunctionsController@create')->name('malfunctions.create');
-Route::put('/malfunctions/{malfunction}', 'MalfunctionsController@update')->name('malfunctions.update');
+Route::put('/malfunctions/{malfunction_id}', 'MalfunctionsController@update')->name('malfunctions.update');
 Route::delete('/malfunctions/{malfunction}', 'MalfunctionsController@destroy')->name('malfunctions.destroy');
 Route::get('/malfunctions/edit/{malfunction_id}', 'MalfunctionsController@edit')->name('malfunctions.edit');
 

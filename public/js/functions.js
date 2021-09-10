@@ -123,8 +123,16 @@ function deleteElement(actionUrl) {
     url: actionUrl,
     dataType: "json",
     success: function (data) {
+        if(data.hasOwnProperty('malfunction_id')){
+            $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().remove();
+        }
+        //todo same thing for solutions
+        // if(isset(data.malfunction_id)){
+        //     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
+        // }
+        else{
             window.location.replace(data.redirect);
-
+        }
     },
     contentType: false,
     processData: false

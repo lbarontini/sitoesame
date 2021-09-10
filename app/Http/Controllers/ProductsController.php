@@ -69,17 +69,10 @@ class ProductsController extends Controller
             $imageName = NULL;
         }
 
-        $validated = $request->validated();
-        unset($validated['malfunctions']);
         $product = new Product;
-        $product->fill($validated);
+        $product->fill($request->validated());
         $product->image = $imageName;
         $product->save();
-
-        if($request->has('malfunctions')){
-            $malfunctions= $request->validated()['malfunctions'];
-            $product->malfunctions()->attach($malfunctions);
-        }
 
         if (!is_null($imageName)) {
             $destinationPath = public_path() . '/images/products';
@@ -124,23 +117,14 @@ class ProductsController extends Controller
         $this->authorize('staff_work');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = Str::random(10).$image->getClientOriginalName();
+            $imageName = $image->getClientOriginalName();
         } else {
             $imageName = $product->image;
         }
+        $product->update($request->validated());
+        $product->image = $imageName;
+        $product->save();
 
-        $validated = $request->validated();
-        unset($validated['malfunctions']);
-        $newproduct= Product::find($product->id);
-        $newproduct->update($validated);
-        $product->malfunctions()->detach();
-        $newproduct->image = $imageName;
-        $newproduct->save();
-
-        if($request->has('malfunctions')){
-            $malfunctions= $request->validated()['malfunctions'];
-            $product->malfunctions()->attach($malfunctions);
-        }
 
         if ($imageName!= $product->image) {
             $destinationPath = public_path() . '/images/products';
