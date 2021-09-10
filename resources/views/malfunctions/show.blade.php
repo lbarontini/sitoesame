@@ -1,20 +1,17 @@
-<h3 class = "blue">{{$malfunction->name}}</h3>
-
-<div class="info_malfunction" malfunctionId={{$malfunction->id}}>
-    <a class="edit_malfunction" malfunctionId={{$malfunction->id}} href="">
-        <h3 class = "blue">Modifica</h3>
-    </a>
-    <a class="delete_malfunction" malfunctionId={{$malfunction->id}} href = "{{ route('products.index') }}">
-        <h3 class = "blue">Elimina</h3>
-    </a>
+<a class="malfunction_name" href="">
+    <h3 class = "blue">{{$malfunction->name}}</h3>
+</a>
+<div class="info_malfunction" malfunctionId={{$malfunction->id}} hidden ="true">
     <h4 class="description_malfunction">{{$malfunction->description}}</h4>
-    <h4 class = "blue">Soluzioni: </h5>
-        <a class="add_solution" href="{{ route('solutions.create',['malfunction'=>$malfunction]) }}">
-            <h3 class = "blue">Aggiungi</h3>
+    @can('staff_work')
+        <a class="edit_malfunction" malfunctionId={{$malfunction->id}} href="">
+            <h3 class = "blue">Modifica</h3>
         </a>
+        <a class="delete_malfunction" malfunctionId={{$malfunction->id}} href = "">
+            <h3 class = "blue">Elimina</h3>
+        </a>
+    @endcan
 
-    <ul class="solutions">
-        {{-- @include('solutions.index') --}}
-    </ul>
+    @include('solutions.index')
 </div>
 

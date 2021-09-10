@@ -35,10 +35,10 @@ Route::get('/malfunctions/edit/{malfunction_id}', 'MalfunctionsController@edit')
 
 //Route::get('/solutions', 'SolutionsController@index')->name('solutions.index');
 Route::post('/solutions', 'SolutionsController@store')->name('solutions.store');
-Route::get('/solutions/create', 'SolutionsController@create')->name('solutions.create');
-Route::put('/solutions/{solution}', 'SolutionsController@update')->name('solutions.update');
+Route::get('/solutions/create/{malfunction}', 'SolutionsController@create')->name('solutions.create');
+Route::put('/solutions/{solution_id}', 'SolutionsController@update')->name('solutions.update');
 Route::delete('/solutions/{solution}', 'SolutionsController@destroy')->name('solutions.destroy');
-Route::get('/solutions/edit/{solution}', 'SolutionsController@edit')->name('solutions.edit');
+Route::get('/solutions/edit/{solution_id}', 'SolutionsController@edit')->name('solutions.edit');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::put('/users/{user}', 'UsersController@update')->name('users.update');

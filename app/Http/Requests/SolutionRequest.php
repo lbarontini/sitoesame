@@ -29,8 +29,8 @@ class SolutionRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'description'=> 'required|max:50',
-            'malfunctions'=>'nullable'
+            'description'=> 'required|max:100',
+            'malfunction_id'=>'required'
         ];
     }
 

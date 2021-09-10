@@ -98,11 +98,12 @@ function doFormValidation(actionUrl, formId, actionType) {
             if (data.hasOwnProperty('html')){
                 if(data.hasOwnProperty('malfunction_id')){
                     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().html(data.html);
+                    $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").show();
                 }
-                //todo same thing for solutions
-                // if(isset(data.malfunction_id)){
-                //     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
-                // }
+                else if(data.hasOwnProperty('solution_id')){
+                    $("div.info_solution[solutionId="+data.solution_id+"]").parent().html(data.html);
+                    $("div.info_solution[solutionId="+data.solution_id+"]").show();
+                }
             }else{
                 window.location.replace(data.redirect);
             }
@@ -126,10 +127,9 @@ function deleteElement(actionUrl) {
         if(data.hasOwnProperty('malfunction_id')){
             $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().remove();
         }
-        //todo same thing for solutions
-        // if(isset(data.malfunction_id)){
-        //     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").html(data.html);
-        // }
+        else if(data.hasOwnProperty('solution_id')){
+            $("div.info_solution[solutionId="+data.solution_id+"]").parent().remove();
+        }
         else{
             window.location.replace(data.redirect);
         }

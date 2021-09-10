@@ -5,6 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(function () {
+        $("#destroy").on('click', function (event) {
+            event.preventDefault();
+            deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
+        });
+
         $("li.malfunction").on('click','a.edit_malfunction', function (event) {
             event.preventDefault();
             var malfunction_id= $(this).attr("malfunctionId");
@@ -38,23 +43,54 @@
             doFormValidation(actionUrl, formId, actionType);
         });
 
-        $("#destroy").on('click', function (event) {
+        $("li.malfunction").on('click','a.malfunction_name', function (event) {
             event.preventDefault();
-            deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
+            $(this).next().toggle();
         });
 
-        //todo same as above for dynamic rendered html
-        $("li.malfunction").on('click','a.delete_malfunction', function (event) {
+        $("li.malfunction").on('click','li.solution a.edit_solution', function (event) {
             event.preventDefault();
-            var actionUrl="{{ route('malfunctions.destroy', 'malfunction_id') }}";
-            var malfunction_id=parseInt($(this).attr("malfunctionId"));
-            actionUrl=actionUrl.replace('malfunction_id', malfunction_id);
+            var solution_id= $(this).attr("solutionId");
+            var actionUrl="{{ route('solutions.edit', 'solution_id') }}";
+            actionUrl=actionUrl.replace('solution_id', solution_id)
+
+            $.ajax({
+                type : 'GET',
+                url : actionUrl,
+                success:function(data){
+                        $("div.info_solution[solutionId="+data.solution_id+"]").html(data.html);
+                    }
+                });
+        });
+
+        $("li.malfunction").on('blur','li.solution :input', function (event) {
+            var solution_id= $(this).parent().attr("solutionId");
+            var actionUrl="{{ route('solutions.update', 'solution_id') }}";
+            actionUrl=actionUrl.replace('solution_id', solution_id)
+            var formElementId = $(this).attr('id');
+            var formId = $(this).parent().attr('id');
+            doElemValidation(formElementId, actionUrl, formId, actionType);
+        });
+        $("li.malfunction").on('submit','li.solution .contact-form', function (event) {
+            event.preventDefault();
+            var formId = $(this).attr('id');
+            var solution_id= $(this).attr("solutionId");
+            var actionUrl="{{ route('solutions.update', 'solution_id') }}";
+            actionUrl=actionUrl.replace('solution_id', solution_id)
+            doFormValidation(actionUrl, formId, actionType);
+        });
+
+        $("li.malfunction").on('click','li.solution a.delete_solution', function (event) {
+            event.preventDefault();
+            var actionUrl="{{ route('solutions.destroy', 'solution_id') }}";
+            var solution_id=parseInt($(this).attr("solutionId"));
+            actionUrl=actionUrl.replace('solution_id', solution_id);
             deleteElement(actionUrl);
         });
-        $("#deleteSolution").on('click', function (event) {
-            var solution={'id': $(this).attr("solution_id")};
+
+        $("li.malfunction").on('click','li.solution a.solution_name', function (event) {
             event.preventDefault();
-            deleteElement("{{ route('solutions.destroy',['solution'=>"+solution+"]) }}");
+            $(this).next().toggle();
         });
     });
 </script>
@@ -72,18 +108,16 @@
     </section>
     <section id="show">
         <article>
-            <div>
-                @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
-                <div class="info">
-                    <h3 class = "blue">Modello: {{$product->model}}</h3>
+            @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
+            <div class="info">
+                <h3 class = "blue">Modello: {{$product->model}}</h3>
 
-                    <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
-                    <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
-                    <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
-                    @can('tecn_work')
-                        @include('malfunctions.index')
-                    @endcan
-                </div>
+                <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
+                <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
+                <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
+                @can('tecn_work')
+                    @include('malfunctions.index')
+                @endcan
             </div>
         </article>
     </section>

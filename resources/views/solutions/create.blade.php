@@ -34,17 +34,7 @@
                         {{ Form::text('description', '', ['class' => 'input','id' => 'description']) }}
                     </div>
 
-                    <div  class="rs1-wrap-input">
-                        {{ Form::label('malfunctions', 'Malfunzionamenti', ['class' => 'label-input']) }}
-                        {{ Form::select('malfunctions[]',
-                                         $malfunctions->pluck('name','id'),
-                                         (isset($malfunction))? $malfunction : null,
-                                         [  'multiple'=>true,
-                                            'class' => 'input',
-                                            'id' => 'malfunctions'
-                                         ])
-                        }}
-                    </div>
+                    <input type = "hidden" name = "malfunction_id" value = {{$malfunction->id}} />
 
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}

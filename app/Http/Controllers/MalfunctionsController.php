@@ -10,16 +10,16 @@ use SebastianBergmann\Environment\Console;
 
 class MalfunctionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->authorize('staff_work');
-        return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     $this->authorize('staff_work');
+    //     return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -42,6 +42,7 @@ class MalfunctionsController extends Controller
     public function store(MalfunctionRequest $request)
     {
         $this->authorize('staff_work');
+
         $malfunction = new Malfunction;
         $malfunction->fill($request->validated());
         $malfunction->save();
@@ -69,6 +70,7 @@ class MalfunctionsController extends Controller
     public function edit($malfunction_id)
     {
         $this->authorize('staff_work');
+
         $malfunction =Malfunction::find($malfunction_id);
         $returnHTML = view('malfunctions.edit')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
@@ -84,6 +86,7 @@ class MalfunctionsController extends Controller
     public function update(MalfunctionRequest $request, $malfunction_id)
     {
         $this->authorize('staff_work');
+
         $malfunction= Malfunction::find($malfunction_id);
         $malfunction->fill($request->validated());
         $malfunction->save();
@@ -100,6 +103,7 @@ class MalfunctionsController extends Controller
     public function destroy($malfunction_id)
     {
         $this->authorize('staff_work');
+
         $malfunction = Malfunction::find($malfunction_id);
         $malfunction->delete();
         return response()->json(['malfunction_id' => $malfunction->id]);

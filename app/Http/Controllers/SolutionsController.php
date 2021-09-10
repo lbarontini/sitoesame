@@ -9,32 +9,27 @@ use App\Models\Product;
 
 class SolutionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->authorize('staff_work');
-        return view('solutions.index',['solutions'=>Solution::All()]);
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     $this->authorize('staff_work');
+    //     return view('solutions.index',['solutions'=>Solution::All()]);
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($malfunction=null)
+    public function create(Malfunction $malfunction)
     {
         $this->authorize('staff_work');
-        if(isset($malfunction)){
-            return view('solutions.create',['malfunctions'=>Malfunction::All(),'malfunction'=>$malfunction]);
-        }
-        else{
-            return view('solutions.create',['malfunctions'=>Malfunction::All()]);
-        }
 
+        return view('solutions.create',['malfunction'=>$malfunction]);
     }
 
     /**
@@ -46,18 +41,12 @@ class SolutionsController extends Controller
     public function store(SolutionRequest $request)
     {
         $this->authorize('staff_work');
-        $validated = $request->validated();
-        unset($validated['malfunctions']);
+
         $solution = new Solution;
-        $solution->fill($validated);
+        $solution->fill($request->validated());
         $solution->save();
 
-        if($request->has('malfunctions')){
-            $malfunctions= $request->validated()['malfunctions'];
-            $solution->malfunctions()->attach($malfunctions);
-        }
-
-        return response()->json(['redirect' => route('solutions.index')]);
+        return response()->json(['redirect' => route('products.show',['product'=>$solution->malfunction->product])]);
     }
 
     /**
@@ -78,10 +67,13 @@ class SolutionsController extends Controller
      * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function edit(Solution $solution)
+    public function edit($solution_id)
     {
         $this->authorize('staff_work');
-        return view('solutions.edit',['solution'=>$solution,'malfunctions'=>Malfunction::All()]);
+
+        $solution =Solution::find($solution_id);
+        $returnHTML = view('solutions.edit')->with('solution', $solution)->render();
+        return response()->json(['html'=>$returnHTML,'solution_id'=>$solution->id]);
     }
 
     /**
@@ -91,21 +83,15 @@ class SolutionsController extends Controller
      * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function update(SolutionRequest $request, Solution $solution)
+    public function update(SolutionRequest $request, $solution_id)
     {
         $this->authorize('staff_work');
-        $validated = $request->validated();
-        unset($validated['malfunctions']);
-        $solution->fill($validated);
-        $solution->malfunctions()->detach();
+
+        $solution= Solution::find($solution_id);
+        $solution->fill($request->validated());
         $solution->save();
-
-        if($request->has('malfunctions')){
-            $malfunctions= $request->validated()['malfunctions'];
-            $solution->malfunctions()->attach($malfunctions);
-        }
-
-        return response()->json(['redirect' => route('solutions.index')]);
+        $returnHTML = view('solutions.show')->with('solution', $solution)->render();
+        return response()->json(['html'=>$returnHTML,'solution_id'=>$solution->id]);
     }
 
     /**
@@ -114,10 +100,12 @@ class SolutionsController extends Controller
      * @param  \App\Models\Solution  $solution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Solution $solution)
+    public function destroy($solution_id)
     {
         $this->authorize('staff_work');
+
+        $solution= Solution::find($solution_id);
         $solution->delete();
-        return response()->json(['redirect' => route('solutions.index')]);
+        return response()->json(['solution_id'=>$solution->id]);
     }
 }

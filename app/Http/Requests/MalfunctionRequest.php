@@ -31,7 +31,7 @@ class MalfunctionRequest extends FormRequest {
     public function rules() {
         return [
             'name'=>'required',
-            'description'=> 'required|max:50',
+            'description'=> 'required|max:100',
             'product_id'=>'required'
         ];
     }
