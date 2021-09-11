@@ -25,11 +25,13 @@ class SolutionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Malfunction $malfunction)
+    public function create($malfunction_id)
     {
         $this->authorize('staff_work');
 
-        return view('solutions.create',['malfunction'=>$malfunction]);
+        $malfunction=Product::find($malfunction_id);
+        $returnHTML = view('solutions.create')->with('malfunction', $malfunction)->render();
+        return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
     }
 
     /**
@@ -46,7 +48,8 @@ class SolutionsController extends Controller
         $solution->fill($request->validated());
         $solution->save();
 
-        return response()->json(['redirect' => route('products.show',['product'=>$solution->malfunction->product])]);
+        $returnHTML = view('solutions.show')->with('solution', $solution)->render();
+        return response()->json(['html'=>$returnHTML,'new_solution_id'=>$solution->id,'malfunction_id'=>$solution->malfunction->id ]);
     }
 
     /**

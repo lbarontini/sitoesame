@@ -9,7 +9,7 @@
             event.preventDefault();
             deleteElement("{{ route('products.destroy',['product'=>$product]) }}");
         });
-
+        //malfunctions scripts
         $("div.malfunctions").on('click','a.add_malfunction', function (event) {
             event.preventDefault();
             var product_id= $(this).attr("productId");
@@ -81,6 +81,35 @@
             event.preventDefault();
             $(this).next().toggle();
         });
+
+        //solutions scripts
+        $("ul.malfunctions").on('click','a.add_solution', function (event) {
+            event.preventDefault();
+            var malfunction_id= $(this).attr("malfunctionId");
+            var actionUrl="{{ route('solutions.create', 'malfunction_id') }}";
+            actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
+
+            $.ajax({
+                type : 'GET',
+                url : actionUrl,
+                success:function(data){
+                    $("a.add_solution[malfunctionId="+data.malfunction_id+"]").hide();
+                    $("a.add_solution[malfunctionId="+data.malfunction_id+"]").after(data.html);
+                }
+            });
+        });
+
+        // var actionUrl = "{{ route('solutions.store') }}";
+        // $("ul.malfunctions").on('blur','ul.solution .addsolution-form :input', function (event) {
+        //     var formElementId = $(this).attr('id');
+        //     var formId = $(this).parent().attr('id');
+        //     doElemValidation(formElementId, actionUrl, formId, 'POST');
+        // });
+        // $("ul.malfunctions").on('submit','ul.solution .addsolution-form', function (event) {
+        //     event.preventDefault();
+        //     var formId = $(this).attr('id');
+        //     doFormValidation(actionUrl, formId, 'POST');
+        // });
 
         $("ul.malfunctions").on('click','li.solution a.edit_solution', function (event) {
             event.preventDefault();

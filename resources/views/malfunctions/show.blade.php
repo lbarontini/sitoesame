@@ -13,6 +13,6 @@
             </a>
         @endcan
 
-        {{-- @include('solutions.index') --}}
+        @include('solutions.index')
     </div>
 </li>

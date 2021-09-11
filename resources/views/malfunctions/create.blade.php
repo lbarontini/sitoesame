@@ -1,6 +1,6 @@
 <div class="container-contact">
     <h1>Nuovo Malfunzionamento</h1>
-    {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'addmalfunction','class' => 'contact-form')) !!}
+    {!! Form::open(array('route' => 'malfunctions.store', 'id' => 'addmalfunction','class' => 'addmalfunction-form')) !!}
         <div class="wrap-input">
             <div  class="rs1-wrap-input">
                 {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}

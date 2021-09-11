@@ -117,12 +117,12 @@ function doFormValidation(actionUrl, formId, actionType) {
                 }
                 //in case of edit product malfunction
                 else if(data.hasOwnProperty('malfunction_id')){
-                    $("li.malfunction[malfunctionId="+data.malfunction_id+"]").replace(data.html);
+                    $("li.malfunction[malfunctionId="+data.malfunction_id+"]").replaceWith(data.html);
                     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").show();
                 }
                 //in case of edit product solution
                 else if(data.hasOwnProperty('solution_id')){
-                    $("li.solution[solutionId="+data.solution_id+"]").replace(data.html);
+                    $("li.solution[solutionId="+data.solution_id+"]").replaceWith(data.html);
                     $("div.info_solution[solutionId="+data.solution_id+"]").show();
                 }
             }else{
