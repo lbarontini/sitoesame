@@ -6,7 +6,6 @@ use App\Models\Malfunction;
 use App\Models\Solution;
 use App\Models\Product;
 use App\Http\Requests\MalfunctionRequest;
-use SebastianBergmann\Environment\Console;
 
 class MalfunctionsController extends Controller
 {
@@ -26,11 +25,12 @@ class MalfunctionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Product $product)
+    public function create($product_id)
     {
         $this->authorize('staff_work');
-
-        return view('malfunctions.create',['product'=>$product]);
+        $product=Product::find($product_id);
+        $returnHTML = view('malfunctions.create')->with('product', $product)->render();
+        return response()->json(['html'=>$returnHTML]);
     }
 
     /**
@@ -47,7 +47,8 @@ class MalfunctionsController extends Controller
         $malfunction->fill($request->validated());
         $malfunction->save();
 
-        return response()->json(['redirect' => route('products.show',['product'=>$malfunction->product])]);
+        $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
+        return response()->json(['html'=>$returnHTML,'new_malfunction_id'=>$malfunction->id]);
     }
 
     /**

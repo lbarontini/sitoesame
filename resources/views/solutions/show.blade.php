@@ -2,7 +2,7 @@
     <h3 class = "blue">{{$solution->name}}</h3>
 </a>
 
-<div class="info_solution" solutionId={{$solution->id}} >
+<div class="info_solution" solutionId={{$solution->id}} hidden="true">
     <h4 class="description_solution">{{$solution->description}}</h4>
     @can('staff_work')
         <a class="edit_solution" solutionId={{$solution->id}} href="">

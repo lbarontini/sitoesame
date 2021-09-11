@@ -96,12 +96,33 @@ function doFormValidation(actionUrl, formId, actionType) {
         },
         success: function (data) {
             if (data.hasOwnProperty('html')){
-                if(data.hasOwnProperty('malfunction_id')){
-                    $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().html(data.html);
+                //in case of new product malfunction
+                if(data.hasOwnProperty('new_malfunction_id')){
+                    $("ul.malfunctions").append(data.html);
+                    $("a.add_malfunction").show();
+                    $("a.add_malfunction").next().remove("");
+                    $("div.info_malfunction[malfunctionId="+data.new_malfunction_id+"]").show();
+                }
+                //in case of new product solution
+                else if(data.hasOwnProperty('new_solution_id')){
+                    $("ul.malfunctions").append(data.html);
+                    $("a.add_malfunction").show();
+                    $("a.add_malfunction").next().remove();
+                    $("div.info_malfunction[malfunctionId="+data.new_malfunction_id+"]").show();
+
+                    $("ul.solutions[malfunctionId="+data.malfunction_id+"]").append(data.html);
+                    $("ul.solutions[malfunctionId="+data.malfunction_id+"] a.add_malfunction").show();
+                    $("ul.solutions[malfunctionId="+data.malfunction_id+"] a.add_malfunction").next().remove();
+                    $("div.info_solution[malfunctionId="+data.new_malfunction_id+"]").show();
+                }
+                //in case of edit product malfunction
+                else if(data.hasOwnProperty('malfunction_id')){
+                    $("li.malfunction[malfunctionId="+data.malfunction_id+"]").replace(data.html);
                     $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").show();
                 }
+                //in case of edit product solution
                 else if(data.hasOwnProperty('solution_id')){
-                    $("div.info_solution[solutionId="+data.solution_id+"]").parent().html(data.html);
+                    $("li.solution[solutionId="+data.solution_id+"]").replace(data.html);
                     $("div.info_solution[solutionId="+data.solution_id+"]").show();
                 }
             }else{
@@ -125,10 +146,10 @@ function deleteElement(actionUrl) {
     dataType: "json",
     success: function (data) {
         if(data.hasOwnProperty('malfunction_id')){
-            $("div.info_malfunction[malfunctionId="+data.malfunction_id+"]").parent().remove();
+            $("li.malfunction[malfunctionId="+data.malfunction_id+"]").remove();
         }
         else if(data.hasOwnProperty('solution_id')){
-            $("div.info_solution[solutionId="+data.solution_id+"]").parent().remove();
+            $("li.solution[solutionId="+data.solution_id+"]").remove();
         }
         else{
             window.location.replace(data.redirect);
