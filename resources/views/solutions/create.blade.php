@@ -1,26 +1,6 @@
-{{-- @extends('layouts.layout')
-@section('script')
-<script src="{{ asset('js/functions.js') }}" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        var actionType = 'POST';
-        var actionUrl = "{{ route('solutions.store') }}";
-        var formId = 'addsolution';
-        $(":input").on('blur', function (event) {
-            var formElementId = $(this).attr('id');
-            doElemValidation(formElementId, actionUrl, formId, actionType);
-        });
-        $("#addsolution").on('submit', function (event) {
-            event.preventDefault();
-            doFormValidation(actionUrl, formId, actionType);
-        });
-    });
-</script>
-@endsection --}}
 <div class="container-contact">
         <h1>Nuova Soluzione</h1>
-        {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution','class' => 'addsolution-form')) !!}
+        {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution'.$malfunction->id,'class' => 'addsolution-form')) !!}
             <div class="wrap-input">
                 <div  class="rs1-wrap-input">
                     {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}

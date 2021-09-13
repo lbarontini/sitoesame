@@ -27,13 +27,14 @@
         });
 
         var actionUrl = "{{ route('malfunctions.store') }}";
-        $("div.malfunctions").on('blur',':input', function (event) {
+        $("div.malfunctions").on('blur','.addmalfunction-form :input', function (event) {
+            var formId = $(this).closest('.addmalfunction-form').attr('id');
             var formElementId = $(this).attr('id');
-            doElemValidation(formElementId, actionUrl, 'addmalfunction', 'POST');
+            doElemValidation(formElementId, actionUrl, formId, 'POST');
         });
-        $("div.malfunctions").on('submit','#addmalfunction', function (event) {
-            event.preventDefault();
-            doFormValidation(actionUrl, 'addmalfunction', 'POST');
+        $("div.malfunctions").on('submit','.addmalfunction-form', function (event) {
+            var formId = $(this).attr('id');
+            doFormValidation(actionUrl,formId, 'POST');
         });
 
         $("ul.malfunctions").on('click','a.edit_malfunction', function (event) {
@@ -52,15 +53,15 @@
         });
 
         var actionType = 'PUT';
-        $("ul.malfunctions").on('blur','li.malfunction :input', function (event) {
+        $("ul.malfunctions").on('blur','li.malfunction .editmalfunction-form :input', function (event) {
             var malfunction_id= $(this).parent().attr("malfunctionId");
             var actionUrl="{{ route('malfunctions.update', 'malfunction_id') }}";
             actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
             var formElementId = $(this).attr('id');
-            var formId = $(this).parent().attr('id');
+            var formId = $(this).closest('.editmalfunction-form').attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("ul.malfunctions").on('submit','li.malfunction .contact-form', function (event) {
+        $("ul.malfunctions").on('submit','li.malfunction .editmalfunction-form', function (event) {
             event.preventDefault();
             var formId = $(this).attr('id');
             var malfunction_id= $(this).attr("malfunctionId");
@@ -99,17 +100,17 @@
             });
         });
 
-        // var actionUrl = "{{ route('solutions.store') }}";
-        // $("ul.malfunctions").on('blur','ul.solution .addsolution-form :input', function (event) {
-        //     var formElementId = $(this).attr('id');
-        //     var formId = $(this).parent().attr('id');
-        //     doElemValidation(formElementId, actionUrl, formId, 'POST');
-        // });
-        // $("ul.malfunctions").on('submit','ul.solution .addsolution-form', function (event) {
-        //     event.preventDefault();
-        //     var formId = $(this).attr('id');
-        //     doFormValidation(actionUrl, formId, 'POST');
-        // });
+        var actionUrl = "{{ route('solutions.store') }}";
+        $("ul.malfunctions").on('blur','.addsolution-form :input', function (event) {
+            var formElementId = $(this).attr('id');
+            var formId = $(this).closest('.addsolution-form').attr('id');
+            doElemValidation(formElementId, actionUrl, formId, 'POST');
+        });
+        $("ul.malfunctions").on('submit','.addsolution-form', function (event) {
+            event.preventDefault();
+            var formId = $(this).attr('id');
+            doFormValidation(actionUrl, formId, 'POST');
+        });
 
         $("ul.malfunctions").on('click','li.solution a.edit_solution', function (event) {
             event.preventDefault();
@@ -126,15 +127,15 @@
                 });
         });
 
-        $("ul.malfunctions").on('blur','li.solution :input', function (event) {
+        $("ul.malfunctions").on('blur','li.solution .editsolution-form :input', function (event) {
             var solution_id= $(this).parent().attr("solutionId");
             var actionUrl="{{ route('solutions.update', 'solution_id') }}";
             actionUrl=actionUrl.replace('solution_id', solution_id)
             var formElementId = $(this).attr('id');
-            var formId = $(this).parent().attr('id');
+            var formId = $(this).closest('.editsolution-form').attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("ul.malfunctions").on('submit','li.solution .contact-form', function (event) {
+        $("ul.malfunctions").on('submit','li.solution .editsolution-form', function (event) {
             event.preventDefault();
             var formId = $(this).attr('id');
             var solution_id= $(this).attr("solutionId");

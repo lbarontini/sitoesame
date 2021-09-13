@@ -27,16 +27,8 @@ function doElemValidation(id, actionUrl, formId, actionType) {
             error: function (data) {
                 if (data.status === 422) {
                     var errMsgs = JSON.parse(data.responseText);
-                    console.log(data.responseText);
-                    $("#" + id).parent().find(".errors").remove();
-                    if(id.includes("name")){
-                        console.log("error name");
-                        $("#" + id).after(getErrorHtml(errMsgs["name"]));
-                    }else if(id.includes("description")){
-                        $("#" + id).after(getErrorHtml(errMsgs["description"]));
-                    }else{
-                        $("#" + id).after(getErrorHtml(errMsgs[id]));
-                    }
+                    $("#" + formId).find("#"+id).next(".errors").remove();
+                    $("#" + formId).find("#"+id).after(getErrorHtml(errMsgs[id]));
                 }
             },
             contentType: false,
@@ -44,7 +36,7 @@ function doElemValidation(id, actionUrl, formId, actionType) {
         });
     }
 
-    var elem = $("#"+id);
+    var elem = $("#" + formId).find("#"+id);
     var name = elem.attr('name');
     if (elem.attr('type') === 'file') {
     // elemento di input type=file valorizzato
@@ -60,8 +52,8 @@ function doElemValidation(id, actionUrl, formId, actionType) {
     formElems = new FormData();
     formElems.append(name, inputVal);
     formElems.append('_method', actionType);
+    console.log("elemvalidation name"+name+"inputval"+inputVal);
     sendAjaxReq();
-
 }
 
 function doFormValidation(actionUrl, formId, actionType) {
@@ -82,15 +74,9 @@ function doFormValidation(actionUrl, formId, actionType) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);
                 $.each(errMsgs, function (id) {
-                    $("#" + id).parent().find('.errors').remove();
-                    if(id.includes("name")){
-                        console.log("error name");
-                        $("#" + id).after(getErrorHtml(errMsgs["name"]));
-                    }else if(id.includes("description")){
-                        $("#" + id).after(getErrorHtml(errMsgs["description"]));
-                    }else{
-                        $("#" + id).after(getErrorHtml(errMsgs[id]));
-                    }
+                    console.log(formId);
+                    $("#" + formId).find('#'+id).next(".errors").remove();
+                    $("#" + formId).find('#'+id).after(getErrorHtml(errMsgs[id]));
                 });
             }
         },
@@ -105,15 +91,10 @@ function doFormValidation(actionUrl, formId, actionType) {
                 }
                 //in case of new product solution
                 else if(data.hasOwnProperty('new_solution_id')){
-                    $("ul.malfunctions").append(data.html);
-                    $("a.add_malfunction").show();
-                    $("a.add_malfunction").next().remove();
-                    $("div.info_malfunction[malfunctionId="+data.new_malfunction_id+"]").show();
-
                     $("ul.solutions[malfunctionId="+data.malfunction_id+"]").append(data.html);
-                    $("ul.solutions[malfunctionId="+data.malfunction_id+"] a.add_malfunction").show();
-                    $("ul.solutions[malfunctionId="+data.malfunction_id+"] a.add_malfunction").next().remove();
-                    $("div.info_solution[malfunctionId="+data.new_malfunction_id+"]").show();
+                    $("a.add_solution[malfunctionId="+data.malfunction_id+"]").show();
+                    $("a.add_solution[malfunctionId="+data.malfunction_id+"]").next().remove();
+                    $("div.info_solution[solutionId="+data.new_solution_id+"]").show();
                 }
                 //in case of edit product malfunction
                 else if(data.hasOwnProperty('malfunction_id')){

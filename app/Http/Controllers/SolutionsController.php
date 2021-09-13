@@ -29,7 +29,7 @@ class SolutionsController extends Controller
     {
         $this->authorize('staff_work');
 
-        $malfunction=Product::find($malfunction_id);
+        $malfunction=Malfunction::find($malfunction_id);
         $returnHTML = view('solutions.create')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
     }
