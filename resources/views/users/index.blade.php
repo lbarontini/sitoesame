@@ -21,6 +21,11 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
+    <section id="tools">
+        @can('admin_work')
+            <a href="{{route('users.create')}}">aggiungi</a>
+        @endcan
+    </section>
     <section id="index">
         <ul>
             @foreach ($users as $user)
