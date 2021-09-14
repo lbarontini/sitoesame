@@ -6,14 +6,22 @@
     $(function () {
         var actionType = 'PUT';
         var actionUrl = "{{ route('users.update',['user'=>$user]) }}";
-        var formId = 'edituser';
+        var formId = 'adduser';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#edituser").on('submit', function (event) {
+        $("#adduser").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
+        });
+
+        $('#role_id').change(function (e) {
+            if($(this).val()==3){
+                $('#assistance_center_wrap').show();
+            }else{
+                $('#assistance_center_wrap').hide();
+            }
         });
     });
 </script>
@@ -23,7 +31,7 @@
     <div class="container-contact">
             <h1>Modifica Utente</h1>
             {!! Form::model($user, array('route' =>array('users.update', $user->id),
-                                                        'id' => 'edituser',
+                                                        'id' => 'adduser',
                                                         'class' => 'contact-form',
                                                         'method'=>'PUT')); !!}
                 <div class="wrap-input">
@@ -53,21 +61,19 @@
                                          ])
                         }}
                     </div>
-                    @if ($user->isTecn())
-                        <div  class="rs1-wrap-input">
+                    <div  class="rs1-wrap-input" id="assistance_center_wrap" hidden=true>
                             {{ Form::label('assistance_center_id', 'Centro assistenza', ['class' => 'label-input']) }}
                             {{ Form::select('assistance_center_id',
                                             $assistance_centers->pluck('name','id'),
-                                            $user->assistanceCenter ? $user->assistanceCenter->name : '',
+                                            $user->isTecn() ? $user->assistanceCenter->id : '',
                                             [  'multiple'=>false,
                                                 'class' => 'input',
                                                 'id' => 'assistance_center_id'
                                             ])
                             }}
-                    @endif
-
+                    </div>
                     <div class="container-form-btn">
-                        {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
+                        {{ Form::submit('Conferma', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>
                 </div>
             {!! Form::close() !!}

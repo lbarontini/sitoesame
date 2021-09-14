@@ -51,12 +51,14 @@
 
                     <div  class="rs1-wrap-input">
                         {{ Form::label('user_id', 'Gestore', ['class' => 'label-input']) }}
-                        {{ Form::text('user_id', '', ['class' => 'input', 'id' => 'user_id']) }}
+                        {{ Form::select('user_id',$staff_members->pluck('name','id'),'', ['multiple'=>false,'class' => 'input', 'id' => 'user_id']) }}
                     </div>
 
                     <div class="container-form-btn">
                         {{ Form::submit('Aggiungi Prodotto', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>
+
+
                 </div>
             {!! Form::close() !!}
         </div>

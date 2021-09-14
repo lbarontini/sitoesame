@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AssistanceCenter;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
@@ -29,7 +31,7 @@ class UsersController extends Controller
     public function create()
     {
         $this->authorize('admin_work');
-        return view('users.create',['roles'=>Role::All()]);
+        return view('users.create',['roles'=>Role::All(),'assistance_centers'=>AssistanceCenter::All()]);
     }
 
     /**
@@ -43,12 +45,9 @@ class UsersController extends Controller
         $this->authorize('admin_work');
         $user= new User();
         $user->fill($request->validated());
-        if($request->has('role_id')){
-            $role_id= $request->validated()['role_id'];
-            $user->role_id = $role_id;
-            $user->password = 'temp';
-            $user->save();
-        }
+        $user->password = Hash::make("temp");
+        $user->role()->associate(Role::where('name', 'guest')->first());
+        $user->save();
         return response()->json(['redirect' => route('users.index')]);
 
     }
@@ -84,15 +83,17 @@ class UsersController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         $this->authorize('admin_work');
-        $user->update($request->validated());
-        if($request->has('role_id')){
-            $role_id= $request->validated()['role_id'];
-            $user->role_id = $role_id;
-            $user->save();
-        }
+        //using custom request for ignoring email update
+        $data = $request->validate(
+            ['name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id),],
+            'role_id'=> ['nullable']
+        ]);
+        $user->update($data);
         return response()->json(['redirect' => route('users.index')]);
     }
 

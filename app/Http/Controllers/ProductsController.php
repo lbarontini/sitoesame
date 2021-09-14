@@ -6,10 +6,11 @@ use PHPUnit\Util\Json as Json;
 use App\Models\Product;
 use  App\Models\Malfunction;
 use App\Http\Requests\ProductRequest;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use SebastianBergmann\Environment\Console;
+use Illuminate\Database\Eloquent\Builder;
 use Validator;
 
 class ProductsController extends Controller
@@ -50,7 +51,10 @@ class ProductsController extends Controller
     public function create()
     {
         $this->authorize('admin_work');
-        return view('products.create',['malfunctions'=>Malfunction::All()]);
+        $staff_members= User::whereHas('role', function (Builder $query) {
+            $query->where('name', 'staff')->orWhere('name', 'admin');
+        })->get();
+        return view('products.create',['malfunctions'=>Malfunction::All(),'staff_members'=>$staff_members]);
     }
 
     /**
