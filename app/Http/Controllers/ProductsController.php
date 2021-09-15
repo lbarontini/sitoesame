@@ -105,7 +105,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('staff_work');
+        $this->authorize('admin_work');
         return view('products.edit',['product'=>$product,'malfunctions'=>Malfunction::All()]);
     }
 
@@ -118,7 +118,7 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        $this->authorize('staff_work');
+        $this->authorize('admin_work');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();

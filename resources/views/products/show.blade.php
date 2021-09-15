@@ -163,10 +163,8 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
-        @can('staff_work')
-            <a href="{{route('products.edit',['product'=>$product])}}">Modifica</a>
-        @endcan
         @can('admin_work')
+            <a href="{{route('products.edit',['product'=>$product])}}">Modifica</a>
             <a href="" id="destroy">Elimina</a>
         @endcan
     </section>
@@ -179,6 +177,7 @@
                 <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
                 <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
                 <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
+                <h4 class = "blue">Gestito da: <h4>{{$product->user->name}}</h4></h4>
                 @can('tecn_work')
                     @include('malfunctions.index')
                 @endcan

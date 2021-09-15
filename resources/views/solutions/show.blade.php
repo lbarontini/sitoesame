@@ -5,7 +5,7 @@
 
     <div class="info_solution" solutionId={{$solution->id}} hidden="true">
         <h4 class="description_solution">{{$solution->description}}</h4>
-        @can('staff_work')
+        @can('staff_work_product',$solution->malfunction->product)
             <a class="edit_solution" solutionId={{$solution->id}} href="">
                 <h3 class = "blue">Modifica</h3>
             </a>

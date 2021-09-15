@@ -9,17 +9,6 @@ use App\Http\Requests\MalfunctionRequest;
 
 class MalfunctionsController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     $this->authorize('staff_work');
-    //     return view('malfunctions.index',['malfunctions'=>Malfunction::All()]);
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,8 +16,8 @@ class MalfunctionsController extends Controller
      */
     public function create($product_id)
     {
-        $this->authorize('staff_work');
         $product=Product::find($product_id);
+        $this->authorize('staff_work_product',$product);
         $returnHTML = view('malfunctions.create')->with('product', $product)->render();
         return response()->json(['html'=>$returnHTML]);
     }
@@ -41,7 +30,8 @@ class MalfunctionsController extends Controller
      */
     public function store(MalfunctionRequest $request)
     {
-        $this->authorize('staff_work');
+        $product=Product::find($request->validated()['product_id']);
+        $this->authorize('staff_work_product',$product);
 
         $malfunction = new Malfunction;
         $malfunction->fill($request->validated());
@@ -52,17 +42,6 @@ class MalfunctionsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Malfunction  $malfunction
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Malfunction $malfunction)
-    // {
-    //     return view('malfunctions.show',['malfunction'=>$malfunction]);
-    // }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Malfunction  $malfunction
@@ -70,9 +49,9 @@ class MalfunctionsController extends Controller
      */
     public function edit($malfunction_id)
     {
-        $this->authorize('staff_work');
-
         $malfunction =Malfunction::find($malfunction_id);
+        $this->authorize('staff_work_product',$malfunction->product);
+
         $returnHTML = view('malfunctions.edit')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
     }
@@ -86,9 +65,9 @@ class MalfunctionsController extends Controller
      */
     public function update(MalfunctionRequest $request, $malfunction_id)
     {
-        $this->authorize('staff_work');
-
         $malfunction= Malfunction::find($malfunction_id);
+        $this->authorize('staff_work_product',$malfunction->product);
+
         $malfunction->fill($request->validated());
         $malfunction->save();
         $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
@@ -103,9 +82,9 @@ class MalfunctionsController extends Controller
      */
     public function destroy($malfunction_id)
     {
-        $this->authorize('staff_work');
-
         $malfunction = Malfunction::find($malfunction_id);
+        $this->authorize('staff_work_product',$malfunction->product);
+
         $malfunction->delete();
         return response()->json(['malfunction_id' => $malfunction->id]);
     }

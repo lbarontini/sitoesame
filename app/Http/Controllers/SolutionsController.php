@@ -9,16 +9,6 @@ use App\Models\Product;
 
 class SolutionsController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     $this->authorize('staff_work');
-    //     return view('solutions.index',['solutions'=>Solution::All()]);
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -27,9 +17,9 @@ class SolutionsController extends Controller
      */
     public function create($malfunction_id)
     {
-        $this->authorize('staff_work');
-
         $malfunction=Malfunction::find($malfunction_id);
+        $this->authorize('staff_work_product',$malfunction->product);
+
         $returnHTML = view('solutions.create')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'malfunction_id'=>$malfunction->id]);
     }
@@ -42,7 +32,8 @@ class SolutionsController extends Controller
      */
     public function store(SolutionRequest $request)
     {
-        $this->authorize('staff_work');
+        $malfunction=Malfunction::find($request->validated()['malfunction_id']);
+        $this->authorize('staff_work_product',$malfunction->product);
 
         $solution = new Solution;
         $solution->fill($request->validated());
@@ -72,9 +63,9 @@ class SolutionsController extends Controller
      */
     public function edit($solution_id)
     {
-        $this->authorize('staff_work');
-
         $solution =Solution::find($solution_id);
+        $this->authorize('staff_work_product',$solution->malfunction->product);
+
         $returnHTML = view('solutions.edit')->with('solution', $solution)->render();
         return response()->json(['html'=>$returnHTML,'solution_id'=>$solution->id]);
     }
@@ -88,9 +79,9 @@ class SolutionsController extends Controller
      */
     public function update(SolutionRequest $request, $solution_id)
     {
-        $this->authorize('staff_work');
+        $solution =Solution::find($solution_id);
+        $this->authorize('staff_work_product',$solution->malfunction->product);
 
-        $solution= Solution::find($solution_id);
         $solution->fill($request->validated());
         $solution->save();
         $returnHTML = view('solutions.show')->with('solution', $solution)->render();
@@ -105,9 +96,9 @@ class SolutionsController extends Controller
      */
     public function destroy($solution_id)
     {
-        $this->authorize('staff_work');
+        $solution =Solution::find($solution_id);
+        $this->authorize('staff_work_product',$solution->malfunction->product);
 
-        $solution= Solution::find($solution_id);
         $solution->delete();
         return response()->json(['solution_id'=>$solution->id]);
     }

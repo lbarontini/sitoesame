@@ -1,6 +1,6 @@
 <div class="malfunctions">
    <h4 class = "blue">MalFunzionementi: </h4>
-    @can('staff_work')
+    @can('staff_work_product', $product)
         <a class="add_malfunction" productId={{$product->id}} href="">
                 <h3 class = "blue">Aggiungi</h3>
         </a>

@@ -4,7 +4,7 @@
     </a>
     <div class="info_malfunction" malfunctionId={{$malfunction->id}} hidden ="true">
         <h4 class="description_malfunction">{{$malfunction->description}}</h4>
-        @can('staff_work')
+        @can('staff_work_product',$malfunction->product)
             <a class="edit_malfunction" malfunctionId={{$malfunction->id}} href="">
                 <h3 class = "blue">Modifica</h3>
             </a>

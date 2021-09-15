@@ -17,8 +17,7 @@
         <header id="mainheader" class="bodywidth clear"> <img src= "{{asset('images/logo.png')}}" alt="" class="logo">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <hgroup id="websitetitle">
-                <h1><span class="bold">HTML5</span>Goodness</h1>
-                <h2>about as modern as it gets...</h2>
+                <h1><span class="bold">TWEB</span>Site</h1>
             </hgroup>
             <nav>
                 <ul>

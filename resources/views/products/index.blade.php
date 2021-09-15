@@ -26,7 +26,7 @@
         @can('admin_work')
             <a href="{{route('products.create')}}">aggiungi</a>
         @endcan
-        <input type="text" class="form-controller" id="search" name="search">
+        <input type="text" class="form-controller" id="search" name="search" placeholder="Cerca..">
     </section>
 
     <section id="index">

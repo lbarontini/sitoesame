@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -37,8 +38,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin();
         });
 
-        Gate::define('staff_work', function(User $user){
-            return $user->isStaff();
+        Gate::define('staff_work_product', function(User $user,Product $product){
+            if ($user->isStaff()&&$product->user->id===$user->id)
+                return true;
+            else
+                return false;
         });
 
         Gate::define('tecn_work', function(User $user){

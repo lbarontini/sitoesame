@@ -87,7 +87,7 @@ class FaqsController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        $this->authorize('staff_work');
+        $this->authorize('admin_work');
         $faq->delete();
         return response()->json(['redirect' => route('faqs.index')]);
     }
@@ -156,7 +156,7 @@ class FaqsController extends Controller
      */
     public function destroyCategory(FaqsCategory $faqsCategory)
     {
-        $this->authorize('staff_work');
+        $this->authorize('admin_work');
         $faqsCategory->delete();
         return response()->json(['redirect' => route('faqs.index')]);
     }
