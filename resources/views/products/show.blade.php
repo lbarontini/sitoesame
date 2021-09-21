@@ -26,14 +26,19 @@
             });
         });
 
-        var actionUrl = "{{ route('malfunctions.store') }}";
+
         $("div.malfunctions").on('blur','.addmalfunction-form :input', function (event) {
+            event.preventDefault();
             var formId = $(this).closest('.addmalfunction-form').attr('id');
             var formElementId = $(this).attr('id');
+            var actionUrl = "{{ route('malfunctions.store') }}";
             doElemValidation(formElementId, actionUrl, formId, 'POST');
         });
         $("div.malfunctions").on('submit','.addmalfunction-form', function (event) {
+            event.preventDefault();
             var formId = $(this).attr('id');
+            var actionUrl = "{{ route('malfunctions.store') }}";
+            console.log(actionUrl);
             doFormValidation(actionUrl,formId, 'POST');
         });
 
@@ -52,14 +57,13 @@
                 });
         });
 
-        var actionType = 'PUT';
         $("ul.malfunctions").on('blur','li.malfunction .editmalfunction-form :input', function (event) {
             var malfunction_id= $(this).parent().attr("malfunctionId");
             var actionUrl="{{ route('malfunctions.update', 'malfunction_id') }}";
             actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
             var formElementId = $(this).attr('id');
             var formId = $(this).closest('.editmalfunction-form').attr('id');
-            doElemValidation(formElementId, actionUrl, formId, actionType);
+            doElemValidation(formElementId, actionUrl, formId, 'PUT');
         });
         $("ul.malfunctions").on('submit','li.malfunction .editmalfunction-form', function (event) {
             event.preventDefault();
@@ -67,7 +71,7 @@
             var malfunction_id= $(this).attr("malfunctionId");
             var actionUrl="{{ route('malfunctions.update', 'malfunction_id') }}";
             actionUrl=actionUrl.replace('malfunction_id', malfunction_id)
-            doFormValidation(actionUrl, formId, actionType);
+            doFormValidation(actionUrl, formId, 'PUT');
         });
 
         $("ul.malfunctions").on('click',' a.delete_malfunction', function (event) {
@@ -100,15 +104,17 @@
             });
         });
 
-        var actionUrl = "{{ route('solutions.store') }}";
+
         $("ul.malfunctions").on('blur','.addsolution-form :input', function (event) {
             var formElementId = $(this).attr('id');
             var formId = $(this).closest('.addsolution-form').attr('id');
+            var actionUrl = "{{ route('solutions.store') }}";
             doElemValidation(formElementId, actionUrl, formId, 'POST');
         });
         $("ul.malfunctions").on('submit','.addsolution-form', function (event) {
             event.preventDefault();
             var formId = $(this).attr('id');
+            var actionUrl = "{{ route('solutions.store') }}";
             doFormValidation(actionUrl, formId, 'POST');
         });
 
@@ -133,7 +139,7 @@
             actionUrl=actionUrl.replace('solution_id', solution_id)
             var formElementId = $(this).attr('id');
             var formId = $(this).closest('.editsolution-form').attr('id');
-            doElemValidation(formElementId, actionUrl, formId, actionType);
+            doElemValidation(formElementId, actionUrl, formId, 'PUT');
         });
         $("ul.malfunctions").on('submit','li.solution .editsolution-form', function (event) {
             event.preventDefault();
@@ -141,7 +147,7 @@
             var solution_id= $(this).attr("solutionId");
             var actionUrl="{{ route('solutions.update', 'solution_id') }}";
             actionUrl=actionUrl.replace('solution_id', solution_id)
-            doFormValidation(actionUrl, formId, actionType);
+            doFormValidation(actionUrl, formId, 'PUT');
         });
 
         $("ul.malfunctions").on('click','li.solution a.delete_solution', function (event) {

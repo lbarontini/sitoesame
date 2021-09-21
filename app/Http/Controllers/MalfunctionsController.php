@@ -36,7 +36,6 @@ class MalfunctionsController extends Controller
         $malfunction = new Malfunction;
         $malfunction->fill($request->validated());
         $malfunction->save();
-
         $returnHTML = view('malfunctions.show')->with('malfunction', $malfunction)->render();
         return response()->json(['html'=>$returnHTML,'new_malfunction_id'=>$malfunction->id]);
     }

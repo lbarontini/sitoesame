@@ -52,7 +52,6 @@ function doElemValidation(id, actionUrl, formId, actionType) {
     formElems = new FormData();
     formElems.append(name, inputVal);
     formElems.append('_method', actionType);
-    console.log("elemvalidation name"+name+"inputval"+inputVal);
     sendAjaxReq();
 }
 
@@ -74,7 +73,7 @@ function doFormValidation(actionUrl, formId, actionType) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);
                 $.each(errMsgs, function (id) {
-                    console.log(formId);
+                    console.log("validation form: "+formId);
                     $("#" + formId).find('#'+id).next(".errors").remove();
                     $("#" + formId).find('#'+id).after(getErrorHtml(errMsgs[id]));
                 });
