@@ -169,20 +169,21 @@
         @endcan
     </section>
     <section id="show">
-        <article>
+        <div class="info1" >
             @include('helpers/productImg', ['attrs' => 'imagefrm', 'imgFile' => $product->image])
-            <div class="info">
-                <h3 class = "blue">Modello: {{$product->model}}</h3>
-
-                <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
-                <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
-                <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
-                <h4 class = "blue">Gestito da: <h4>{{$product->user->name}}</h4></h4>
-                @can('tecn_work')
-                    @include('malfunctions.index')
-                @endcan
-            </div>
-        </article>
+            <p>
+            <h3 class = "blue">Modello: {{$product->model}}</h3>
+            <h3 class = "blue">Descrizione: <h3>{{$product->description}}</h3></h3>
+            </p>
+        </div>
+        <div class="info2">
+            <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
+            <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
+            <h4 class = "blue">Gestito da: <h4>{{$product->user->name}}</h4></h4>
+            @can('tecn_work')
+                @include('malfunctions.index')
+            @endcan
+        </div>
     </section>
 </div>
 @endsection

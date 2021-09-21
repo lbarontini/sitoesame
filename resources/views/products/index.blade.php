@@ -23,10 +23,10 @@
 @section('content')
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
+        <input type="text" class="form-controller searchbar" id="search" name="search" placeholder="Cerca..">
         @can('admin_work')
-            <a href="{{route('products.create')}}">aggiungi</a>
+            <a href="{{route('products.create')}}">Nuovo Prodotto</a>
         @endcan
-        <input type="text" class="form-controller" id="search" name="search" placeholder="Cerca..">
     </section>
 
     <section id="index">

@@ -21,13 +21,21 @@ header, section, footer, aside, nav, article{display:block;}
 
 /* Base Structure */
 
-.bodywidth{width:960px; margin:0 auto; clear:both;}
+.bodywidth{width:80%; margin:0 auto; clear:both;}
 
 /* General Type */
 
 h1, h2, h3, h4, h5, h6{color:#2f2f2f; font-family:"Ubuntu",arial;}
 .bold{font-weight:bold;}
 .blue{color:#4086c6;}
+hr {
+    border: 10px;
+    clear:both;
+    display:block;
+    width: 100%;
+    background-color:#575757;
+    height: 1px;
+  }
 
 /* Header */
 
@@ -57,30 +65,47 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 
 /* Main Content */
 
-#maincontent{border-top:1px #dbdbdb solid; padding:25px 0 0 0; overflow:hidden;}
-#tools{margin:0 0 20px 0; overflow:hidden;}
-#tools a{float: right;font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#index ul{margin-left: 20px; list-style-type:square;}
-#index ul li div.info{display:none;}
-#index ul li div.info a{float:right;}
+#maincontent{border-top:1px #dbdbdb solid; padding:25px 0 0 0; overflow:hidden;display: block;}
+#tools {display: block; overflow: hidden}
+#tools a{margin: 20px 20px 0 0; float: right;font-size:1.5em; font-weight:bold; }
+#tools input.searchbar{margin: auto;font-size:1.5em; font-weight:bold; width: 99%;}
 
-#index article{clear:both; margin:0 0 20px 0; overflow:hidden;}
-#index img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
-#index article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#index article div.info {display:inline;}
-#index article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#index article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
-#index article p{line-height:135%; margin:0 0 15px 0;}
-#index article #blue{color:#4086c6;}
-#show article{clear:both; margin:0 0 20px 0; overflow:hidden;}
-#show article .info ul{margin-left: 20px;}
-#show img{padding:5px; border:1px #dbdbdb solid;display:inline; width:119px; height:119px; margin:0 15px 0 0;}
-#show article h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#show article div.info {display:inline;}
-#show article a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#show article h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
-#show article p{line-height:135%; margin:0 0 15px 0;}
-#show article #blue{color:#4086c6;}
+#index ul{margin-left: 20px; list-style-type:square;}
+#index ul li div.info{display:inline;}
+#index ul li div.info a.edit{float:right;}
+#index ul li div.info a.delete{float:right;}
+#index ul li{clear:both; margin:0 0 20px 0; overflow:hidden;}
+#index ul img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
+#index ul li h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index ul li div.info {display:block;}
+#index ul li a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index ul li h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#index ul li p{line-height:135%; margin:0 0 15px 0;}
+#index ul li #blue{color:#4086c6;}
+
+#show {clear:both; margin:0 0 20px 0; overflow:hidden;}
+#show .info ul{margin-left: 20px;}
+#show div.info1{display:block;}
+#show div.info2{float: left;}
+#show img{padding:5px; border:1px #dbdbdb solid; width:119px; height:119px; margin:0 15px 0 0;float:left}
+#show div.info1 h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+
+#show div.info2 div.malfunctions div.tools_malfunctions h4{display:inline; }
+#show div.info2 div.malfunctions div.tools_malfunctions a{float: right; margin-bottom: 15px;}
+#show div.info2 div.malfunctions ul li{clear:both; list-style-type:square; margin-left: 20px;}
+#show div.info2 div.malfunctions ul li div.info_malfunction .description_malfunction{display:inline;}
+#show div.info2 div.malfunctions ul li div.info_malfunction .inline_wrapper{overflow: hidden;}
+#show div.info2 div.malfunctions ul li div.info_malfunction div.tools_malfunction {float: right;}
+#show div.info2 div.malfunctions ul li div.info_malfunction div.solutions .tools_solutions h4{display:inline;}
+#show div.info2 div.malfunctions ul li div.info_malfunction div.solutions .tools_solutions a{float: right; margin-bottom: 15px;}
+#show div.info2 div.malfunctions ul li div.info_malfunction .solutions ul li{clear:both; list-style-type:circle; margin-left: 40px;}
+#show div.info2 div.malfunctions ul li div.info_malfunction .solutions ul li div.info_solution .tools_solution {float: right;}
+#show div.info2 div.malfunctions ul li div.info_malfunction .solutions ul li div.info_solution .description_solution{display:inline;}
+
+#show a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#show h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#show p{line-height:135%; margin:0 0 15px 0;}
+#show #blue{color:#4086c6;}
 a.readmore, a.readmore:visited{padding:4px; font:0.9em "Ubuntu",arial; font-weight:bold; color:#fff; text-shadow:0 0 1px #1e5298; background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.12,rgb(109,171,229)),color-stop(0.56,rgb(59,126,189))); background-image:-moz-linear-gradient(center bottom,rgb(109,171,229) 12%,rgb(59,126,189) 56%); background-color:#468ac9; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; margin:10px 0 0 0; float:left;}
 a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 0 1px #000; text-decoration:none;}
 
@@ -200,8 +225,6 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:470px;}
 #introquote{width:270px;}
 #introduction h2{font-size:2.85em;}
-#index{width:450px;}
-#show{width:450px;}
 #articlesright{width:324px;}
 #articlesright article{font-size:0.95em;}
 #mainfooter{font-size:0.9em;}
@@ -220,8 +243,6 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #websitetitle h2{font-size:1.2em;}
 #introleft{width:600px;}
 #introquote{display:none;}
-#index{width:400px;}
-#show{width:400px;}
 #articlesright{width:170px;}
 #articlesright figure{display:none;}
 #mainfooter{font-size:0.9em;}
@@ -243,8 +264,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:480px;}
 #introduction h2{font-size:2.7em;}
 #introquote{display:none;}
-#index{width:310px; font-size:0.9em;}
-#show{width:310px; font-size:0.9em;}
+#index{font-size:0.9em;}
+#show{font-size:0.9em;}
 #articlesright{width:150px;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}
@@ -267,8 +288,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:320px; font-size:0.8em;}
 #introduction h2{font-size:2.3em;}
 #introquote{display:none;}
-#index{width:320px; font-size:0.9em;}
-#show{width:320px; font-size:0.9em;}
+#index{font-size:0.9em;}
+#show{font-size:0.9em;}
 #articlesright{width:320px; float:left; border-top:1px #dbdbdb solid; padding:20px 0 0 0; margin:10px 0 0 0;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}
@@ -291,8 +312,8 @@ a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 
 #introleft{width:300px; font-size:0.8em;}
 #introduction h2{font-size:2.3em;}
 #introquote{display:none;}
-#index{width:300px; font-size:0.9em;}
-#show{width:300px; font-size:0.9em;}
+#index{font-size:0.9em;}
+#show{font-size:0.9em;}
 #articlesright{width:300px; float:left; border-top:1px #dbdbdb solid; padding:20px 0 0 0; margin:10px 0 0 0;}
 #articlesright article{font-size:0.9em;}
 #articlesright figure{display:none;}
