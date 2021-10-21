@@ -23,7 +23,7 @@
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
         @can('admin_work')
-            <a href="{{route('users.create')}}">aggiungi</a>
+            <a href="{{route('users.create')}}">Aggiungi</a>
         @endcan
     </section>
     <section id="index">
@@ -34,12 +34,14 @@
                         <h3 class = "blue">{{$user->username}}</h3>
                     </a>
                     <div class="info" userId={{$user->id}}>
-                        <a class="edit" href="{{route('users.edit',['user'=>$user])}}">
-                            <h3 class = "blue">Modifica</h3>
-                        </a>
-                        <a class="delete" href="{{ route('users.destroy',['user'=>$user]) }}">
-                            <h3 class = "blue">Elimina</h3>
-                        </a>
+                        <div class="tools">
+                            <a class="edit" href="{{route('users.edit',['user'=>$user])}}">
+                                <h3 class = "blue">Modifica</h3>
+                            </a>
+                            <a class="delete" href="{{ route('users.destroy',['user'=>$user]) }}">
+                                <h3 class = "blue">Elimina</h3>
+                            </a>
+                        </div>
                         <h4 id="name">{{$user->name}}</h4>
                         <h4 id="email">{{$user->email}}</h4>
                         <h4 id="role">{{$user->role->label}}</h4>

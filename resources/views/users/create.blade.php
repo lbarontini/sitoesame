@@ -51,6 +51,11 @@
                     </div>
 
                     <div  class="rs1-wrap-input">
+                        {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
+                        {{ Form::password('password', ['class' => 'input','id' => 'password']) }}
+                    </div>
+
+                    <div  class="rs1-wrap-input">
                         {{ Form::label('role_id', 'Ruolo', ['class' => 'label-input']) }}
                         {{ Form::select('role_id',
                                          $roles->pluck('label','id'),

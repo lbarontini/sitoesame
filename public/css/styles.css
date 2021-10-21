@@ -28,6 +28,7 @@ header, section, footer, aside, nav, article{display:block;}
 h1, h2, h3, h4, h5, h6{color:#2f2f2f; font-family:"Ubuntu",arial;}
 .bold{font-weight:bold;}
 .blue{color:#4086c6;}
+.black{color:#000000;}
 hr {
     border: 10px;
     clear:both;
@@ -78,12 +79,13 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #index ul li{clear:both; margin:0 0 20px 0; overflow:hidden;}
 #index ul img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
 #index ul li h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#index ul li a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index ul li a h3{font-size:1.5em; font-weight:bold; margin:0 15px 15px 0;}
 #index ul li h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
 #index ul li p{line-height:135%; margin:0 0 15px 0;}
 #index ul li #blue{color:#4086c6;}
 
 #show {clear:both; margin:0 0 20px 0; overflow:hidden;}
+#show .info {margin-bottom: 20px;}
 #show .info ul{margin-left: 20px;}
 #show div.info1{display:block;}
 #show div.info2{float: left;}

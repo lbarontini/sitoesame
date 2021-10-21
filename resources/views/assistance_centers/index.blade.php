@@ -4,7 +4,7 @@
 <div id="maincontent" class="bodywidth clear">
     <section id="tools">
         @can('admin_work')
-            <a href="{{route('assistance_centers.create')}}">aggiungi</a>
+            <a href="{{route('assistance_centers.create')}}">Aggiungi</a>
         @endcan
     </section>
     <section id="index">

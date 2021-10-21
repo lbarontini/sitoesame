@@ -40,12 +40,12 @@
                 <li>
                     <div class="tools" category_id={{$faqs_category->id}} style="display: none;">
                         @can('admin_work')
-                        <a class="edit" href="{{route('faqs_categories.edit',['faqs_category'=>$faqs_category])}}">
-                            <h3 class = "blue">Modifica categoria</h3>
-                        </a>
-                        <a class="delete" href = "{{ route('faqs_categories.destroy',['faqs_category'=>$faqs_category]) }}">
-                            <h3 class = "blue">Elimina categoria</h3>
-                        </a>
+                            <a class="edit" href="{{route('faqs_categories.edit',['faqs_category'=>$faqs_category])}}">
+                                <h3 class = "blue">Modifica categoria</h3>
+                            </a>
+                            <a class="delete" href = "{{ route('faqs_categories.destroy',['faqs_category'=>$faqs_category]) }}">
+                                <h3 class = "blue">Elimina categoria</h3>
+                            </a>
                         @endcan
                     </div>
                     <a class="category_name" category_id={{$faqs_category->id}} href="">

@@ -22,24 +22,17 @@
         @endcan
     </section>
     <section id="show">
-        <article>
-            <div>
-                <div class="info">
-                    <h3 class = "blue">Nome: {{$assistance_center->name}}</h3>
-
-                    <h4>Descrizione: {{$assistance_center->description}}</h4>
-                    <h5>Indirizzo: {{$assistance_center->address}}</h5>
-                    @can('tecn_work')
-                        <h5>Tecnici afferenti: </h5>
-                        <ul>
-                            @foreach ($assistance_center->technicians as $technician)
-                                <li><h5>{{$technician->name}}</h5>
-                            @endforeach
-                    </ul>
-                    @endcan
-                </div>
-            </div>
-        </article>
+        <h2 class = "info blue">Nome: <span class = "black">{{$assistance_center->name}}</span></h2>
+        <h3 class = "info blue">Descrizione: <span class = "black">{{$assistance_center->description}}</span></h3>
+        <h4 class = "info blue">Indirizzo: <span class = "black">{{$assistance_center->address}}</span></h4>
+        @can('tecn_work')
+            <h4 class = " blue">Tecnici afferenti: </h4>
+            <ul>
+                @foreach ($assistance_center->technicians as $technician)
+                    <li><h4>{{$technician->name}}</h4>
+                @endforeach
+        </ul>
+        @endcan
     </section>
 </div>
 @endsection
