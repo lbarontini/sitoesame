@@ -70,6 +70,7 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #tools a{margin: 20px 20px 0 0; float: right;font-size:1.5em; font-weight:bold; }
 #tools input.searchbar{margin: auto;font-size:1.5em; font-weight:bold; width: 99%;}
 
+#index{margin-top: 20px;}
 #index ul{margin-left: 20px; list-style-type:square;}
 #index ul li div.info{display:inline;}
 #index ul li div.info a.edit{float:right;}
@@ -77,7 +78,6 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #index ul li{clear:both; margin:0 0 20px 0; overflow:hidden;}
 #index ul img{padding:5px; border:1px #dbdbdb solid; float:left; width:119px; height:119px; margin:0 15px 0 0;}
 #index ul li h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
-#index ul li div.info {display:block;}
 #index ul li a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
 #index ul li h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
 #index ul li p{line-height:135%; margin:0 0 15px 0;}
@@ -109,6 +109,20 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 a.readmore, a.readmore:visited{padding:4px; font:0.9em "Ubuntu",arial; font-weight:bold; color:#fff; text-shadow:0 0 1px #1e5298; background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.12,rgb(109,171,229)),color-stop(0.56,rgb(59,126,189))); background-image:-moz-linear-gradient(center bottom,rgb(109,171,229) 12%,rgb(59,126,189) 56%); background-color:#468ac9; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; margin:10px 0 0 0; float:left;}
 a.readmore:hover{background-color:#2f2f2f; background-image:none; text-shadow:0 0 1px #000; text-decoration:none;}
 
+/* Faqs*/
+
+#index_faqs{margin-top: 20px;}
+#index_faqs ul{margin-left: 20px; list-style-type:square;}
+/* #index_faqs ul li a.category_name{display:inline;} */
+#index_faqs ul li div.tools{float:right; display:inline;}
+#index_faqs ul li div.info{clear: both; display:block;}
+#index_faqs ul li .inline_wrapper{overflow: hidden;}
+#index_faqs ul li {clear:both; margin:0 0 20px 0; }
+#index_faqs ul li h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index_faqs ul li a h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
+#index_faqs ul li h4{font-size:1.3em; font-weight:bold; margin:0 0 15px 0;}
+#index_faqs ul li p{line-height:135%; margin:0 0 15px 0;}
+#index_faqs ul li #blue{color:#4086c6;}
 /* Footer */
 
 #footerwrap{width:100%; margin:20px 0 0 0; padding:30px 0; background:#2d2d2d url("../images/footerbg.jpg");}

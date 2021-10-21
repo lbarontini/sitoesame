@@ -3,7 +3,7 @@
         <h3 class = "blue">{{$malfunction->name}}</h3>
     </a>
 
-    <div class="info_malfunction" malfunctionId={{$malfunction->id}} hidden ="true">
+    <div class="info_malfunction" malfunctionId={{$malfunction->id}} style="display: none;">
         <div class="inline_wrapper">
             <h4 class="description_malfunction">{{$malfunction->description}}</h4>
             <div class="tools_malfunction">

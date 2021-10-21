@@ -3,7 +3,7 @@
         <h3 class = "blue">{{$solution->name}}</h3>
     </a>
 
-    <div class="info_solution" solutionId={{$solution->id}} hidden="true">
+    <div class="info_solution" solutionId={{$solution->id}} style="display: none;">
         <h4 class="description_solution">{{$solution->description}}</h4>
         <div class="tools_solution">
             @can('staff_work_product',$solution->malfunction->product)

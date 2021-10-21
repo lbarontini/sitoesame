@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    You are logged in {{Auth::user()->name}}
+                    <h2>You are logged in {{Auth::user()->name}}</h4>
                 </div>
             </div>
         </div>
