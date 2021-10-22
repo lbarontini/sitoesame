@@ -6,12 +6,12 @@
     $(function () {
         var actionType = 'PUT';
         var actionUrl = "{{ route('users.update',['user'=>$user]) }}";
-        var formId = 'adduser';
+        var formId = 'updateuser';
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');
             doElemValidation(formElementId, actionUrl, formId, actionType);
         });
-        $("#adduser").on('submit', function (event) {
+        $("#updateuser").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
         });
@@ -31,7 +31,7 @@
     <div class="container-contact">
             <h1>Modifica Utente</h1>
             {!! Form::model($user, array('route' =>array('users.update', $user->id),
-                                                        'id' => 'adduser',
+                                                        'id' => 'updateuser',
                                                         'class' => 'contact-form',
                                                         'method'=>'PUT')); !!}
                 <div class="wrap-input">
@@ -48,6 +48,11 @@
                     <div  class="rs1-wrap-input">
                         {{ Form::label('email', 'Email', ['class' => 'label-input']) }}
                         {{ Form::email('email', $user->email, ['class' => 'input','id' => 'email']) }}
+                    </div>
+
+                    <div  class="rs1-wrap-input">
+                        {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
+                        {{ Form::password('password', ['class' => 'input','id' => 'password',]) }}
                     </div>
 
                     <div  class="rs1-wrap-input">

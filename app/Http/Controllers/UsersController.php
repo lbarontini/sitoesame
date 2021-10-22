@@ -45,7 +45,7 @@ class UsersController extends Controller
         $this->authorize('admin_work');
         $user= new User();
         $user->fill($request->validated());
-        $user->password = Hash::make("temp");
+        $user->password = Hash::make($request->validated()['password']);
         $user->role()->associate(Role::where('name', 'guest')->first());
         $user->save();
         return response()->json(['redirect' => route('users.index')]);
@@ -87,12 +87,14 @@ class UsersController extends Controller
     {
         $this->authorize('admin_work');
         //using custom request for ignoring email update
-        $data = $request->validate(
-            ['name' => ['required', 'string', 'max:255'],
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id),],
+            'password' =>['nullable','string', 'min:8'],
             'role_id'=> ['nullable']
         ]);
+        $data['password']=Hash::make($data['password']);
         $user->update($data);
         return response()->json(['redirect' => route('users.index')]);
     }

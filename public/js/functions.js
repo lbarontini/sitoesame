@@ -26,7 +26,11 @@ function doElemValidation(id, actionUrl, formId, actionType) {
             dataType: "json",
             error: function (data) {
                 if (data.status === 422) {
-                    var errMsgs = JSON.parse(data.responseText);
+                    var errMsgs  = JSON.parse(data.responseText);
+                    //required check wen updating users
+                    if (errMsgs.hasOwnProperty('errors')){
+                        errMsgs = errMsgs['errors'];
+                    }
                     $("#" + formId).find("#"+id).next(".errors").remove();
                     $("#" + formId).find("#"+id).after(getErrorHtml(errMsgs[id]));
                 }
