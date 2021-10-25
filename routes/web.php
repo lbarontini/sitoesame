@@ -15,7 +15,7 @@ use App\Http\Controllers\ProductsController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/products', 'ProductsController@index')->name('products.index');
 Route::get('/products/search', 'ProductsController@search')->name('products.search');

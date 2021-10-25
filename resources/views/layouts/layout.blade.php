@@ -28,7 +28,7 @@
                     <li><a class="{{Request::path() === 'login' ? 'highlighted'
                         : (Request::path() === 'login_home' ? 'highlighted'
                         : (Request::path() === 'register' ? 'highlighted' : ''))}}"
-                        href="/login_home">{{isset(Auth::user()->name)? Auth::user()->name:'Login'}}
+                        href="{{route('login_home')}}">{{isset(Auth::user()->name)? Auth::user()->name:'Login'}}
                     </a></li>
                     @can('admin_work')
                         <li><a class="{{strpos(Request::route()->getName(),  'users') !== false ? 'highlighted':''}}" href="{{route('users.index')}}">Utenti</a></li>
