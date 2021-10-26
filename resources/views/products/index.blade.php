@@ -22,6 +22,7 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
+    <p class="pagetitle">Catalogo Prodotti</p>
     <section id="tools">
         <input type="text" class="form-controller searchbar" id="search" name="search" placeholder="Cerca..">
         @can('admin_work')

@@ -2,6 +2,7 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
+    <p class="pagetitle">Centri assistenza</p>
     <section id="tools">
         @can('admin_work')
             <a href="{{route('assistance_centers.create')}}">Aggiungi</a>

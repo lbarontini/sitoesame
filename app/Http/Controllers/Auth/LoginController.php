@@ -61,6 +61,5 @@ class LoginController extends Controller
         }else{
             return back()->with('error','Combinazione Username e Password errata');
         }
-
     }
 }

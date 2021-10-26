@@ -15,6 +15,7 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
+    <p class="pagetitle">Panoramica centro assistenza</p>
     <section id="tools">
         @can('admin_work')
             <a href="{{route('assistance_centers.edit',['assistance_center'=>$assistance_center])}}">Modifica</a>

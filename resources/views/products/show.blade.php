@@ -168,6 +168,7 @@
 
 @section('content')
 <div id="maincontent" class="bodywidth clear">
+    <p class="pagetitle">Panoramica Prodotto</p>
     <section id="tools">
         @can('admin_work')
             <a href="{{route('products.edit',['product'=>$product])}}">Modifica</a>

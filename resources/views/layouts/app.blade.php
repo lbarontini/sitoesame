@@ -3,13 +3,13 @@
 
 @section('content')
 <body>
-    <div id="maincontent"class="bodywidth clear">
-        <main class="py-4">
+    <div id="maincontent" class="bodywidth clear">
+        <main >
             @yield('log_content')
         </main>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+       {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -21,12 +21,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        <!-- Authentication Links --> --}}
                         @auth
-                            <li class="nav-item dropdown">
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                            {{-- <li class="nav-item dropdown"> --}}
+                                <div class="container-contact">
+                                    <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <h2 class="blue">{{ __('Logout') }}</h2>
@@ -36,12 +35,12 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            {{-- </li> --}}
                         @endauth
-                    </ul>
+                    {{-- </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
     </div>
 </body>
 @endsection
