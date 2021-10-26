@@ -1,22 +1,22 @@
 @extends('layouts.layout')
 @section('script')
-<script src="{{ asset('js/functions.js') }}" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        var actionType = 'POST';
-        var actionUrl = "{{ route('products.store') }}";
-        var formId = 'addproduct';
-        $(":input").on('blur', function (event) {
-            var formElementId = $(this).attr('id');
-            doElemValidation(formElementId, actionUrl, formId, actionType);
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var actionType = 'POST';
+            var actionUrl = "{{ route('products.store') }}";
+            var formId = 'addproduct';
+            $(":input").on('blur', function (event) {
+                var formElementId = $(this).attr('id');
+                doElemValidation(formElementId, actionUrl, formId, actionType);
+            });
+            $("#addproduct").on('submit', function (event) {
+                event.preventDefault();
+                doFormValidation(actionUrl, formId, actionType);
+            });
         });
-        $("#addproduct").on('submit', function (event) {
-            event.preventDefault();
-            doFormValidation(actionUrl, formId, actionType);
-        });
-    });
-</script>
+    </script>
 @endsection
 
 @section('content')

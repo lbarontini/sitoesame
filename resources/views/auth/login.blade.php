@@ -2,18 +2,25 @@
 
 @section('log_content')
 <div class="container-contact">
+
     <h1>{{ __('Login') }}</h1>
+
+    @if(Session::has('error'))
+        <div class="alert">
+            {{ Session::get('error')}}
+        </div>
+    @endif
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="wrap-input">
             <div class="rs1-wrap-input">
-                <label for="email" class="label-input">{{ __('E-Mail Address') }}</label>
+                <label for="username" class="label-input">{{ __('Username') }}</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                    @error('email')
+                    @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
