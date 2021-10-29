@@ -89,8 +89,7 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 #show {clear:both; margin:0 0 20px 0; overflow:hidden;}
 #show .info {margin-bottom: 20px;}
 #show .info ul{margin-left: 20px;}
-#show div.info1{display:block;}
-#show div.info2{float: left;}
+#show div.info1{display:block; margin-bottom: 40px;}
 #show img{padding:5px; border:1px #dbdbdb solid; width:119px; height:119px; margin:0 15px 0 0;float:left}
 #show div.info1 h3{font-size:1.5em; font-weight:bold; margin:0 0 15px 0;}
 

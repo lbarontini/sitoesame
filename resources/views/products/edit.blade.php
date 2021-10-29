@@ -51,12 +51,14 @@
 
                 <div  class="rs1-wrap-input">
                     {{ Form::label('image', 'Foto', ['class' => 'label-input']) }}
-                    {{Form::file('image', ['class' => 'input', 'id' => 'image'])}}
+                    {{ Form::file('image', ['class' => 'input', 'id' => 'image'])}}
                 </div>
 
                 <div  class="rs1-wrap-input">
                     {{ Form::label('user_id', 'Gestore', ['class' => 'label-input']) }}
-                    {{ Form::text('user_id', $product->user_id, ['class' => 'input', 'id' => 'user_id']) }}
+                    {{ Form::select('user_id',$staff_members->pluck('name','id'),
+                                                $product->user_id,
+                                                ['multiple'=>false,'class' => 'input', 'id' => 'user_id']) }}
                 </div>
 
                 <div class="container-form-btn">

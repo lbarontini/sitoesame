@@ -7,6 +7,8 @@ use App\Models\Product;
 use  App\Models\Malfunction;
 use App\Http\Requests\ProductRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -54,7 +56,7 @@ class ProductsController extends Controller
         $staff_members= User::whereHas('role', function (Builder $query) {
             $query->where('name', 'staff')->orWhere('name', 'admin');
         })->get();
-        return view('products.create',['malfunctions'=>Malfunction::All(),'staff_members'=>$staff_members]);
+        return view('products.create',['staff_members'=>$staff_members]);
     }
 
     /**
@@ -94,7 +96,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show',['product'=>$product]);
+        return view('products.show',['product'=>$product,]);
     }
 
     /**
@@ -106,7 +108,10 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         $this->authorize('admin_work');
-        return view('products.edit',['product'=>$product,'malfunctions'=>Malfunction::All()]);
+        $staff_members= User::whereHas('role', function (Builder $query) {
+            $query->where('name', 'staff')->orWhere('name', 'admin');
+        })->get();
+        return view('products.edit',['product'=>$product,'staff_members'=>$staff_members]);
     }
 
     /**
@@ -121,7 +126,7 @@ class ProductsController extends Controller
         $this->authorize('admin_work');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
+            $imageName = Str::random(10).$image->getClientOriginalName();
         } else {
             $imageName = $product->image;
         }
@@ -130,9 +135,10 @@ class ProductsController extends Controller
         $product->save();
 
 
-        if ($imageName!= $product->image) {
+        if ($request->hasFile('image')) {
             $destinationPath = public_path() . '/images/products';
             $image->move($destinationPath, $imageName);
+            Log::info($destinationPath);
         };
         return response()->json(['redirect' => route('products.show',['product' => $product])]);
     }
