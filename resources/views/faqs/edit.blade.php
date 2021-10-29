@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="container-form-btn">
-                        {{ Form::submit('Aggiungi', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
+                        {{ Form::submit('Modifica', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                     </div>
                 </div>
             {!! Form::close() !!}

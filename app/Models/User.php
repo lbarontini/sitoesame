@@ -41,8 +41,6 @@ class User extends Authenticatable
     {
         if ($this->isTecn())
             return $this->belongsTo(AssistanceCenter::class);
-        // else
-        //     return null;
     }
 
     public function role()

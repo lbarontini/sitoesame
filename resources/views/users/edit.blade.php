@@ -16,8 +16,15 @@
             doFormValidation(actionUrl, formId, actionType);
         });
 
-        $('#role_id').change(function (e) {
+        $('#role_id').change(function () {
             if($(this).val()==3){
+                $('#assistance_center_wrap').show();
+            }else{
+                $('#assistance_center_wrap').hide();
+            }
+        });
+        $(document).ready(function () {
+            if($('#role_id').val()==3){
                 $('#assistance_center_wrap').show();
             }else{
                 $('#assistance_center_wrap').hide();

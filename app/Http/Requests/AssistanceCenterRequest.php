@@ -29,7 +29,7 @@ class AssistanceCenterRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'description'=> 'required|max:50',
+            'description'=> 'required|max:200',
             'address'=> 'required',
             'user_id'=> 'nullable',
             'technicians'=>'nullable'

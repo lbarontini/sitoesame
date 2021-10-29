@@ -77,7 +77,6 @@ function doFormValidation(actionUrl, formId, actionType) {
             if (data.status === 422) {
                 var errMsgs = JSON.parse(data.responseText);
                 $.each(errMsgs, function (id) {
-                    console.log("validation form: "+formId);
                     $("#" + formId).find('#'+id).next(".errors").remove();
                     $("#" + formId).find('#'+id).after(getErrorHtml(errMsgs[id]));
                 });

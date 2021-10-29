@@ -30,7 +30,7 @@ class AssistanceCentersController extends Controller
         $this->authorize('admin_work');
         return view('assistance_centers.create',
                     ['technicians'=>User::whereHas('role', function (Builder $query) {
-                        $query->where('name', 'tecn')->where('assistance_center_id',null);
+                        $query->where('name', 'tecn');
                         })->get()
                     ]);
     }

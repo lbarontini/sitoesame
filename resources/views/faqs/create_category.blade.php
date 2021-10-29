@@ -7,6 +7,7 @@
         var actionType = 'POST';
         var actionUrl = "{{ route('faqs_categories.store') }}";
         var formId = 'addCategory';
+        // there is no elemValidation because there is only one element
         $("#addCategory").on('submit', function (event) {
             event.preventDefault();
             doFormValidation(actionUrl, formId, actionType);
