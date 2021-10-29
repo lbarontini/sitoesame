@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Modifica domanda</h1>
+        <p class="pagetitle">Modifica domanda</p>
             {!! Form::model($faq, array('route' => array('faqs.update', $faq->id), 'id' => 'editfaq','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">

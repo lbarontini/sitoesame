@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, h6{color:#2f2f2f; font-family:"Ubuntu",arial;}
 .blue{color:#4086c6;}
 .black{color:#000000;}
 .alert{color:#fd0404;}
+.pagetitle {padding: 20px; text-align: center; font-size:1.8em; font-weight:bold; color:#4086c6;}
 hr {
     border: 10px;
     clear:both;
@@ -68,7 +69,6 @@ a.findoutmore:hover{background-color:#2f2f2f; background-image:none; text-shadow
 /* Main Content */
 
 #maincontent{border-top:1px #dbdbdb solid; padding:25px 0 0 0; overflow:hidden;display: block;}
-#maincontent .pagetitle {padding: 20px; text-align: center; font-size:1.8em; font-weight:bold; color:#4086c6;}
 #tools {display: block; overflow: hidden}
 #tools a{margin: 20px 20px 0 0; float: right;font-size:1.5em; font-weight:bold; }
 #tools input.searchbar{margin: auto;font-size:1.5em; font-weight:bold; width: 99%;}

@@ -1,5 +1,5 @@
 <div class="container-contact" >
-    <h1>Modifica soluzione</h1>
+    <p class="pagetitle">Modifica soluzione</p>
     {!! Form::model($solution, array('route' => array('solutions.update', $solution), 'id' => 'editsolution'.$solution->id, 'solutionId'=>$solution->id, 'class' => 'editsolution-form')) !!}
         <div class="wrap-input">
             <div  class="rs1-wrap-input">

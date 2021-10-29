@@ -29,7 +29,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Modifica Utente</h1>
+        <p class="pagetitle">Modifica Utente</p>
             {!! Form::model($user, array('route' =>array('users.update', $user->id),
                                                         'id' => 'updateuser',
                                                         'class' => 'contact-form',

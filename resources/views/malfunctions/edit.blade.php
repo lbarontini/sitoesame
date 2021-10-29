@@ -1,5 +1,5 @@
 <div class="container-contact" >
-    <h1>Modifica malfunzionamento</h1>
+    <p class="pagetitle">Modifica malfunzionamento</p>
     {!! Form::model($malfunction, array('route' => array('malfunctions.update', $malfunction), 'id' => 'editmalfunction'.$malfunction->id, 'malfunctionId'=>$malfunction->id, 'class' => 'editmalfunction-form')) !!}
         <div class="wrap-input">
             <div  class="rs1-wrap-input">

@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-        <h1>Modifica centro assistenza</h1>
+        <p class="pagetitle">Modifica centro assistenza</p>
         {!! Form::model($assistance_center, array('route' =>array('assistance_centers.update', $assistance_center->id),
                                          'id' => 'editassistance_centers',
                                          'class' => 'contact-form',
@@ -53,7 +53,7 @@
                                     'id' => 'technicians'
                                     ])
                     }}
-
+                </div>
                 <div class="container-form-btn">
                     {{ Form::submit('Conferma Modifiche', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}
                 </div>

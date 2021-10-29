@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-        <h1>Nuovo centro assistenza</h1>
+        <p class="pagetitle">Nuovo centro assistenza</p>
         {!! Form::open(array('route' =>array('assistance_centers.store', ''),
                                          'id' => 'addassistance_centers',
                                          'class' => 'contact-form',
@@ -53,6 +53,7 @@
                                     'id' => 'technicians'
                                     ])
                     }}
+                </div>
 
                 <div class="container-form-btn">
                     {{ Form::submit('Conferma', ['class' => 'form-btn1', 'id' => 'sub-btn']) }}

@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>HTML5 Goodness</title>
+    <title>TWEB Site</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
-    <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ asset("css/styles.css") }}" rel="stylesheet" type="text/css" media="all">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold" rel="stylesheet" type="text/css">
 

@@ -1,5 +1,5 @@
 <div class="container-contact">
-        <h1>Nuova Soluzione</h1>
+    <p class="pagetitle">Nuova Soluzione</p>
         {!! Form::open(array('route' => 'solutions.store', 'id' => 'addsolution'.$malfunction->id,'class' => 'addsolution-form')) !!}
             <div class="wrap-input">
                 <div  class="rs1-wrap-input">

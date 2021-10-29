@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>Nuova categoria</h1>
+        <p class="pagetitle">Nuova categoria</p>
             {!! Form::open(array('route' => 'faqs_categories.store', 'id' => 'addCategory','class' => 'contact-form')) !!}
                 <div class="wrap-input">
                     <div  class="rs1-wrap-input">

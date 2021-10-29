@@ -24,7 +24,7 @@
     <p class="pagetitle">Utenti</p>
     <section id="tools">
         @can('admin_work')
-            <a href="{{route('users.create')}}">Aggiungi</a>
+            <a href="{{route('users.create')}}">Aggiungi utente</a>
         @endcan
     </section>
     <section id="index">
@@ -34,7 +34,7 @@
                     <a class= "username" userId={{$user->id}} href="">
                         <h3 class = "blue">{{$user->username}}</h3>
                     </a>
-                    <div class="info" userId={{$user->id}}>
+                    <div class="info" userId={{$user->id}} style="display: none;">
                         <div class="tools">
                             <a class="edit" href="{{route('users.edit',['user'=>$user])}}">
                                 <h3 class = "blue">Modifica</h3>

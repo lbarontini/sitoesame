@@ -3,7 +3,7 @@
 @section('log_content')
 <div class="container-contact">
 
-    <h1>{{ __('Login') }}</h1>
+    <p class='pagetitle'>{{ __('Login') }}</>
 
     @if(Session::has('error'))
         <div class="alert">

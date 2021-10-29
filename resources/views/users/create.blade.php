@@ -29,7 +29,7 @@
 
 @section('content')
     <div class="container-contact">
-            <h1>aggiungi Utente</h1>
+        <p class="pagetitle">Aggiungi Utente</p>
             {!! Form::open(array('route' =>array('users.update',''),
                                                         'id' => 'edituser',
                                                         'class' => 'contact-form',

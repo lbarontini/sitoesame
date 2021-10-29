@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container-contact">
-        <h1>Modifica Prodotto</h1>
+        <p class="pagetitle">Modifica Prodotto</p>
         {!! Form::model($product, array('route' =>array('products.update', $product->id),
                                          'id' => 'editproduct',
                                          'files' => true,
