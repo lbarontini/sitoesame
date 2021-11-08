@@ -186,7 +186,9 @@
         <div class="info2">
             <h4 class = "blue">Note Installazione: <h4>{{$product->installation_notes}}</h4></h4>
             <h4 class = "blue">Note Utlizzo: <h4>{{$product->use_notes}}</h4></h4>
-            <h4 class = "blue">Gestito da: <h4>{{$product->user->name}}</h4></h4>
+            @if (isset($product->user->name))
+                <h4 class = "blue">Gestito da: <h4>{{$product->user->name}}</h4></h4>
+            @endif
             @can('tecn_work')
                 @include('malfunctions.index')
             @endcan

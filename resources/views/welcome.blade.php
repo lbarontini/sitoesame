@@ -8,7 +8,7 @@
         <p>Autore: Lorenzo Barontini</p>
         <p>Email : S1080199@studenti.univpm.it</p>
         <p>Github: https://github.com/lbarontini/sitoesame</p>
-        <p><a href="https://it.wikipedia.org/wiki/Sito_web" class="findoutmore">Scopri di più?</a></p>
+        <p><a href="{{ asset('documents/Relazione Barontini.pdf') }}" class="findoutmore">Relazione</a></p>
     </div>
     <blockquote id="introquote">
         <p>This company is amazing. I can't come up with enough good things to say. Literally. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum magna tortor.</p>

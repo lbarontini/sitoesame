@@ -11,7 +11,6 @@
                     url : '{{ route('products.search') }}',
                     data: {'search':$value},
                     success:function(data){
-                            console.log(data);
                             $('#index').html(data.html);
                         }
                     });
